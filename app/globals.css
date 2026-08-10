@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --font-serif: Georgia, "Times New Roman", serif; --font-sans: Arial, Helvetica, sans-serif; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { @apply m-0 min-h-screen bg-cream text-ink antialiased; background-image: radial-gradient(rgba(38,53,45,.055) .7px, transparent .7px); background-size: 7px 7px; }
+button, input, textarea { font: inherit; }
+::selection { @apply bg-gold/30; }
+
+@layer components {
+  .shell { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[.2em] text-clay; }
+  .display { @apply font-serif text-5xl leading-[.96] tracking-[-.035em] sm:text-7xl lg:text-8xl; }
+  .button-primary { @apply inline-flex items-center justify-center rounded-full bg-forest px-6 py-3.5 text-sm font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-forest/90 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-cream disabled:cursor-not-allowed disabled:opacity-40; }
+  .button-secondary { @apply inline-flex items-center justify-center rounded-full border border-ink/20 px-6 py-3.5 text-sm font-semibold transition hover:border-forest hover:bg-paper; }
+  .panel { @apply rounded-2xl border border-ink/10 bg-paper/75 shadow-soft backdrop-blur-sm; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
