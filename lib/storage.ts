@@ -27,7 +27,7 @@ export function calculateScores(answers: Record<string, number>, forcedChoice?: 
 export function createResult(draft: AssessmentDraft, reflection: string): ResultRecord {
   const id = crypto.randomUUID();
   const { scores, ranking } = calculateScores(draft.answers, draft.forcedChoice);
-  const result: ResultRecord = { ...draft, id, createdAt: new Date().toISOString(), reflection, scores, ranking };
+  const result: ResultRecord = { ...draft, id, createdAt: new Date().toISOString(), reflection, scores, ranking, syncStatus: "pending", aiStatus: "pending" };
   localStorage.setItem(`${RESULT_PREFIX}${id}`, JSON.stringify(result));
   localStorage.removeItem(DRAFT_KEY);
   return result;

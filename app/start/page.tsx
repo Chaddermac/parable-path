@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { readDraft, writeDraft } from "@/lib/storage";
 
 export default function StartPage() {
   const [consent, setConsent] = useState(false);
@@ -16,13 +17,13 @@ export default function StartPage() {
           <li><strong className="text-ink">2. Receive.</strong> Pause for an open reflection before seeing the parable and True Story connected with your responses.</li>
           <li><strong className="text-ink">3. Become.</strong> Consider a redemptive calling and choose one small, faithful next step.</li>
         </ol>
-        <div className="mt-7 rounded-xl bg-cream p-5 text-sm leading-6 text-ink/65"><strong className="text-ink">Please hold the result lightly.</strong> ParablePath is not a personality test, clinical diagnosis, prophecy, counseling, or crisis care. It cannot tell you who you are. Your responses remain in this browser and are not sent to a server.</div>
+        <div className="mt-7 rounded-xl bg-cream p-5 text-sm leading-6 text-ink/65"><strong className="text-ink">Please hold the result lightly.</strong> ParablePath is not a personality test, clinical diagnosis, prophecy, counseling, or crisis care. It cannot tell you who you are. Your responses are stored securely in Supabase, and your scores and written reflection are sent to OpenAI to generate the result. Names and email are not required.</div>
         <label className="mt-7 flex cursor-pointer items-start gap-3 text-sm leading-6">
           <input className="mt-1 h-4 w-4 accent-forest" type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} />
-          <span>I understand that this is a reflection aid, not a fixed label, and I choose to continue.</span>
+          <span>I understand that this is a reflection aid, not a fixed label, and consent to the described storage and AI-assisted result generation.</span>
         </label>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href={consent ? "/assessment" : "#consent"} aria-disabled={!consent} onClick={(event) => { if (!consent) event.preventDefault(); }} className={`button-primary ${!consent ? "pointer-events-none opacity-40" : ""}`}>Begin assessment →</Link>
+          <Link href={consent ? "/assessment" : "#consent"} aria-disabled={!consent} onClick={(event) => { if (!consent) { event.preventDefault(); return; } writeDraft({ ...readDraft(), consentGiven: true }); }} className={`button-primary ${!consent ? "pointer-events-none opacity-40" : ""}`}>Begin assessment →</Link>
           <Link href="/" className="button-secondary">Go back</Link>
         </div>
       </div>
