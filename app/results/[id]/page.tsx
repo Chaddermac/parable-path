@@ -3,6 +3,7 @@
 import { roomById } from "@/lib/content";
 import { readResult, updateResult } from "@/lib/storage";
 import type { ResultRecord } from "@/lib/types";
+import { EmailResultForm } from "@/components/EmailResultForm";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -39,6 +40,7 @@ export default function ResultPage() {
     <section className="panel mt-8 p-7 sm:p-9"><div className="flex flex-col justify-between gap-5 sm:flex-row"><div><p className="eyebrow">Score summary</p><h2 className="mt-3 font-serif text-3xl">Three rooms to hold in reflection</h2></div><p className="max-w-md text-sm leading-6 text-ink/55">Each room ranges from 3–15. The forced choice breaks a tie only; it does not add points.</p></div><div className="mt-7 grid gap-4 sm:grid-cols-3">{topThree.map((room, index) => <div key={room.id} className="rounded-xl border border-ink/10 p-5"><span className="text-xs uppercase tracking-wider text-ink/45">{index === 0 ? "Primary" : index === 1 ? "Secondary" : "Third"}</span><div className="mt-2 flex items-end justify-between"><strong className="font-serif text-2xl">{room.name}</strong><span className="text-sm text-ink/55">{result.scores[room.id]} / 15</span></div><div className="mt-4 h-1.5 overflow-hidden rounded-full bg-ink/10"><div className="h-full rounded-full bg-clay" style={{ width: `${(result.scores[room.id] / 15) * 100}%` }} /></div></div>)}</div></section>
     {result.reflection && <section className="mx-auto mt-12 max-w-3xl text-center"><p className="eyebrow">What you noticed</p><blockquote className="mt-5 font-serif text-2xl leading-9">“{result.reflection}”</blockquote></section>}
     <section className="panel mt-12 p-7 sm:p-9"><p className="eyebrow">One next faithful step</p><h2 className="mt-3 font-serif text-3xl">Choose something small and concrete.</h2><div className="mt-6 grid gap-3 md:grid-cols-2">{primary.nextSteps.map((step) => <button onClick={() => selectStep(step)} key={step} className={`rounded-xl border p-5 text-left text-sm leading-6 transition ${result.nextStep === step ? "border-forest bg-forest text-paper" : "border-ink/15 hover:border-moss"}`}>{step}</button>)}</div></section>
+    <EmailResultForm responseId={id} />
     <aside className="mx-auto mt-12 max-w-3xl text-center"><h2 className="font-serif text-3xl">Hold this lightly.</h2><p className="mt-4 text-sm leading-7 text-ink/60">This result is a reflection aid, not a fixed label, personality test, prophecy, counseling, crisis care, or clinical diagnosis. You may recognize more than one room—or a different room in another season.</p><div className="mt-8 flex flex-wrap justify-center gap-3"><Link href={`/feedback/${id}`} className="button-primary">Share feedback →</Link><Link href="/start" className="button-secondary">Begin again</Link></div></aside>
   </main>;
 }
