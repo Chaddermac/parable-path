@@ -23,7 +23,10 @@ export function saveResponse(result: ResultRecord) {
     thirdRoom: result.ranking[2],
     forcedChoice: result.forcedChoice,
     openReflection: result.reflection,
-    consentGiven: result.consentGiven === true
+    consentGiven: result.consentGiven === true,
+    dimensionScores: result.diagnostic.roomScores,
+    isCloseSecondary: result.diagnostic.isCloseSecondary,
+    assessmentVersion: result.diagnostic.assessmentVersion
   });
 }
 
@@ -42,7 +45,7 @@ export function saveSafetyFlag(input: {
     primaryRoom: input.ranking[0],
     secondaryRoom: input.ranking[1],
     thirdRoom: input.ranking[2],
-    forcedChoice: input.draft.forcedChoice,
+    forcedChoice: input.draft.forcedChoice || input.ranking[0],
     consentGiven: input.draft.consentGiven === true,
     safetyFlag: true
   });

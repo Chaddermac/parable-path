@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     if (![body.primaryRoom, body.secondaryRoom, body.thirdRoom, body.forcedChoice].every((room) => typeof room === "string" && roomIds.has(room))) {
       return NextResponse.json({ error: "Invalid room value." }, { status: 400 });
     }
-    if (Object.keys(body.answers).length !== 24 || body.consentGiven !== true) {
+    if (Object.keys(body.answers).length !== 40 || body.consentGiven !== true) {
       return NextResponse.json({ error: "A complete, consented assessment is required." }, { status: 400 });
     }
 
@@ -28,7 +28,10 @@ export async function POST(request: Request) {
       forced_choice: body.forcedChoice,
       open_reflection: typeof body.openReflection === "string" ? body.openReflection : "",
       consent_given: true,
-      safety_flag: false
+      safety_flag: false,
+      dimension_scores: isObject(body.dimensionScores) || Array.isArray(body.dimensionScores) ? body.dimensionScores : [],
+      is_close_secondary: body.isCloseSecondary === true,
+      assessment_version: typeof body.assessmentVersion === "string" ? body.assessmentVersion : "2.0-story-strategy-shadow"
     }, { onConflict: "id" });
     if (error) throw error;
     return NextResponse.json({ ok: true });

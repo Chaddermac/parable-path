@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     if (![body.primaryRoom, body.secondaryRoom, body.thirdRoom, body.forcedChoice].every((room) => typeof room === "string" && roomIds.has(room))) {
       return NextResponse.json({ error: "Invalid room value." }, { status: 400 });
     }
-    if (Object.keys(body.answers).length !== 24 || body.consentGiven !== true || body.safetyFlag !== true) {
+    if (Object.keys(body.answers).length !== 40 || body.consentGiven !== true || body.safetyFlag !== true) {
       return NextResponse.json({ error: "A complete, consented assessment is required." }, { status: 400 });
     }
 
