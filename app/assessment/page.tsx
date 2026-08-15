@@ -1,43 +1,38 @@
 "use client";
 
-import { questions, rooms, scaleLabels } from "@/lib/content";
+import { questionPages, scaleLabels } from "@/lib/content";
 import { emptyDraft, readDraft, writeDraft } from "@/lib/storage";
-import type { AssessmentDraft, RoomId } from "@/lib/types";
+import type { AssessmentDraft } from "@/lib/types";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function AssessmentPage() {
   const router = useRouter();
   const [draft, setDraft] = useState<AssessmentDraft>(emptyDraft);
-  const [index, setIndex] = useState(0);
+  const [page, setPage] = useState(0);
   const [ready, setReady] = useState(false);
-  useEffect(() => { const saved = readDraft(); setDraft(saved); const first = questions.findIndex((q) => !saved.answers[q.id]); setIndex(first < 0 ? questions.length : first); setReady(true); }, []);
+  const [showErrors, setShowErrors] = useState(false);
+  useEffect(() => { const saved = readDraft(); setDraft(saved); const firstIncomplete = questionPages.findIndex((part) => part.some((question) => !saved.answers[question.id])); setPage(firstIncomplete < 0 ? 4 : firstIncomplete); setReady(true); }, []);
+  const current = questionPages[page];
+  const unanswered = useMemo(() => current.filter((question) => !draft.answers[question.id]), [current, draft.answers]);
   if (!ready) return null;
-  const isForced = index === questions.length;
-  const progress = Math.round(((index + (isForced ? 1 : 0)) / (questions.length + 1)) * 100);
-  const chooseLikert = (value: number) => { const next = { ...draft, answers: { ...draft.answers, [questions[index].id]: value } }; setDraft(next); writeDraft(next); };
-  const chooseStory = (room: RoomId) => { const next = { ...draft, forcedChoice: room }; setDraft(next); writeDraft(next); };
-  const goNext = () => { if (isForced) router.push("/reflect"); else setIndex((value) => value + 1); };
-  const canContinue = isForced ? Boolean(draft.forcedChoice) : Boolean(draft.answers[questions[index].id]);
-  return <main className="flex min-h-[calc(100vh-6rem)] flex-col">
-    <div className="h-1 bg-ink/10"><div className="h-full bg-clay transition-all" style={{ width: `${progress}%` }} /></div>
-    <div className="shell flex flex-1 items-center py-10 sm:py-16">
-      <section className="mx-auto w-full max-w-4xl">
-        <div className="flex items-center justify-between text-xs uppercase tracking-[.16em] text-ink/50"><span>Recognize</span><span>{isForced ? "One final choice" : `${index + 1} of ${questions.length}`}</span></div>
-        {isForced ? <>
-          <h1 className="mt-8 max-w-3xl font-serif text-4xl leading-tight sm:text-6xl">Which story feels closest to what you are navigating right now?</h1>
-          <p className="mt-4 text-sm text-ink/60">Choose one, even if more than one resonates. This choice breaks score ties; it does not override your responses.</p>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">{rooms.map((room) => <button key={room.id} onClick={() => chooseStory(room.id)} className={`rounded-xl border p-5 text-left transition ${draft.forcedChoice === room.id ? "border-forest bg-forest text-paper" : "border-ink/15 bg-paper/60 hover:border-moss"}`}><span className="text-xs uppercase tracking-wider opacity-60">{room.name}</span><span className="mt-2 block font-serif text-xl">“{room.falseStory}”</span></button>)}</div>
-        </> : <>
-          <p className="eyebrow mt-8">Notice what feels true lately</p>
-          <h1 className="mt-4 max-w-3xl font-serif text-4xl leading-tight sm:text-6xl">{questions[index].text}</h1>
-          <div className="mt-10 grid gap-2 sm:grid-cols-5" role="radiogroup" aria-label="Agreement scale">{scaleLabels.map((label, i) => { const value = i + 1; const selected = draft.answers[questions[index].id] === value; return <button key={label} role="radio" aria-checked={selected} onClick={() => chooseLikert(value)} className={`min-h-24 rounded-xl border p-4 text-left text-sm transition sm:text-center ${selected ? "border-forest bg-forest text-paper" : "border-ink/15 bg-paper/60 hover:border-moss"}`}><strong className="block text-lg">{value}</strong><span className="mt-2 block text-xs leading-4 opacity-75">{label}</span></button>; })}</div>
-        </>}
-        <div className="mt-9 flex items-center justify-between">
-          <button className="button-secondary" onClick={() => setIndex((value) => Math.max(0, value - 1))} disabled={index === 0}>← Back</button>
-          <button className="button-primary" onClick={goNext} disabled={!canContinue}>{isForced ? "Continue to reflection" : "Continue"} →</button>
-        </div>
-      </section>
-    </div>
+  const choose = (id: string, value: number) => { const next = { ...draft, answers: { ...draft.answers, [id]: value } }; setDraft(next); writeDraft(next); };
+  const next = () => { if (unanswered.length) { setShowErrors(true); document.getElementById(unanswered[0].id)?.focus(); return; } setShowErrors(false); if (page === 4) router.push("/reflect"); else { setPage((value) => value + 1); window.scrollTo({ top: 0, behavior: "smooth" }); } };
+  return <main className="shell py-8 sm:py-12">
+    <section className="mx-auto max-w-4xl">
+      <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[.16em] text-ink/55"><span>Recognize</span><span>Part {page + 1} of 5</span></div>
+      <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-ink/10" role="progressbar" aria-valuemin={1} aria-valuemax={5} aria-valuenow={page + 1} aria-label={`Part ${page + 1} of 5`}><div className="h-full bg-clay transition-all" style={{ width: `${(page + 1) * 20}%` }} /></div>
+      <h1 className="mt-7 font-serif text-4xl sm:text-5xl">What feels true in this season?</h1>
+      <p className="mt-3 text-sm leading-6 text-ink/60">Answer according to what you actually tend to experience and do, especially under stress. There are no “good” results.</p>
+      {showErrors && unanswered.length > 0 && <div role="alert" className="mt-6 rounded-xl border border-clay/40 bg-clay/10 p-4 text-sm text-ink">Please answer {unanswered.length === 1 ? "the highlighted statement" : `all ${unanswered.length} highlighted statements`} before continuing.</div>}
+      <div className="mt-8 space-y-5">{current.map((question, questionIndex) => {
+        const missing = showErrors && !draft.answers[question.id];
+        return <fieldset key={question.id} className={`panel p-5 sm:p-7 ${missing ? "border-clay ring-1 ring-clay" : ""}`}>
+          <legend id={question.id} tabIndex={-1} className="w-full px-0 font-serif text-xl leading-7 sm:text-2xl"><span className="mr-2 text-sm text-ink/40">{page * 8 + questionIndex + 1}.</span>{question.text}</legend>
+          <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-5">{scaleLabels.map((label, index) => { const value = index + 1; const checked = draft.answers[question.id] === value; return <label key={label} className={`flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border p-3 text-sm transition sm:min-h-20 sm:flex-col sm:justify-center sm:text-center ${checked ? "border-forest bg-forest text-paper" : "border-ink/15 bg-white/50 hover:border-moss"}`}><input className="h-4 w-4 accent-gold sm:sr-only" type="radio" name={question.id} value={value} checked={checked} onChange={() => choose(question.id, value)} /><strong>{value}</strong><span className="text-xs leading-4 opacity-80">{label}</span></label>; })}</div>
+        </fieldset>;
+      })}</div>
+      <div className="mt-8 flex items-center justify-between"><button className="button-secondary" onClick={() => page === 0 ? router.push("/start") : setPage((value) => value - 1)}>← Previous</button><button className="button-primary" onClick={next}>{page === 4 ? "Continue to reflection" : "Continue"} →</button></div>
+    </section>
   </main>;
 }

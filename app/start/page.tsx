@@ -9,21 +9,21 @@ export default function StartPage() {
   return <main className="shell py-10 sm:py-16">
     <div className="mx-auto max-w-3xl">
       <p className="eyebrow">Before you begin</p>
-      <h1 className="mt-4 font-serif text-5xl tracking-tight sm:text-6xl">Make room for honesty, not certainty.</h1>
+      <h1 className="mt-4 font-serif text-5xl tracking-tight sm:text-6xl">What story might you be inhabiting?</h1>
       <div className="panel mt-10 p-6 sm:p-9">
         <h2 className="font-serif text-2xl">How this reflection works</h2>
         <ol className="mt-5 space-y-4 text-sm leading-7 text-ink/70">
-          <li><strong className="text-ink">1. Recognize.</strong> Respond to 24 statements on a five-point scale, then choose the false story that feels closest.</li>
+          <li><strong className="text-ink">1. Recognize.</strong> Respond to 40 statements across five short parts. Notice what you actually experience and do, especially under stress.</li>
           <li><strong className="text-ink">2. Receive.</strong> Pause for an open reflection before seeing the parable and True Story connected with your responses.</li>
           <li><strong className="text-ink">3. Become.</strong> Consider a redemptive calling and choose one small, faithful next step.</li>
         </ol>
-        <div className="mt-7 rounded-xl bg-cream p-5 text-sm leading-6 text-ink/65"><strong className="text-ink">Please hold the result lightly.</strong> ParablePath is not a personality test, clinical diagnosis, prophecy, counseling, or crisis care. It cannot tell you who you are. Your responses are stored securely in Supabase, and your scores and written reflection are sent to OpenAI to generate the result. Names and email are not required.</div>
+        <div className="mt-7 rounded-xl bg-cream p-5 text-sm leading-6 text-ink/65"><strong className="text-ink">Please hold the result lightly.</strong> ParablePath is a spiritual reflection and formation tool, not a personality test, psychological or clinical diagnosis, prophecy, counseling, or crisis care. It cannot tell you who you are. Your responses are stored securely in Supabase, and your scores and written reflection are sent to OpenAI to generate the result. Names and email are not required.</div>
         <label className="mt-7 flex cursor-pointer items-start gap-3 text-sm leading-6">
           <input className="mt-1 h-4 w-4 accent-forest" type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} />
           <span>I understand that this is a reflection aid, not a fixed label, and consent to the described storage and AI-assisted result generation.</span>
         </label>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href={consent ? "/assessment" : "#consent"} aria-disabled={!consent} onClick={(event) => { if (!consent) { event.preventDefault(); return; } writeDraft({ ...readDraft(), consentGiven: true }); }} className={`button-primary ${!consent ? "pointer-events-none opacity-40" : ""}`}>Begin assessment →</Link>
+          <Link href={consent ? "/assessment" : "#consent"} aria-disabled={!consent} onClick={(event) => { if (!consent) { event.preventDefault(); return; } writeDraft({ ...readDraft(), consentGiven: true }); }} className={`button-primary ${!consent ? "pointer-events-none opacity-40" : ""}`}>Begin the Story Assessment →</Link>
           <Link href="/" className="button-secondary">Go back</Link>
         </div>
       </div>

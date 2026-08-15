@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     const thirdRoom = body.thirdRoom as RoomId;
     const forcedChoice = body.forcedChoice as RoomId;
     const scores = body.scores as Scores;
-    if (!roomIds.every((room) => Number.isInteger(scores[room]) && scores[room] >= 3 && scores[room] <= 15)) {
+    if (!roomIds.every((room) => typeof scores[room] === "number" && scores[room] >= 1 && scores[room] <= 5)) {
       return NextResponse.json({ error: "Invalid score values." }, { status: 400 });
     }
     const room = roomById[primaryRoom];

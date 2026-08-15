@@ -14,7 +14,7 @@ export default function ReflectPage() {
   const finish = async () => {
     const draft = readDraft();
     if (draft.consentGiven !== true) { router.push("/start"); return; }
-    if (Object.keys(draft.answers).length !== 24 || !draft.forcedChoice) { router.push("/assessment"); return; }
+    if (Object.keys(draft.answers).length !== 40) { router.push("/assessment"); return; }
     setSaving(true);
     if (hasCrisisLanguage(reflection)) {
       const { scores, ranking } = calculateScores(draft.answers, draft.forcedChoice);
