@@ -14,6 +14,7 @@ export default function ResultPage() {
   useEffect(() => setResult(readResult(id)), [id]);
   if (result === undefined) return null;
   if (!result) return <main className="shell py-20 text-center"><h1 className="font-serif text-5xl">This reflection is not in this browser.</h1><p className="mt-4 text-ink/60">Results remain available on the device where the assessment was completed.</p><Link href="/start" className="button-primary mt-8">Begin a reflection</Link></main>;
+  if (!result.diagnostic) return <main className="shell py-20 text-center"><p className="eyebrow">Assessment updated</p><h1 className="mt-4 font-serif text-5xl">Your earlier reflection used the previous question set.</h1><p className="mx-auto mt-5 max-w-2xl text-ink/60">ParablePath now explores story, strategy, and shadow across a new 40-item assessment. Earlier browser results have not been relabeled or recalculated under the new model.</p><Link href="/start" className="button-primary mt-8">Begin the updated assessment</Link></main>;
   const primary = roomById[result.ranking[0]], secondary = roomById[result.ranking[1]];
   const insight = roomInsights[primary.id], secondaryInsight = roomInsights[secondary.id];
   const primaryDimension = result.diagnostic.roomScores.find((score) => score.room === primary.id)!;
