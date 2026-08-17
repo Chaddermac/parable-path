@@ -28,7 +28,8 @@ export default function AssessmentPage() {
       <div className="mt-8 space-y-5">{current.map((question, questionIndex) => {
         const missing = showErrors && !draft.answers[question.id];
         return <fieldset key={question.id} className={`panel p-5 sm:p-7 ${missing ? "border-clay ring-1 ring-clay" : ""}`}>
-          <legend id={question.id} tabIndex={-1} className="w-full px-0 font-serif text-xl leading-7 sm:text-2xl"><span className="mr-2 text-sm text-ink/40">{page * 8 + questionIndex + 1}.</span>{question.text}</legend>
+          <legend className="sr-only">{page * 8 + questionIndex + 1}. {question.text}</legend>
+          <div id={question.id} tabIndex={-1} className="font-serif text-xl leading-7 sm:text-2xl"><span className="mr-2 text-sm text-ink/40">{page * 8 + questionIndex + 1}.</span>{question.text}</div>
           <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-5">{scaleLabels.map((label, index) => { const value = index + 1; const checked = draft.answers[question.id] === value; return <label key={label} className={`flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border p-3 text-sm transition sm:min-h-20 sm:flex-col sm:justify-center sm:text-center ${checked ? "border-forest bg-forest text-paper" : "border-ink/15 bg-white/50 hover:border-moss"}`}><input className="h-4 w-4 accent-gold sm:sr-only" type="radio" name={question.id} value={value} checked={checked} onChange={() => choose(question.id, value)} /><strong>{value}</strong><span className="text-xs leading-4 opacity-80">{label}</span></label>; })}</div>
         </fieldset>;
       })}</div>
