@@ -34,7 +34,7 @@ export const questions: AssessmentQuestion[] = [
 ];
 export const questionPages = Array.from({ length: 5 }, (_, page) => questions.slice(page * 8, page * 8 + 8));
 export const scaleLabels = ["Almost Never", "Rarely", "Sometimes", "Often", "Very Often"];
-export const ASSESSMENT_VERSION = "2.0-story-strategy-shadow";
+export const ASSESSMENT_VERSION = "formation-v1";
 export const CLOSE_SECONDARY_THRESHOLD = 0.25;
 
 export const roomInsights: Record<RoomId, { story: string; strength: string; protects: string; shadowLabel: string; shadow: string; relationalCost: string; question: string }> = {
