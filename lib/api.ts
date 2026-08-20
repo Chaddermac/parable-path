@@ -47,7 +47,8 @@ export function saveSafetyFlag(input: {
     thirdRoom: input.ranking[2],
     forcedChoice: input.draft.forcedChoice || input.ranking[0],
     consentGiven: input.draft.consentGiven === true,
-    safetyFlag: true
+    safetyFlag: true,
+    assessmentVersion: "formation-v1"
   });
 }
 

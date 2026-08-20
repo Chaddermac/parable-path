@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 const roomIds = new Set(["lost", "scarcity", "control", "stalled", "boundary", "settling", "delay", "distraction"]);
 const isObject = (value: unknown): value is Record<string, unknown> => Boolean(value) && typeof value === "object" && !Array.isArray(value);
+const sourceDomain = (request: Request) => (request.headers.get("x-forwarded-host") || request.headers.get("host") || "").split(",")[0].trim().toLowerCase().split(":")[0] || null;
 
 export async function POST(request: Request) {
   try {
@@ -17,7 +18,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "A complete, consented assessment is required." }, { status: 400 });
     }
 
-    const { error } = await createServerSupabaseClient().from("responses").upsert({
+    const payload = {
       id: body.id,
       created_at: typeof body.createdAt === "string" ? body.createdAt : new Date().toISOString(),
       answers: body.answers,
@@ -31,8 +32,17 @@ export async function POST(request: Request) {
       safety_flag: false,
       dimension_scores: isObject(body.dimensionScores) || Array.isArray(body.dimensionScores) ? body.dimensionScores : [],
       is_close_secondary: body.isCloseSecondary === true,
-      assessment_version: typeof body.assessmentVersion === "string" ? body.assessmentVersion : "2.0-story-strategy-shadow"
-    }, { onConflict: "id" });
+      assessment_version: typeof body.assessmentVersion === "string" ? body.assessmentVersion : "formation-v1",
+      source_domain: sourceDomain(request)
+    };
+    const supabase = createServerSupabaseClient();
+    let { error } = await supabase.from("responses").upsert(payload, { onConflict: "id" });
+    // Keep formation submissions working if application code reaches an
+    // environment before the additive source_domain migration does.
+    if (error?.code === "PGRST204" && error.message.includes("source_domain")) {
+      const { source_domain: _sourceDomain, ...legacyPayload } = payload;
+      ({ error } = await supabase.from("responses").upsert(legacyPayload, { onConflict: "id" }));
+    }
     if (error) throw error;
     return NextResponse.json({ ok: true });
   } catch (error) {
