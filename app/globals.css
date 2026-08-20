@@ -120,9 +120,108 @@ button, input, textarea { font: inherit; }
 .experience-popular .button-secondary { border-color: rgba(32, 32, 42, .22); font-family: var(--font-popular-body), Arial, sans-serif; font-weight: 800; }
 .experience-popular .button-secondary:hover { border-color: var(--popular-violet); background: white; }
 
+/* Popular Room Reveal */
+.experience-popular .popular-reveal { --room-accent: var(--popular-violet); --room-accent-soft: #eeeaff; }
+.experience-popular .popular-reveal-hero {
+  background: var(--popular-surface);
+  border: 2px solid var(--room-accent);
+  box-shadow: 0 22px 0 var(--room-accent-soft), 0 40px 90px rgba(55, 42, 104, .12);
+  animation: popular-reveal-in .55s cubic-bezier(.2,.8,.2,1) both;
+}
+.experience-popular .popular-reveal-ring {
+  position: absolute;
+  width: 28rem;
+  height: 28rem;
+  right: -12rem;
+  top: -15rem;
+  border: 4rem solid var(--room-accent-soft);
+  border-radius: 999px;
+}
+.experience-popular .popular-reveal-label {
+  color: var(--room-accent);
+  font-size: .72rem;
+  font-weight: 850;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.experience-popular .popular-room-icon {
+  display: flex;
+  width: 4.5rem;
+  height: 4.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.35rem;
+  background: var(--room-accent);
+  color: white;
+  font-family: var(--font-popular-display), Arial, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 750;
+  box-shadow: 0 8px 0 var(--room-accent-soft);
+}
+.experience-popular .popular-room-name { color: var(--popular-ink); font-family: var(--font-popular-display), Arial, sans-serif; font-weight: 750; text-transform: uppercase; }
+.experience-popular .popular-room-tentative { color: var(--room-accent); }
+.experience-popular .popular-recognition { color: var(--popular-ink); font-family: var(--font-popular-display), Arial, sans-serif; }
+.experience-popular .popular-result-description { color: var(--popular-muted); }
+.experience-popular .popular-understory {
+  background: var(--room-accent);
+  box-shadow: 0 12px 0 var(--room-accent-soft);
+  color: white;
+  animation: popular-reveal-in .55s .1s cubic-bezier(.2,.8,.2,1) both;
+}
+.experience-popular .popular-understory .popular-reveal-label { color: white; opacity: .75; }
+.experience-popular .popular-understory blockquote { font-family: var(--font-popular-display), Arial, sans-serif; }
+.experience-popular .popular-result-card {
+  min-height: 19rem;
+  border: 2px solid rgba(32, 32, 42, .12);
+  border-top: .65rem solid var(--room-accent);
+  border-radius: 1.5rem;
+  background: var(--popular-surface);
+  padding: 1.75rem;
+  box-shadow: 0 9px 0 rgba(32, 32, 42, .07);
+}
+.experience-popular .popular-card-label { color: var(--room-accent); font-size: .7rem; font-weight: 850; letter-spacing: .17em; text-transform: uppercase; }
+.experience-popular .popular-result-card h2 { margin-top: 1rem; color: var(--popular-ink); font-family: var(--font-popular-display), Arial, sans-serif; font-size: 1.75rem; font-weight: 750; line-height: 1.05; }
+.experience-popular .popular-result-card > p:last-child { margin-top: 1rem; color: var(--popular-muted); font-size: .95rem; line-height: 1.7; }
+.experience-popular .popular-open-door { background: var(--room-accent-soft); border-color: var(--room-accent); }
+.experience-popular .popular-next-step { background: var(--popular-violet); color: white; }
+.experience-popular .popular-next-step .popular-reveal-label { color: var(--popular-yellow); }
+.experience-popular .popular-next-step h2 { font-family: var(--font-popular-display), Arial, sans-serif; }
+.experience-popular .popular-next-step > p:not(.popular-reveal-label) { color: rgba(255, 255, 255, .76); }
+.experience-popular .popular-result-primary,
+.experience-popular .popular-result-secondary {
+  display: inline-flex;
+  min-height: 3.65rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: .95rem 1.5rem;
+  font-weight: 850;
+  transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
+}
+.experience-popular .popular-result-primary { gap: 1.5rem; background: var(--popular-yellow); color: var(--popular-ink); box-shadow: 0 8px 0 rgba(32, 32, 42, .22); }
+.experience-popular .popular-result-primary:hover { background: white; box-shadow: 0 5px 0 rgba(32, 32, 42, .22); transform: translateY(3px); }
+.experience-popular .popular-result-secondary { border: 2px solid rgba(255, 255, 255, .65); color: white; }
+.experience-popular .popular-result-secondary:hover { background: rgba(255, 255, 255, .12); transform: translateY(-2px); }
+.experience-popular .popular-result-primary:focus-visible,
+.experience-popular .popular-result-secondary:focus-visible { outline: 3px solid white; outline-offset: 4px; }
+.experience-popular .popular-not-label { color: var(--popular-muted); }
+
+@keyframes popular-reveal-in {
+  from { opacity: 0; transform: translateY(16px) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 @media (max-width: 639px) {
   .experience-popular .popular-hero { border-radius: 1.5rem; }
   .experience-popular .popular-cta { width: 100%; }
   .experience-popular .popular-orbit-one { right: -19rem; }
   .experience-popular .popular-orbit-two { right: -7rem; bottom: -10rem; }
+  .experience-popular .popular-reveal-hero { box-shadow: 0 14px 0 var(--room-accent-soft); }
+  .experience-popular .popular-room-icon { width: 4rem; height: 4rem; font-size: 2.15rem; }
+  .experience-popular .popular-result-card { min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-popular .popular-reveal-hero,
+  .experience-popular .popular-understory { animation: none; }
 }
