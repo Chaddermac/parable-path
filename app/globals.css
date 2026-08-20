@@ -18,3 +18,111 @@ button, input, textarea { font: inherit; }
   .panel { @apply rounded-2xl border border-ink/10 bg-paper/75 shadow-soft backdrop-blur-sm; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+
+/* The consumer-facing .com experience is scoped to the domain class set in the root layout. */
+.experience-popular {
+  --popular-bg: #fff7ec;
+  --popular-surface: #ffffff;
+  --popular-ink: #20202a;
+  --popular-muted: #686675;
+  --popular-accent: #ff5c46;
+  --popular-accent-dark: #df3f2c;
+  --popular-violet: #6547dc;
+  --popular-yellow: #ffd25a;
+  background: var(--popular-bg);
+  background-image: radial-gradient(rgba(101, 71, 220, .09) .8px, transparent .8px);
+  background-size: 10px 10px;
+  color: var(--popular-ink);
+  font-family: var(--font-popular-body), Arial, sans-serif;
+}
+
+.experience-popular .popular-header { color: var(--popular-ink); }
+.experience-popular .popular-brand {
+  color: var(--popular-ink);
+  font-family: var(--font-popular-display), Arial, sans-serif;
+  font-weight: 750;
+  letter-spacing: -.035em;
+}
+.experience-popular .popular-header-note { color: var(--popular-muted); font-weight: 700; }
+.experience-popular .popular-footer { border-color: rgba(32, 32, 42, .14); color: var(--popular-muted); }
+.experience-popular .popular-page { font-family: var(--font-popular-body), Arial, sans-serif; }
+.experience-popular .popular-hero {
+  background: var(--popular-violet);
+  box-shadow: 0 30px 90px rgba(67, 43, 150, .22);
+  color: white;
+}
+.experience-popular .popular-display,
+.experience-popular .popular-question,
+.experience-popular .display,
+.experience-popular .font-serif {
+  font-family: var(--font-popular-display), Arial, sans-serif;
+}
+.experience-popular .popular-display,
+.experience-popular .popular-question { font-weight: 750; }
+.experience-popular .popular-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .12);
+  padding: .55rem .9rem;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.experience-popular .popular-invitation { color: #fff3c8; font-family: var(--font-popular-display), Arial, sans-serif; font-weight: 600; }
+.experience-popular .popular-cta {
+  display: inline-flex;
+  min-height: 3.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  border-radius: 999px;
+  background: var(--popular-yellow);
+  padding: 1rem 1.6rem;
+  color: var(--popular-ink);
+  font-size: 1rem;
+  font-weight: 850;
+  box-shadow: 0 12px 0 rgba(32, 32, 42, .2);
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.experience-popular .popular-cta:hover { background: white; box-shadow: 0 8px 0 rgba(32, 32, 42, .2); transform: translateY(4px); }
+.experience-popular .popular-cta:focus-visible,
+.experience-popular .popular-answer:focus-visible,
+.experience-popular .popular-back:focus-visible { outline: 3px solid var(--popular-yellow); outline-offset: 4px; }
+.experience-popular .popular-meta { color: rgba(255, 255, 255, .7); font-weight: 600; }
+.experience-popular .popular-orbit { position: absolute; border: 2px solid rgba(255, 255, 255, .15); border-radius: 999px; }
+.experience-popular .popular-orbit-one { width: 28rem; height: 28rem; right: -8rem; top: -13rem; }
+.experience-popular .popular-orbit-two { width: 15rem; height: 15rem; right: 8rem; bottom: -8rem; background: var(--popular-accent); border: 0; }
+.experience-popular .popular-kicker { color: var(--popular-muted); }
+.experience-popular .popular-progress { background: rgba(32, 32, 42, .11); }
+.experience-popular .popular-progress > div { background: var(--popular-accent); }
+.experience-popular .popular-accent-label { color: var(--popular-accent-dark); }
+.experience-popular .popular-answer {
+  border: 2px solid rgba(32, 32, 42, .12);
+  border-radius: 1.35rem;
+  background: var(--popular-surface);
+  box-shadow: 0 8px 0 rgba(32, 32, 42, .08);
+  color: var(--popular-ink);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.experience-popular .popular-answer:hover { border-color: var(--popular-accent); box-shadow: 0 5px 0 rgba(255, 92, 70, .22); transform: translateY(3px); }
+.experience-popular .popular-answer-index { background: #f0ecff; color: var(--popular-violet); }
+.experience-popular .popular-back { color: var(--popular-muted); text-decoration-color: rgba(104, 102, 117, .35); }
+
+/* Existing result components inherit the .com tokens without affecting formation routes. */
+.experience-popular .eyebrow { color: var(--popular-accent-dark); font-family: var(--font-popular-body), Arial, sans-serif; font-weight: 800; }
+.experience-popular .display { color: var(--popular-ink); font-weight: 750; }
+.experience-popular .panel { border-color: rgba(32, 32, 42, .12); background: rgba(255, 255, 255, .88); box-shadow: 0 18px 60px rgba(55, 42, 104, .1); }
+.experience-popular .button-primary { background: var(--popular-accent); color: white; font-family: var(--font-popular-body), Arial, sans-serif; font-weight: 800; }
+.experience-popular .button-primary:hover { background: var(--popular-accent-dark); }
+.experience-popular .button-secondary { border-color: rgba(32, 32, 42, .22); font-family: var(--font-popular-body), Arial, sans-serif; font-weight: 800; }
+.experience-popular .button-secondary:hover { border-color: var(--popular-violet); background: white; }
+
+@media (max-width: 639px) {
+  .experience-popular .popular-hero { border-radius: 1.5rem; }
+  .experience-popular .popular-cta { width: 100%; }
+  .experience-popular .popular-orbit-one { right: -19rem; }
+  .experience-popular .popular-orbit-two { right: -7rem; bottom: -10rem; }
+}
