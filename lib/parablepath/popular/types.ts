@@ -1,4 +1,4 @@
-import type { RoomId } from "@/lib/types";
+import type { RoomId } from "../../types.ts";
 
 export interface PopularOption {
   label: string;
@@ -13,10 +13,18 @@ export interface PopularQuestion {
 
 export interface PopularResultCopy {
   room: RoomId;
+  displayName: string;
+  icon: string;
+  accentColor: string;
+  accentSoft: string;
   recognition: string;
   description: string;
   underlyingStory: string;
+  strengthLabel: string;
   strength: string;
+  shadowLabel: string;
   shadow: string;
+  openDoorLabel: string;
   possibility: string;
+  exploreUrl: string;
 }
