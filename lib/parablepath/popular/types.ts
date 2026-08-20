@@ -2,13 +2,22 @@ import type { RoomId } from "../../types.ts";
 
 export interface PopularOption {
   label: string;
-  room: RoomId;
+  scores: Partial<Record<RoomId, number>>;
 }
 
 export interface PopularQuestion {
   id: string;
+  round: string;
   prompt: string;
   options: PopularOption[];
+}
+
+export interface PopularScoreResult {
+  primary: RoomId;
+  secondary: RoomId;
+  normalizedScores: Record<RoomId, number>;
+  rawScores: Record<RoomId, number>;
+  nearTie: boolean;
 }
 
 export interface PopularResultCopy {

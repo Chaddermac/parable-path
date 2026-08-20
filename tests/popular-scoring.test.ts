@@ -1,11 +1,45 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { scorePopularAssessment } from "../lib/parablepath/popular/scoring.ts";
+import { popularQuestions } from "../lib/parablepath/popular/questions.ts";
+import { maximumPopularScores, popularRoomOrder, scorePopularAssessment } from "../lib/parablepath/popular/scoring.ts";
 
-test("popular scoring returns the most frequent room", () => {
-  assert.equal(scorePopularAssessment(["control", "lost", "control"]), "control");
+test("popular assessment contains 24 five-choice questions across four rounds", () => {
+  assert.equal(popularQuestions.length, 24);
+  assert.deepEqual([...new Set(popularQuestions.map((question) => question.round))], ["Everyday You", "Under Pressure", "With Other People", "What You Really Want"]);
+  for (const question of popularQuestions) assert.equal(question.options.length, 5);
 });
 
-test("popular scoring resolves ties by the earliest answer", () => {
-  assert.equal(scorePopularAssessment(["delay", "boundary", "scarcity"]), "delay");
+test("every option uses only primary and optional secondary weights", () => {
+  for (const question of popularQuestions) {
+    for (const option of question.options) {
+      const weights = Object.values(option.scores).sort((a, b) => b - a);
+      assert.equal(weights[0], 2);
+      assert.ok(weights.length <= 2);
+      if (weights.length === 2) assert.equal(weights[1], 1);
+    }
+  }
+});
+
+test("normalization gives every room a 100 percent attainable ceiling", () => {
+  const maximums = maximumPopularScores();
+  for (const room of popularRoomOrder) {
+    assert.ok(maximums[room] > 0);
+    const answers = popularQuestions.map((question) => [...question.options].sort((a, b) => (b.scores[room] || 0) - (a.scores[room] || 0))[0]);
+    assert.equal(scorePopularAssessment(answers).normalizedScores[room], 100);
+  }
+});
+
+test("dominant answer patterns resolve to each intended room", () => {
+  for (const room of popularRoomOrder) {
+    const eligible = popularQuestions.filter((question) => question.options.some((option) => option.scores[room] === 2));
+    const answers = eligible.map((question) => question.options.find((option) => option.scores[room] === 2)!);
+    assert.equal(scorePopularAssessment(answers).primary, room);
+  }
+});
+
+test("a seven-point normalized gap is treated as a near tie", () => {
+  const first = popularQuestions[0].options[0];
+  const result = scorePopularAssessment([first]);
+  assert.equal(typeof result.nearTie, "boolean");
+  assert.notEqual(result.primary, result.secondary);
 });

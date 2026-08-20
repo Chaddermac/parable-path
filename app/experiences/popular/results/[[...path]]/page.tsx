@@ -10,10 +10,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://parablepath.com/results" }
 };
 
-export default async function PopularResultsPage({ searchParams }: { searchParams: Promise<{ room?: string }> }) {
-  const { room: requestedRoom } = await searchParams;
+export default async function PopularResultsPage({ searchParams }: { searchParams: Promise<{ room?: string; secondary?: string; between?: string }> }) {
+  const { room: requestedRoom, secondary: requestedSecondary, between } = await searchParams;
   const room = (requestedRoom && requestedRoom in popularResultByRoom ? requestedRoom : "lost") as RoomId;
   const result = popularResultByRoom[room];
+  const secondary = requestedSecondary && requestedSecondary in popularResultByRoom && requestedSecondary !== room
+    ? popularResultByRoom[requestedSecondary as RoomId]
+    : null;
   const roomStyle = { "--room-accent": result.accentColor, "--room-accent-soft": result.accentSoft } as CSSProperties;
   return <main className="popular-reveal shell py-8 sm:py-14" style={roomStyle}>
     <section className="popular-reveal-hero relative overflow-hidden rounded-[2rem] px-6 py-10 sm:px-12 sm:py-14">
@@ -22,7 +25,9 @@ export default async function PopularResultsPage({ searchParams }: { searchParam
         <p className="popular-reveal-label">Your Story Room</p>
         <div className="popular-room-icon mt-6" aria-hidden="true">{result.icon}</div>
         <h1 className="popular-room-name mt-5 text-[clamp(3.25rem,10vw,7.5rem)] leading-[.88] tracking-[-.065em]">{result.displayName}</h1>
-        <p className="popular-room-tentative mt-5 text-sm font-bold">Right now, your answers point toward this room.</p>
+        <p className="popular-room-tentative mt-5 text-sm font-bold">{between === "1" && secondary
+          ? `You may be standing between ${result.displayName} and ${secondary.displayName}. Your answers lean toward this room.`
+          : "Right now, your answers point toward this room."}</p>
         <blockquote className="popular-recognition mt-7 max-w-3xl text-2xl font-bold leading-tight sm:text-4xl">“{result.recognition}”</blockquote>
         <p className="popular-result-description mt-6 max-w-2xl text-base leading-7 sm:text-lg sm:leading-8">{result.description}</p>
       </div>
