@@ -1,12 +1,23 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { popularQuestions } from "../lib/parablepath/popular/questions.ts";
+import { orderedPopularOptions, POPULAR_ASSESSMENT_VERSION, popularQuestions } from "../lib/parablepath/popular/questions.ts";
 import { maximumPopularScores, popularRoomOrder, scorePopularAssessment } from "../lib/parablepath/popular/scoring.ts";
 
-test("popular assessment contains 24 five-choice questions across four rounds", () => {
-  assert.equal(popularQuestions.length, 24);
-  assert.deepEqual([...new Set(popularQuestions.map((question) => question.round))], ["Everyday You", "Under Pressure", "With Other People", "What You Really Want"]);
+test("popular v2 contains 16 five-choice questions across four rounds", () => {
+  assert.equal(POPULAR_ASSESSMENT_VERSION, "popular-v2");
+  assert.equal(popularQuestions.length, 16);
+  assert.deepEqual([...new Set(popularQuestions.map((question) => question.round))], ["Just a Normal Day", "When Life Gets Weird", "Other Humans", "The Stuff Underneath"]);
   for (const question of popularQuestions) assert.equal(question.options.length, 5);
+});
+
+test("answer ordering is varied without changing answer content", () => {
+  let reorderedQuestions = 0;
+  for (const question of popularQuestions) {
+    const ordered = orderedPopularOptions(question);
+    assert.deepEqual(new Set(ordered), new Set(question.options));
+    if (ordered.some((option, index) => option !== question.options[index])) reorderedQuestions += 1;
+  }
+  assert.ok(reorderedQuestions >= 12);
 });
 
 test("every option uses only primary and optional secondary weights", () => {
