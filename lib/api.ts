@@ -1,4 +1,5 @@
 import type { AiResult, AssessmentDraft, ResultRecord, RoomId, Scores } from "./types";
+import type { PopularOption } from "./parablepath/popular/types";
 
 async function postJson(path: string, body: unknown) {
   const response = await fetch(path, {
@@ -27,6 +28,17 @@ export function saveResponse(result: ResultRecord) {
     dimensionScores: result.diagnostic.roomScores,
     isCloseSecondary: result.diagnostic.isCloseSecondary,
     assessmentVersion: result.diagnostic.assessmentVersion
+  });
+}
+
+export function savePopularResponse(input: {
+  id: string;
+  answers: PopularOption[];
+}) {
+  return postJson("/api/responses/popular", {
+    id: input.id,
+    answers: input.answers.map((answer) => answer.label),
+    consentGiven: true
   });
 }
 
