@@ -16,6 +16,7 @@ button, input, textarea { font: inherit; }
   .button-primary { @apply inline-flex items-center justify-center rounded-full bg-forest px-6 py-3.5 text-sm font-semibold text-paper transition hover:-translate-y-0.5 hover:bg-forest/90 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-cream disabled:cursor-not-allowed disabled:opacity-40; }
   .button-secondary { @apply inline-flex items-center justify-center rounded-full border border-ink/20 px-6 py-3.5 text-sm font-semibold transition hover:border-forest hover:bg-paper; }
   .panel { @apply rounded-2xl border border-ink/10 bg-paper/75 shadow-soft backdrop-blur-sm; }
+  .brand-name { font-family: Georgia, "Times New Roman", serif; font-weight: 700; letter-spacing: -.025em; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
 
@@ -225,3 +226,99 @@ button, input, textarea { font: inherit; }
   .experience-popular .popular-reveal-hero,
   .experience-popular .popular-understory { animation: none; }
 }
+
+/* Data-driven ParablePath typology result */
+.experience-popular .typology-result-page { width: min(100% - 1.5rem, 72rem); margin: 0 auto; padding: 2.5rem 0 4rem; color: #071d49; }
+.experience-popular .typology-card { overflow: hidden; border: 1px solid rgba(8, 29, 73, .14); border-radius: 2rem; background: #faf7ef; box-shadow: 0 22px 60px rgba(34, 37, 42, .14); padding: clamp(1.25rem, 4vw, 4rem); animation: typology-reveal 1.45s cubic-bezier(.16,1,.3,1) both; }
+.experience-popular .typology-card h1,
+.experience-popular .typology-card h2,
+.experience-popular .typology-card blockquote,
+.experience-popular .typology-brand { font-family: Georgia, "Times New Roman", serif; }
+.experience-popular .typology-card h2 { color: #073c2c; font-size: clamp(1.65rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.05; }
+.experience-popular .typology-card p { line-height: 1.55; }
+.experience-popular .typology-masthead { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2.2rem; padding-bottom: 2rem; }
+.experience-popular .typology-brand { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 700; letter-spacing: -.05em; line-height: 1; }
+.experience-popular .typology-brand-sub { margin-top: .5rem; font-size: .68rem; font-weight: 800; letter-spacing: .35em; }
+.experience-popular .typology-tag { display: flex; flex-direction: column; gap: .55rem; border-left: 1px solid rgba(8, 29, 73, .25); padding-left: 2rem; }
+.experience-popular .typology-tag b { font-size: .67rem; letter-spacing: .32em; line-height: 1.5; }
+.experience-popular .typology-tag i { color: #073c2c; font-family: Georgia, "Times New Roman", serif; font-size: 1.12rem; }
+.experience-popular .typology-round-icon { display: grid; width: 4.5rem; height: 4.5rem; flex: 0 0 auto; place-items: center; border-radius: 999px; background: var(--result-soft); color: var(--result-accent); padding: 1rem; }
+.experience-popular .typology-round-icon.is-strong { width: 7.2rem; height: 7.2rem; border: .45rem solid color-mix(in srgb, var(--result-soft), white 30%); background: var(--result-accent); color: white; padding: 1.35rem; }
+.experience-popular .typology-round-icon svg { width: 100%; height: 100%; }
+.experience-popular .typology-reveal { border-top: 1px solid rgba(8, 29, 73, .18); padding: clamp(2rem, 5vw, 4rem) 0 2.5rem; text-align: center; }
+.experience-popular .typology-reveal > p,
+.experience-popular .typology-label { color: var(--result-accent); font-size: .72rem; font-weight: 850; letter-spacing: .25em; }
+.experience-popular .typology-reveal h1 { max-width: 56rem; margin: 1rem auto 0; color: #073c2c; font-size: clamp(2.6rem, 7.2vw, 6.4rem); font-weight: 700; letter-spacing: -.055em; line-height: .95; }
+.experience-popular .typology-reveal h1 em { display: block; color: var(--result-accent); font-style: normal; }
+.experience-popular .typology-transition { display: flex; flex-direction: column; gap: .4rem; margin-top: 2rem; font-size: clamp(1rem, 2.2vw, 1.4rem); }
+.experience-popular .typology-transition strong { color: var(--result-accent); }
+.experience-popular .typology-calling { display: flex; align-items: flex-start; gap: 1.4rem; border-top: 1px solid color-mix(in srgb, var(--result-accent), transparent 55%); border-bottom: 1px solid color-mix(in srgb, var(--result-accent), transparent 55%); padding: 2rem 0; }
+.experience-popular .typology-calling p { margin-top: .6rem; font-size: 1.05rem; }
+.experience-popular .typology-story-grid { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid color-mix(in srgb, var(--result-accent), transparent 55%); padding: 1.25rem 0; }
+.experience-popular .typology-story-grid > div { display: flex; align-items: center; gap: 1.25rem; padding: 1rem 1.25rem; }
+.experience-popular .typology-story-grid > div + div { border-left: 1px solid rgba(8, 29, 73, .2); }
+.experience-popular .typology-story-grid .typology-round-icon.is-strong { width: 5.2rem; height: 5.2rem; border-width: .25rem; padding: 1rem; }
+.experience-popular .typology-story-grid blockquote { margin-top: .45rem; color: #071d49; font-size: clamp(1.55rem, 3.4vw, 2.6rem); font-weight: 700; line-height: 1.05; }
+.experience-popular .typology-shadow h2 { color: #075345; font-family: var(--font-popular-body), Arial, sans-serif; font-size: .78rem; font-weight: 850; letter-spacing: .2em; }
+.experience-popular .typology-shadow p { margin-top: .45rem; font-size: .94rem; }
+.experience-popular .typology-compass { font-size: 2.3rem; }
+.experience-popular .typology-practices { display: flex; gap: 1.5rem; margin: 1.5rem -1.25rem; border-radius: 1rem; background: var(--result-soft); padding: 1.25rem 1.75rem; }
+.experience-popular .typology-practices .typology-round-icon.is-strong { width: 5.5rem; height: 5.5rem; border-width: .25rem; padding: 1rem; }
+.experience-popular .typology-practices > div:last-child { min-width: 0; flex: 1; }
+.experience-popular .typology-list { display: grid; gap: .55rem; margin-top: .75rem; }
+.experience-popular .typology-list li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); align-items: start; gap: .8rem; }
+.experience-popular .typology-list li > span { display: grid; width: 2rem; height: 2rem; place-items: center; border-radius: 999px; background: var(--result-accent); color: white; font-weight: 800; }
+.experience-popular .typology-list p { padding-top: .15rem; }
+.experience-popular .typology-detail-row { display: flex; gap: 1.5rem; border-bottom: 1px solid color-mix(in srgb, var(--result-accent), transparent 55%); padding: 1.4rem 0; }
+.experience-popular .typology-detail-row > div:last-child { min-width: 0; flex: 1; }
+.experience-popular .typology-detail-row p { margin-top: .35rem; }
+.experience-popular .typology-detail-row p strong { color: #075345; }
+.experience-popular .typology-card-footer { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding-top: 1.5rem; color: #075345; text-align: center; }
+.experience-popular .typology-card-footer span { height: 1px; background: color-mix(in srgb, var(--result-accent), transparent 45%); }
+.experience-popular .typology-card-footer b { color: #c57800; font-size: 1.5rem; }
+.experience-popular .typology-card-footer p { grid-column: 1 / -1; font-size: .66rem; font-weight: 800; letter-spacing: .28em; }
+.experience-popular .typology-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; margin-top: 1.5rem; }
+.experience-popular .typology-action { display: inline-flex; min-height: 3.5rem; align-items: center; justify-content: center; border: 1px solid rgba(8, 29, 73, .25); border-radius: 999px; background: #fffdf8; padding: .85rem 1rem; color: #071d49; font-size: .85rem; font-weight: 800; text-align: center; transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+.experience-popular .typology-action:hover { border-color: var(--result-accent); background: var(--result-soft); transform: translateY(-2px); }
+.experience-popular .typology-action:focus-visible { outline: 3px solid var(--result-accent); outline-offset: 3px; }
+.experience-popular .typology-action-primary { border-color: var(--result-accent); background: var(--result-accent); color: white; }
+.experience-popular .typology-action-notice { grid-column: 1 / -1; min-height: 1.5rem; color: #555e67; font-size: .85rem; text-align: center; }
+.experience-popular .typology-note { max-width: 48rem; margin: 1rem auto 0; color: #555e67; font-size: .85rem; line-height: 1.55; text-align: center; }
+.experience-popular .typology-empty { display: grid; min-height: 62vh; place-items: center; padding-top: 3rem; padding-bottom: 3rem; }
+.experience-popular .typology-empty section { max-width: 40rem; border: 1px solid rgba(8,29,73,.14); border-radius: 2rem; background: #faf7ef; padding: clamp(2rem, 6vw, 4rem); box-shadow: 0 20px 55px rgba(34,37,42,.12); text-align: center; }
+.experience-popular .typology-empty h1 { margin-top: .8rem; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.4rem, 7vw, 4.7rem); line-height: 1; }
+.experience-popular .typology-empty section > p:not(.typology-label) { margin: 1.25rem auto 0; color: #555e67; line-height: 1.6; }
+.experience-popular .typology-empty a { display: inline-flex; margin-top: 1.5rem; border-radius: 999px; background: #073c2c; padding: .9rem 1.3rem; color: white; font-weight: 800; }
+
+@keyframes typology-reveal { from { opacity: 0; transform: translateY(24px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media (max-width: 760px) {
+  .experience-popular .typology-result-page { width: min(100% - 1rem, 72rem); padding-top: 1rem; }
+  .experience-popular .typology-card { border-radius: 1.35rem; }
+  .experience-popular .typology-masthead { grid-template-columns: 1fr auto; gap: 1rem; }
+  .experience-popular .typology-tag { display: none; }
+  .experience-popular .typology-round-icon.is-strong { width: 4.8rem; height: 4.8rem; border-width: .25rem; padding: .9rem; }
+  .experience-popular .typology-reveal { padding-top: 2rem; }
+  .experience-popular .typology-calling,
+  .experience-popular .typology-practices,
+  .experience-popular .typology-detail-row { gap: .85rem; }
+  .experience-popular .typology-story-grid { grid-template-columns: 1fr; }
+  .experience-popular .typology-story-grid > div { padding: 1rem 0; }
+  .experience-popular .typology-story-grid > div + div { border-top: 1px solid rgba(8,29,73,.15); border-left: 0; }
+  .experience-popular .typology-practices { margin-right: -.5rem; margin-left: -.5rem; padding: 1rem .75rem; }
+  .experience-popular .typology-actions { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 420px) {
+  .experience-popular .typology-card { padding: 1rem; }
+  .experience-popular .typology-brand { font-size: 1.5rem; }
+  .experience-popular .typology-brand-sub { font-size: .5rem; letter-spacing: .2em; }
+  .experience-popular .typology-masthead .typology-round-icon { width: 3.8rem; height: 3.8rem; padding: .7rem; }
+  .experience-popular .typology-calling,
+  .experience-popular .typology-practices,
+  .experience-popular .typology-detail-row { flex-direction: column; }
+  .experience-popular .typology-story-grid > div { align-items: flex-start; }
+  .experience-popular .typology-actions { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) { .experience-popular .typology-card { animation: none; } }

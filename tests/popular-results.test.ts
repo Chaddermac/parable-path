@@ -9,22 +9,23 @@ test("all eight popular Story Rooms have complete reveal presentation data", () 
 
   for (const room of expectedRooms) {
     const result = popularResultByRoom[room];
-    assert.equal(result.room, room);
-    assert.match(result.displayName, /^The .+ Room$/);
-    assert.match(result.accentColor, /^#[0-9a-f]{6}$/i);
+    assert.equal(result.id, room);
+    assert.ok(result.storyName.length > 2);
+    assert.match(result.accent, /^#[0-9a-f]{6}$/i);
     assert.match(result.accentSoft, /^#[0-9a-f]{6}$/i);
     assert.ok(result.icon.length > 0);
-    assert.ok(result.recognition.length > 20);
-    assert.ok(result.description.length > 80);
-    assert.ok(result.underlyingStory.length > 5);
-    assert.ok(result.strengthLabel.length > 2);
-    assert.ok(result.shadowLabel.length > 2);
-    assert.ok(result.openDoorLabel.length > 2);
-    assert.equal(result.exploreUrl, "https://parablepath.app/assessment");
+    assert.ok(result.callingName.length > 2);
+    assert.ok(result.callingDescription.length > 80);
+    assert.ok(result.falseStory.length > 5);
+    assert.ok(result.shadowName.length > 2);
+    assert.ok(result.shadowDescription.length > 80);
+    assert.equal(result.practices.length, 3);
+    assert.equal(result.nextSteps.length, 3);
+    assert.ok(result.parableReferences.length > 8);
   }
 });
 
 test("each Story Room uses a distinct primary accent", () => {
-  const accents = expectedRooms.map((room) => popularResultByRoom[room].accentColor);
+  const accents = expectedRooms.map((room) => popularResultByRoom[room].accent);
   assert.equal(new Set(accents).size, expectedRooms.length);
 });
