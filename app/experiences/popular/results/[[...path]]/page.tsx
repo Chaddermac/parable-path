@@ -28,5 +28,5 @@ export default async function PopularResultsPage({ params, searchParams }: Props
       <Link href="/assessment">Take the assessment <span aria-hidden="true">→</span></Link>
     </section>
   </main>;
-  return <TypologyResultCard profile={popularResultByRoom[storyId]}/>;
+  return <main><TypologyResultCard profile={popularResultByRoom[storyId]}/></main>;
 }

@@ -6,9 +6,9 @@ import type { CSSProperties, ReactNode } from "react";
 function NumberedList({ items }: { items: readonly string[] }) { return <ol className="typology-list">{items.map((item, index) => <li key={item}><span aria-hidden="true">{index + 1}</span><p>{item}</p></li>)}</ol>; }
 function RoundIcon({ children, strong = false }: { children: ReactNode; strong?: boolean }) { return <div className={`typology-round-icon${strong ? " is-strong" : ""}`}>{children}</div>; }
 
-export function TypologyResultCard({ profile }: { profile: TypologyProfile }) {
+export function TypologyResultCard({ profile, showActions = true }: { profile: TypologyProfile; showActions?: boolean }) {
   const style = { "--result-accent": profile.accent, "--result-soft": profile.accentSoft } as CSSProperties;
-  return <main className="typology-result-page" style={style}>
+  return <div className="typology-result-shell experience-popular"><div className="typology-result-page" style={style}>
     <p className="sr-only" role="status" aria-live="polite">Your result is the {profile.storyName} Story, with an invitation to become a {profile.callingName}.</p>
     <article className="typology-card">
       <header className="typology-masthead">
@@ -40,7 +40,7 @@ export function TypologyResultCard({ profile }: { profile: TypologyProfile }) {
 
       <footer className="typology-card-footer"><span/><b>✦</b><span/><p>PEOPLE BELONG. STORIES CHANGE. GOD REDEEMS.</p></footer>
     </article>
-    <PopularResultActions storyId={profile.id} storyName={profile.storyName} callingName={profile.callingName}/>
+    {showActions && <PopularResultActions storyId={profile.id} storyName={profile.storyName} callingName={profile.callingName}/>}
     <p className="typology-note">This result is a reflection aid, not a fixed label or diagnosis. Hold it with curiosity, and keep what helps you move toward faithful love.</p>
-  </main>;
+  </div></div>;
 }

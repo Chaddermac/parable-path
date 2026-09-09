@@ -1,7 +1,9 @@
 "use client";
 
 import { EmailResultForm } from "@/components/EmailResultForm";
+import { TypologyResultCard } from "@/components/popular/TypologyResultCard";
 import { roomById, roomInsights } from "@/lib/content";
+import { popularResultByRoom } from "@/lib/parablepath/popular/results";
 import { readResult, updateResult } from "@/lib/storage";
 import type { ResultRecord } from "@/lib/types";
 import Link from "next/link";
@@ -14,13 +16,15 @@ export default function ResultPage() {
   useEffect(() => setResult(readResult(id)), [id]);
   if (result === undefined) return null;
   if (!result) return <main className="shell py-20 text-center"><h1 className="font-serif text-5xl">This reflection is not in this browser.</h1><p className="mt-4 text-ink/60">Results remain available on the device where the assessment was completed.</p><Link href="/start" className="button-primary mt-8">Begin a reflection</Link></main>;
-  if (!result.diagnostic) return <main className="shell py-20 text-center"><p className="eyebrow">Assessment updated</p><h1 className="mt-4 font-serif text-5xl">Your earlier reflection used the previous question set.</h1><p className="mx-auto mt-5 max-w-2xl text-ink/60">ParablePath now explores story, strategy, and shadow across a new 40-item assessment. Earlier browser results have not been relabeled or recalculated under the new model.</p><Link href="/start" className="button-primary mt-8">Begin the updated assessment</Link></main>;
+  if (!result.diagnostic) return <main className="shell py-20 text-center"><p className="eyebrow">Assessment updated</p><h1 className="mt-4 font-serif text-5xl">Your earlier reflection used the previous question set.</h1><p className="mx-auto mt-5 max-w-2xl text-ink/60"><span className="brand-name">ParablePath</span> now explores story, strategy, and shadow across a new 40-item assessment. Earlier browser results have not been relabeled or recalculated under the new model.</p><Link href="/start" className="button-primary mt-8">Begin the updated assessment</Link></main>;
   const primary = roomById[result.ranking[0]], secondary = roomById[result.ranking[1]];
   const insight = roomInsights[primary.id], secondaryInsight = roomInsights[secondary.id];
   const primaryDimension = result.diagnostic.roomScores.find((score) => score.room === primary.id)!;
   const shadowLed = primaryDimension.shadow > primaryDimension.innerStory && primaryDimension.shadow > primaryDimension.strategy;
   const selectStep = (nextStep: string) => { const next = { ...result, nextStep }; setResult(next); updateResult(next); };
-  return <main className="shell py-10 sm:py-16">
+  return <main>
+    <TypologyResultCard profile={popularResultByRoom[primary.id]} showActions={false}/>
+    <div className="shell py-10 sm:py-16">
     <section className="max-w-4xl"><p className="eyebrow">Your current story landscape</p>
       {result.diagnostic.isFlatProfile ? <><h1 className="display mt-4 text-forest">No single story strongly dominates</h1><p className="mt-6 max-w-3xl font-serif text-xl leading-8 text-ink/65">Your responses do not point to one particularly strong pattern right now. Your patterns may be situational, relatively balanced, or difficult to recognize through a brief assessment. These are two stories worth exploring.</p></> : <><h1 className="display mt-4 text-forest">{result.diagnostic.isCloseSecondary ? `${primary.name} + ${secondary.name}` : primary.name}</h1><p className="mt-6 max-w-3xl font-serif text-xl leading-8 text-ink/65">{result.diagnostic.isCloseSecondary ? `${primary.name} and ${secondary.name} appear to be close companion stories in this season.` : `${primary.name} appears to be your strongest current pattern, with ${secondary.name} worth noticing nearby.`} This is an invitation to recognition, not a label.</p></>}
       {shadowLed && <p className="mt-5 rounded-xl border border-gold/40 bg-gold/10 p-4 text-sm leading-6">You may recognize this story most clearly through the shadow it casts.</p>}
@@ -45,6 +49,7 @@ export default function ResultPage() {
     <details className="panel mt-8 p-7"><summary className="cursor-pointer font-semibold">See your full story landscape</summary><div className="mt-6 space-y-4">{result.diagnostic.roomScores.map((score) => <div key={score.room}><div className="flex justify-between text-sm"><span>{roomById[score.room].name}</span><span className="text-ink/45">{score.overall >= 4 ? "Highly present" : score.overall >= 3 ? "Present" : score.overall >= 2 ? "Occasional" : "Less present"}</span></div><div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink/10"><div className="h-full rounded-full bg-clay" style={{width:`${score.normalized}%`}} /></div></div>)}</div></details>
     {result.reflection && <section className="mx-auto mt-12 max-w-3xl text-center"><p className="eyebrow">What you noticed</p><blockquote className="mt-5 font-serif text-2xl leading-9">“{result.reflection}”</blockquote></section>}
     <EmailResultForm responseId={id} />
-    <aside className="mx-auto mt-12 max-w-3xl text-center"><p className="text-sm leading-7 text-ink/60"><strong>ParablePath is a spiritual reflection tool, not a psychological diagnosis or personality test.</strong> These results are an invitation to notice patterns, ask better questions, and explore how the parables of Jesus might open another way of seeing and living.</p><div className="mt-8 flex flex-wrap justify-center gap-3"><Link href={`/feedback/${id}`} className="button-primary">Share feedback →</Link><Link href="/start" className="button-secondary">Begin again</Link></div></aside>
+    <aside className="mx-auto mt-12 max-w-3xl text-center"><p className="text-sm leading-7 text-ink/60"><strong><span className="brand-name">ParablePath</span> is a spiritual reflection tool, not a psychological diagnosis or personality test.</strong> These results are an invitation to notice patterns, ask better questions, and explore how the parables of Jesus might open another way of seeing and living.</p><div className="mt-8 flex flex-wrap justify-center gap-3"><Link href={`/feedback/${id}`} className="button-primary">Share feedback →</Link><Link href="/start" className="button-secondary">Begin again</Link></div></aside>
+    </div>
   </main>;
 }
