@@ -1,9 +1,9 @@
 "use client";
 
 import { EmailResultForm } from "@/components/EmailResultForm";
-import { TypologyResultCard } from "@/components/popular/TypologyResultCard";
+import { FormationTypologyResultCard } from "@/components/formation/FormationTypologyResultCard";
 import { roomById, roomInsights } from "@/lib/content";
-import { popularResultByRoom } from "@/lib/parablepath/popular/results";
+import { formationResultByRoom } from "@/lib/parablepath/popular/results";
 import { readResult, updateResult } from "@/lib/storage";
 import type { ResultRecord } from "@/lib/types";
 import Link from "next/link";
@@ -23,7 +23,7 @@ export default function ResultPage() {
   const shadowLed = primaryDimension.shadow > primaryDimension.innerStory && primaryDimension.shadow > primaryDimension.strategy;
   const selectStep = (nextStep: string) => { const next = { ...result, nextStep }; setResult(next); updateResult(next); };
   return <main>
-    <TypologyResultCard profile={popularResultByRoom[primary.id]} showActions={false}/>
+    <FormationTypologyResultCard profile={formationResultByRoom[primary.id]}/>
     <div className="shell py-10 sm:py-16">
     <section className="max-w-4xl"><p className="eyebrow">Your current story landscape</p>
       {result.diagnostic.isFlatProfile ? <><h1 className="display mt-4 text-forest">No single story strongly dominates</h1><p className="mt-6 max-w-3xl font-serif text-xl leading-8 text-ink/65">Your responses do not point to one particularly strong pattern right now. Your patterns may be situational, relatively balanced, or difficult to recognize through a brief assessment. These are two stories worth exploring.</p></> : <><h1 className="display mt-4 text-forest">{result.diagnostic.isCloseSecondary ? `${primary.name} + ${secondary.name}` : primary.name}</h1><p className="mt-6 max-w-3xl font-serif text-xl leading-8 text-ink/65">{result.diagnostic.isCloseSecondary ? `${primary.name} and ${secondary.name} appear to be close companion stories in this season.` : `${primary.name} appears to be your strongest current pattern, with ${secondary.name} worth noticing nearby.`} This is an invitation to recognition, not a label.</p></>}

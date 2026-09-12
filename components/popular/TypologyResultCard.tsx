@@ -1,46 +1,44 @@
-import { BookIcon, ResultIcon, SproutIcon, StepsIcon } from "@/components/popular/ResultIcons";
+import { BookIcon, BrokenHeartIcon, CompassIcon, ResultIcon, WarningIcon } from "@/components/popular/ResultIcons";
 import { PopularResultActions } from "@/components/popular/PopularResultActions";
-import { storyInvitation, type TypologyProfile } from "@/lib/parablepath/popular/results";
+import { popularDeeperUrl, popularDisclaimer, popularStoryInvitation, type PopularTypologyProfile } from "@/lib/parablepath/popular/results";
 import type { CSSProperties, ReactNode } from "react";
 
-function NumberedList({ items }: { items: readonly string[] }) { return <ol className="typology-list">{items.map((item, index) => <li key={item}><span aria-hidden="true">{index + 1}</span><p>{item}</p></li>)}</ol>; }
-function RoundIcon({ children, strong = false }: { children: ReactNode; strong?: boolean }) { return <div className={`typology-round-icon${strong ? " is-strong" : ""}`}>{children}</div>; }
+function InformationRow({ icon, label, children, tone }: { icon: ReactNode; label: string; children: ReactNode; tone: "pink" | "yellow" | "mint" | "blue" }) {
+  return <section className="compact-result-row">
+    <span className={`compact-row-icon is-${tone}`} aria-hidden="true">{icon}</span>
+    <div><h2>{label}</h2><p>{children}</p></div>
+  </section>;
+}
 
-export function TypologyResultCard({ profile, showActions = true }: { profile: TypologyProfile; showActions?: boolean }) {
-  const style = { "--result-accent": profile.accent, "--result-soft": profile.accentSoft } as CSSProperties;
-  return <div className="typology-result-shell experience-popular"><div className="typology-result-page" style={style}>
-    <p className="sr-only" role="status" aria-live="polite">Your result is the {profile.storyName} Story, with an invitation to become a {profile.callingName}.</p>
-    <article className="typology-card">
-      <header className="typology-masthead">
-        <div><p className="typology-brand">ParablePath</p><p className="typology-brand-sub">HOUSE OF STORIES</p></div>
-        <div className="typology-tag"><b>FROM FALSE STORIES<br/>TO REDEMPTIVE CALLINGS</b><i>Your life is not random.<br/>You’re living a story.</i></div>
-        <RoundIcon strong><ResultIcon name={profile.icon}/></RoundIcon>
+export function TypologyResultCard({ profile }: { profile: PopularTypologyProfile }) {
+  const style = { "--corner-accent": profile.cornerAccent, "--calling-icon-bg": profile.iconBackground } as CSSProperties;
+  return <div className="compact-result-shell" style={style}>
+    <p className="sr-only" role="status" aria-live="polite">Your result is {profile.callingName}.</p>
+    <article className="compact-result-card" aria-labelledby="compact-result-heading">
+      <span className="compact-result-arc" aria-hidden="true"/>
+      <span className="compact-result-corner" aria-hidden="true"/>
+      <header className="compact-result-hero">
+        <p className="compact-result-label">YOUR PARABLEPATH RESULT</p>
+        <div className="compact-calling-icon" role="img" aria-label={`${profile.callingName} symbol`}><ResultIcon name={profile.callingIcon}/></div>
+        <h1 id="compact-result-heading">{profile.headline}</h1>
+        <p className="compact-result-tagline">{profile.callingTagline}</p>
+        <p className="compact-result-summary">{profile.callingSummary}</p>
       </header>
 
-      <section className="typology-reveal" aria-labelledby="result-heading">
-        <p>YOUR PARABLEPATH RESULT</p>
-        <h1 id="result-heading">You may be living in the <em>{profile.storyName} Story.</em></h1>
-        <div className="typology-transition"><span>But that is not where your story has to end.</span><strong>You are invited to become a {profile.callingName}.</strong></div>
-      </section>
+      <div className="compact-result-rows">
+        <InformationRow label="FALSE STORY" tone="pink" icon={<BrokenHeartIcon/>}><strong>{profile.falseStory}</strong></InformationRow>
+        <InformationRow label={`WATCH FOR ${profile.shadowName.toUpperCase()} MODE`} tone="yellow" icon={<WarningIcon/>}>{profile.shadowSummary}</InformationRow>
+        <InformationRow label="READ THE PARABLE" tone="mint" icon={<BookIcon/>}><strong>{profile.parableReference}</strong></InformationRow>
+        <InformationRow label="STORY INVITATION" tone="blue" icon={<CompassIcon/>}>{popularStoryInvitation}</InformationRow>
+      </div>
 
-      <section className="typology-calling" aria-labelledby="calling-heading">
-        <RoundIcon><SproutIcon/></RoundIcon>
-        <div><h2 id="calling-heading">Your Redemptive Calling</h2><p>{profile.callingDescription}</p></div>
-      </section>
-
-      <section className="typology-story-grid">
-        <div className="typology-story-block"><RoundIcon strong><ResultIcon name={profile.icon}/></RoundIcon><div><p className="typology-label">FALSE STORY</p><blockquote>“{profile.falseStory}”</blockquote></div></div>
-        <div className="typology-shadow"><RoundIcon><span className="typology-compass" aria-hidden="true">✦</span></RoundIcon><div><h2>SHADOW SIDE: {profile.shadowName.toUpperCase()}</h2><p>{profile.shadowDescription}</p></div></div>
-      </section>
-
-      <section className="typology-practices"><RoundIcon strong><SproutIcon/></RoundIcon><div><h2>Ways to live into your true story</h2><NumberedList items={profile.practices}/></div></section>
-
-      <section className="typology-detail-row"><RoundIcon><BookIcon/></RoundIcon><div><h2>Read the parable</h2><p><strong>STORY Invitation:</strong> {storyInvitation}</p><p><strong>Parable references:</strong> {profile.parableReferences}</p></div></section>
-      <section className="typology-detail-row"><RoundIcon><StepsIcon/></RoundIcon><div><h2>Next Steps</h2><NumberedList items={profile.nextSteps}/></div></section>
-
-      <footer className="typology-card-footer"><span/><b>✦</b><span/><p>PEOPLE BELONG. STORIES CHANGE. GOD REDEEMS.</p></footer>
+      <footer className="compact-result-cta">
+        <h2>Want the deeper story?</h2>
+        <p>Go to ParablePath.app for your full profile, shadow patterns, and next steps.</p>
+        <a href={popularDeeperUrl} aria-label="Go to the deeper ParablePath formation assessment">Go deeper <span aria-hidden="true">→</span></a>
+      </footer>
     </article>
-    {showActions && <PopularResultActions storyId={profile.id} storyName={profile.storyName} callingName={profile.callingName}/>}
-    <p className="typology-note">This result is a reflection aid, not a fixed label or diagnosis. Hold it with curiosity, and keep what helps you move toward faithful love.</p>
-  </div></div>;
+    <PopularResultActions profile={profile}/>
+    <p className="compact-result-disclaimer">{popularDisclaimer}</p>
+  </div>;
 }

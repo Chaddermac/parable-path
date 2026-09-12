@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const storyId = (await params).path?.[0];
   const profile = isRoomId(storyId) ? popularResultByRoom[storyId] : null;
   return {
-    title: profile ? `${profile.storyName} Story · ${profile.callingName} | ParablePath` : "Your ParablePath Result",
-    description: profile ? `A reflective invitation from the ${profile.storyName} Story toward becoming a ${profile.callingName}.` : "Find the story that may be shaping you.",
+    title: profile ? `${profile.callingName} | ParablePath Result` : "Your ParablePath Result",
+    description: profile ? `${profile.callingTagline} ${profile.callingSummary}` : "Find the story that may be shaping you.",
     robots: { index: false, follow: true }
   };
 }
