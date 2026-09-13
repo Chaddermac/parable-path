@@ -31,7 +31,7 @@ export function EmailResultForm({ responseId }: { responseId: string }) {
   return <section className="panel mx-auto mt-12 max-w-3xl p-7 sm:p-9">
     <p className="eyebrow">Keep your reflection</p>
     <h2 className="mt-3 font-serif text-3xl">Email this result to yourself</h2>
-    <p className="mt-4 text-sm leading-7 text-ink/60">Your email address is used only to deliver this message. It is not added to your assessment record or stored by ParablePath.</p>
+    <p className="mt-4 text-sm leading-7 text-ink/60">Your email address is used only to deliver this message. It is not added to your assessment record or stored by <span className="brand-name">ParablePath</span>.</p>
     <form onSubmit={submit} className="mt-6 flex flex-col gap-3 sm:flex-row">
       <label className="sr-only" htmlFor="result-email">Email address</label>
       <input id="result-email" name="email" type="email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" className="min-w-0 flex-1 rounded-full border border-ink/20 bg-white px-5 py-3.5 text-sm outline-none focus:border-forest focus:ring-2 focus:ring-gold/50" />

@@ -37,3 +37,16 @@ export interface ResultRecord extends AssessmentDraft {
   aiResult?: AiResult;
   aiStatus?: "pending" | "generated" | "unavailable";
 }
+
+export interface FeedbackRecord {
+  id: string;
+  responseId: string;
+  createdAt: string;
+  accuracyScore: number;
+  parableHelpfulnessScore: number;
+  repentanceReframingScore: number;
+  nextStepUsefulnessScore: number;
+  toneScore: number;
+  helpfulText: string;
+  unclearText: string;
+}
