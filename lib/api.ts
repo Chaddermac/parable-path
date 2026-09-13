@@ -1,16 +1,29 @@
-import type { AiResult, AssessmentDraft, ResultRecord, RoomId, Scores } from "./types";
+import type { AiResult, AssessmentDraft, FeedbackRecord, ResultRecord, RoomId, Scores } from "./types";
 import type { PopularOption } from "./parablepath/popular/types";
 
-async function postJson(path: string, body: unknown) {
-  const response = await fetch(path, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body)
-  });
-  if (!response.ok) {
+async function postJson(path: string, body: unknown, attempts = 3) {
+  let lastError: Error | null = null;
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    let response: Response;
+    try {
+      response = await fetch(path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error("Network request failed.");
+      if (attempt === attempts - 1) throw lastError;
+      await new Promise((resolve) => setTimeout(resolve, 300 * 2 ** attempt));
+      continue;
+    }
+    if (response.ok) return;
     const payload = await response.json().catch(() => null) as { error?: string } | null;
-    throw new Error(payload?.error || `Request failed with status ${response.status}`);
+    lastError = new Error(payload?.error || `Request failed with status ${response.status}`);
+    if (response.status < 500 || attempt === attempts - 1) throw lastError;
+    await new Promise((resolve) => setTimeout(resolve, 300 * 2 ** attempt));
   }
+  throw lastError || new Error("Request failed.");
 }
 
 export function saveResponse(result: ResultRecord) {
@@ -62,6 +75,10 @@ export function saveSafetyFlag(input: {
     safetyFlag: true,
     assessmentVersion: "formation-v1"
   });
+}
+
+export function saveFeedback(feedback: FeedbackRecord) {
+  return postJson("/api/feedback", feedback);
 }
 
 export async function generateAiResult(result: ResultRecord): Promise<AiResult> {

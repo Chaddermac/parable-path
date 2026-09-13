@@ -18,6 +18,7 @@ export default function PopularHomePage() {
         <p className="popular-invitation mt-6 text-2xl sm:text-4xl">Let’s see which one.</p>
         <Link href="/assessment" className="popular-cta mt-10">Find Your Story Room <span aria-hidden="true">→</span></Link>
         <p className="popular-meta mt-5 text-sm">16 quick prompts · 3–4 minutes · easy to share</p>
+        <p className="popular-meta mt-3 max-w-2xl text-xs leading-5">By beginning, you consent to securely storing your anonymous answers for the ParablePath project. No name or email is collected.</p>
       </div>
     </section>
   </main>;

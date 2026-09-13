@@ -36,7 +36,7 @@ export default function ReflectPage() {
   if (safetyFlagged) return <main className="shell py-12 sm:py-20"><div className="panel mx-auto max-w-3xl border-clay/30 p-7 sm:p-12">
     <p className="eyebrow">Immediate support matters</p>
     <h1 className="mt-5 font-serif text-4xl leading-tight sm:text-6xl">This tool is not designed for crisis care.</h1>
-    <p className="mt-6 text-lg leading-8 text-ink/70">What you shared may involve immediate safety or abuse. ParablePath will not generate a normal reflection from it, and your written words were not saved to the database.</p>
+    <p className="mt-6 text-lg leading-8 text-ink/70">What you shared may involve immediate safety or abuse. <span className="brand-name">ParablePath</span> will not generate a normal reflection from it, and your written words were not saved to the database.</p>
     <div className="mt-8 rounded-xl bg-cream p-6 text-sm leading-7 text-ink/75">
       <p><strong className="text-ink">If you or someone else is in immediate danger, contact your local emergency services now.</strong></p>
       <p className="mt-3">If you are in the United States, call or text <a className="font-semibold text-forest underline" href="tel:988">988</a> for the Suicide & Crisis Lifeline. Elsewhere, contact a local crisis line.</p>
