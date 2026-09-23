@@ -1,5 +1,5 @@
-import type { AiResult, AssessmentDraft, FeedbackRecord, ResultRecord, RoomId, Scores } from "./types";
-import type { PopularOption } from "./parablepath/popular/types";
+import type { AiResult, AssessmentDraft, FeedbackRecord, ResultRecord, RoomId, Scores } from "./types.ts";
+import type { PopularOption } from "./parablepath/popular/types.ts";
 
 async function postJson(path: string, body: unknown, attempts = 3) {
   let lastError: Error | null = null;
@@ -27,7 +27,11 @@ async function postJson(path: string, body: unknown, attempts = 3) {
 }
 
 export function saveResponse(result: ResultRecord) {
-  return postJson("/api/responses", {
+  return postJson("/api/responses", createResponsePayload(result));
+}
+
+export function createResponsePayload(result: ResultRecord): Record<string, unknown> {
+  return {
     id: result.id,
     createdAt: result.createdAt,
     answers: result.answers,
@@ -41,18 +45,25 @@ export function saveResponse(result: ResultRecord) {
     dimensionScores: result.diagnostic.roomScores,
     isCloseSecondary: result.diagnostic.isCloseSecondary,
     assessmentVersion: result.diagnostic.assessmentVersion
-  });
+  };
 }
 
 export function savePopularResponse(input: {
   id: string;
   answers: PopularOption[];
 }) {
-  return postJson("/api/responses/popular", {
+  return postJson("/api/responses/popular", createPopularResponsePayload(input));
+}
+
+export function createPopularResponsePayload(input: {
+  id: string;
+  answers: PopularOption[];
+}): Record<string, unknown> {
+  return {
     id: input.id,
     answers: input.answers.map((answer) => answer.label),
     consentGiven: true
-  });
+  };
 }
 
 export function saveSafetyFlag(input: {

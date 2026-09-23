@@ -1,5 +1,6 @@
 import { BookIcon, BrokenHeartIcon, CompassIcon, ResultIcon, WarningIcon } from "@/components/popular/ResultIcons";
 import { PopularResultActions } from "@/components/popular/PopularResultActions";
+import { PopularResponseSyncNotice } from "@/components/popular/PopularResponseSyncNotice";
 import { popularDeeperUrl, popularDisclaimer, popularStoryInvitation, type PopularTypologyProfile } from "@/lib/parablepath/popular/results";
 import type { CSSProperties, ReactNode } from "react";
 
@@ -39,6 +40,7 @@ export function TypologyResultCard({ profile }: { profile: PopularTypologyProfil
       </footer>
     </article>
     <PopularResultActions profile={profile}/>
+    <PopularResponseSyncNotice room={profile.id}/>
     <p className="compact-result-disclaimer">{popularDisclaimer}</p>
   </div>;
 }

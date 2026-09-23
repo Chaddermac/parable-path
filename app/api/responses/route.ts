@@ -1,4 +1,5 @@
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { logResponseStorageError, UUID_PATTERN } from "@/lib/response-server";
 import { NextResponse } from "next/server";
 
 const roomIds = new Set(["lost", "scarcity", "control", "stalled", "boundary", "settling", "delay", "distraction"]);
@@ -8,7 +9,7 @@ const sourceDomain = (request: Request) => (request.headers.get("x-forwarded-hos
 export async function POST(request: Request) {
   try {
     const body: unknown = await request.json();
-    if (!isObject(body) || typeof body.id !== "string" || !isObject(body.answers) || !isObject(body.scores)) {
+    if (!isObject(body) || typeof body.id !== "string" || !UUID_PATTERN.test(body.id) || !isObject(body.answers) || !isObject(body.scores)) {
       return NextResponse.json({ error: "Invalid response payload." }, { status: 400 });
     }
     if (![body.primaryRoom, body.secondaryRoom, body.thirdRoom, body.forcedChoice].every((room) => typeof room === "string" && roomIds.has(room))) {
@@ -46,7 +47,7 @@ export async function POST(request: Request) {
     if (error) throw error;
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Unable to save response", error);
+    logResponseStorageError("/api/responses", error);
     return NextResponse.json({ error: "Response storage is temporarily unavailable." }, { status: 503 });
   }
 }

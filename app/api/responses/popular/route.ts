@@ -2,6 +2,7 @@ import { POPULAR_ASSESSMENT_VERSION, popularQuestions } from "@/lib/parablepath/
 import { popularRoomOrder, scorePopularAssessment } from "@/lib/parablepath/popular/scoring";
 import type { PopularOption } from "@/lib/parablepath/popular/types";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { logResponseStorageError, UUID_PATTERN } from "@/lib/response-server";
 import { NextResponse } from "next/server";
 
 const sourceDomain = (request: Request) => (request.headers.get("x-forwarded-host") || request.headers.get("host") || "")
@@ -27,7 +28,7 @@ export async function POST(request: Request) {
 
     const input = body as Record<string, unknown>;
     const answers = resolveAnswers(input.answers);
-    if (typeof input.id !== "string" || !answers || input.consentGiven !== true) {
+    if (typeof input.id !== "string" || !UUID_PATTERN.test(input.id) || !answers || input.consentGiven !== true) {
       return NextResponse.json({ error: "A complete, consented assessment is required." }, { status: 400 });
     }
 
@@ -63,7 +64,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Unable to save popular response", error);
+    logResponseStorageError("/api/responses/popular", error);
     return NextResponse.json({ error: "Response storage is temporarily unavailable." }, { status: 503 });
   }
 }

@@ -203,6 +203,7 @@ button, input, textarea { font: inherit; }
 .experience-popular .popular-result-primary:hover { background: white; box-shadow: 0 5px 0 rgba(32, 32, 42, .22); transform: translateY(3px); }
 .experience-popular .popular-result-secondary { border: 2px solid rgba(255, 255, 255, .65); color: white; }
 .experience-popular .popular-result-secondary:hover { background: rgba(255, 255, 255, .12); transform: translateY(-2px); }
+.experience-popular .compact-result-sync { margin: 1.25rem auto 0; max-width: 42rem; color: var(--popular-muted); font-size: .85rem; line-height: 1.6; text-align: center; }
 .experience-popular .popular-result-primary:focus-visible,
 .experience-popular .popular-result-secondary:focus-visible { outline: 3px solid white; outline-offset: 4px; }
 .experience-popular .popular-not-label { color: var(--popular-muted); }

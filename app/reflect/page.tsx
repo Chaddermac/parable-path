@@ -1,7 +1,8 @@
 "use client";
 
 import { calculateScores, createResult, readDraft, updateResult } from "@/lib/storage";
-import { generateAiResult, saveResponse, saveSafetyFlag } from "@/lib/api";
+import { createResponsePayload, generateAiResult, saveResponse, saveSafetyFlag } from "@/lib/api";
+import { createPendingResponse, queuePendingResponse, removePendingResponse } from "@/lib/response-outbox";
 import { hasCrisisLanguage } from "@/lib/safety";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -26,8 +27,17 @@ export default function ReflectPage() {
       return;
     }
     const result = createResult(draft, reflection.trim());
-    try { await saveResponse(result); result.syncStatus = "saved"; }
-    catch { result.syncStatus = "local-only"; }
+    const pending = createPendingResponse(result.id, "/api/responses", createResponsePayload(result));
+    queuePendingResponse(pending);
+    result.syncStatus = "local-only";
+    updateResult(result);
+    try {
+      await saveResponse(result);
+      removePendingResponse(pending.endpoint, pending.id);
+      result.syncStatus = "saved";
+    } catch {
+      result.syncStatus = "local-only";
+    }
     try { result.aiResult = await generateAiResult(result); result.aiStatus = "generated"; }
     catch { result.aiStatus = "unavailable"; }
     updateResult(result);
