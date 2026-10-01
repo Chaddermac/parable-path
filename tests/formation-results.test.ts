@@ -54,7 +54,7 @@ test("the email contains the identical stored reflection and all landscape ranks
 
 test("the shared card renderer bundles fonts and exports the required PNG contract", () => {
   for (const font of ["LibreBaskerville-Bold.ttf", "SourceSans3-Regular.otf", "SourceSans3-Bold.otf"]) {
-    const bytes = readFileSync(new URL(`../assets/fonts/${font}`, import.meta.url));
+    const bytes = readFileSync(new URL(`../public/fonts/${font}`, import.meta.url));
     assert.ok(bytes.byteLength > 10_000, `${font} should be a bundled font file`);
   }
   const route = readFileSync(new URL("../app/api/formation-card/[storyId]/route.tsx", import.meta.url), "utf8");

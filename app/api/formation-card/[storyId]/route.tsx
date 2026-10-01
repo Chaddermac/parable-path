@@ -4,16 +4,18 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "nodejs";
 
-const libreBaskerville = fetch(new URL("../../../../assets/fonts/LibreBaskerville-Bold.ttf", import.meta.url)).then((response) => response.arrayBuffer());
-const sourceSansRegular = fetch(new URL("../../../../assets/fonts/SourceSans3-Regular.otf", import.meta.url)).then((response) => response.arrayBuffer());
-const sourceSansBold = fetch(new URL("../../../../assets/fonts/SourceSans3-Bold.otf", import.meta.url)).then((response) => response.arrayBuffer());
-
 export async function GET(request: Request, { params }: { params: Promise<{ storyId: string }> }) {
   const { storyId } = await params;
   if (!isRoomId(storyId)) return new Response("Result not found", { status: 404, headers: { "Cache-Control": "private, no-store" } });
 
   const profile = formationResultByRoom[storyId];
-  const [serifData, sansRegularData, sansBoldData] = await Promise.all([libreBaskerville, sourceSansRegular, sourceSansBold]);
+  const [serifData, sansRegularData, sansBoldData] = await Promise.all(
+    ["LibreBaskerville-Bold.ttf", "SourceSans3-Regular.otf", "SourceSans3-Bold.otf"].map(async (filename) => {
+      const response = await fetch(new URL(`/fonts/${filename}`, request.url), { cache: "no-store" });
+      if (!response.ok) throw new Error(`Unable to load bundled card font (${response.status}).`);
+      return response.arrayBuffer();
+    })
+  );
   const callingSlug = profile.callingName.toLowerCase().replaceAll(" / ", "-").replaceAll(" ", "-");
 
   return new ImageResponse(
