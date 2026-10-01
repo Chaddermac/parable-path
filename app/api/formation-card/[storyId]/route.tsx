@@ -2,7 +2,7 @@ import { FormationResultCardImage } from "@/components/formation/FormationResult
 import { formationResultByRoom, isRoomId } from "@/lib/parablepath/popular/results";
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 const libreBaskerville = fetch(new URL("../../../../assets/fonts/LibreBaskerville-Bold.ttf", import.meta.url)).then((response) => response.arrayBuffer());
 const sourceSansRegular = fetch(new URL("../../../../assets/fonts/SourceSans3-Regular.otf", import.meta.url)).then((response) => response.arrayBuffer());
