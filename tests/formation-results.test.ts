@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 import { normalizeAiResult, normalizeLegacyCallingLanguage } from "../lib/ai-reflection.ts";
 import { renderFormationResultEmail } from "../lib/formation-email.ts";
@@ -49,4 +50,19 @@ test("the email contains the identical stored reflection and all landscape ranks
   assert.match(html, /Your ParablePath reflection: Table-Maker/);
   assert.match(html, /api\/formation-card\/lost/);
   assert.match(html, /name and email|delivery email address/i);
+});
+
+test("the shared card renderer bundles fonts and exports the required PNG contract", () => {
+  for (const font of ["LibreBaskerville-Bold.ttf", "SourceSans3-Regular.otf", "SourceSans3-Bold.otf"]) {
+    const bytes = readFileSync(new URL(`../assets/fonts/${font}`, import.meta.url));
+    assert.ok(bytes.byteLength > 10_000, `${font} should be a bundled font file`);
+  }
+  const route = readFileSync(new URL("../app/api/formation-card/[storyId]/route.tsx", import.meta.url), "utf8");
+  assert.match(route, /width: 1122/);
+  assert.match(route, /height: 1402/);
+  assert.match(route, /private, no-store/);
+  assert.match(route, /formation-card\.png/);
+  const webCard = readFileSync(new URL("../components/formation/FormationTypologyResultCard.tsx", import.meta.url), "utf8");
+  assert.match(webCard, /api\/formation-card/);
+  assert.match(webCard, /Read the full card as text/);
 });
