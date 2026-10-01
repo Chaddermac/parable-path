@@ -1,6 +1,7 @@
 import type { AssessmentDraft, DiagnosticResult, ResultRecord, RoomId, Scores } from "./types";
 import { ASSESSMENT_VERSION, CLOSE_SECONDARY_THRESHOLD, questions, rooms } from "./content";
 import { scoreAssessment } from "./scoring";
+import { normalizeAiResult } from "./ai-reflection";
 
 const DRAFT_KEY = "parablepath:draft";
 const RESULT_PREFIX = "parablepath:result:";
@@ -32,7 +33,12 @@ export function createResult(draft: AssessmentDraft, reflection: string): Result
 }
 
 export function readResult(id: string): ResultRecord | null {
-  try { return JSON.parse(localStorage.getItem(`${RESULT_PREFIX}${id}`) || "null"); }
+  try {
+    const parsed = JSON.parse(localStorage.getItem(`${RESULT_PREFIX}${id}`) || "null") as ResultRecord | null;
+    if (!parsed) return null;
+    if (parsed.aiResult && parsed.ranking?.length >= 3) parsed.aiResult = normalizeAiResult(parsed.aiResult, parsed.ranking[0], parsed.ranking[1], parsed.ranking[2]) || undefined;
+    return parsed;
+  }
   catch { return null; }
 }
 

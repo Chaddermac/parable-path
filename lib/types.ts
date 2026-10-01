@@ -7,16 +7,11 @@ export interface RoomScore { room: RoomId; overall: number; innerStory: number; 
 export interface DiagnosticResult { roomScores: RoomScore[]; isCloseSecondary: boolean; isFlatProfile: boolean; assessmentVersion: string; }
 
 export interface AiResult {
-  possibleRoom: string;
-  brokenStory: string;
   whyThisMayFit: string;
-  parableDoorway: string;
+  storyInteraction: string;
   whatJesusDisrupts: string;
-  trueStory: string;
-  redemptiveCalling: string;
-  metanoiaPrompt: string;
+  metanoiaQuestion: string;
   nextFaithfulStep: string;
-  importantNote: string;
 }
 
 export interface AssessmentDraft {

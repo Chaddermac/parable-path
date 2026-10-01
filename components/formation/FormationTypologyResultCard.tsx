@@ -3,7 +3,7 @@ import { formationStoryInvitation, type FormationTypologyProfile } from "@/lib/p
 import type { CSSProperties, ReactNode } from "react";
 
 function NumberedList({ items }: { items: readonly string[] }) { return <ol className="typology-list">{items.map((item, index) => <li key={item}><span aria-hidden="true">{index + 1}</span><p>{item}</p></li>)}</ol>; }
-function RoundIcon({ children, strong = false }: { children: ReactNode; strong?: boolean }) { return <div className={`typology-round-icon${strong ? " is-strong" : ""}`}>{children}</div>; }
+function RoundIcon({ children, strong = false, label }: { children: ReactNode; strong?: boolean; label?: string }) { return <div className={`typology-round-icon${strong ? " is-strong" : ""}`} role={label ? "img" : undefined} aria-label={label}>{children}</div>; }
 
 export function FormationTypologyResultCard({ profile }: { profile: FormationTypologyProfile }) {
   const style = { "--result-accent": profile.accent, "--result-soft": profile.accentSoft } as CSSProperties;
@@ -13,7 +13,7 @@ export function FormationTypologyResultCard({ profile }: { profile: FormationTyp
       <header className="typology-masthead">
         <div><p className="typology-brand">ParablePath</p><p className="typology-brand-sub">HOUSE OF STORIES</p></div>
         <div className="typology-tag"><b>FROM FALSE STORIES<br/>TO REDEMPTIVE CALLINGS</b><i>Your life is not random.<br/>You’re living a story.</i></div>
-        <RoundIcon strong><ResultIcon name={profile.icon}/></RoundIcon>
+        <RoundIcon strong label={`${profile.callingName} symbol`}><ResultIcon name={profile.icon}/></RoundIcon>
       </header>
 
       <section className="typology-reveal" aria-labelledby="result-heading">
@@ -39,6 +39,5 @@ export function FormationTypologyResultCard({ profile }: { profile: FormationTyp
 
       <footer className="typology-card-footer"><span/><b>✦</b><span/><p>PEOPLE BELONG. STORIES CHANGE. GOD REDEEMS.</p></footer>
     </article>
-    <p className="typology-note">This result is a reflection aid, not a fixed label or diagnosis. Hold it with curiosity, and keep what helps you move toward faithful love.</p>
   </div></div>;
 }
