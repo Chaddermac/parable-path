@@ -1,8 +1,9 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import type { RoomId } from "@/lib/types";
 
-export function EmailResultForm({ responseId }: { responseId: string }) {
+export function EmailResultForm({ responseId, primaryRoom }: { responseId: string; primaryRoom: RoomId }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -29,8 +30,8 @@ export function EmailResultForm({ responseId }: { responseId: string }) {
   }
 
   return <section className="panel mx-auto mt-12 max-w-3xl p-7 sm:p-9">
-    <p className="eyebrow">Keep your reflection</p>
-    <h2 className="mt-3 font-serif text-3xl">Email this result to yourself</h2>
+    <p className="eyebrow">Email and download</p>
+    <h2 className="mt-3 font-serif text-3xl">Keep your complete reflection</h2>
     <p className="mt-4 text-sm leading-7 text-ink/60">Your email address is used only to deliver this message. It is not added to your assessment record or stored by <span className="brand-name">ParablePath</span>.</p>
     <form onSubmit={submit} className="mt-6 flex flex-col gap-3 sm:flex-row">
       <label className="sr-only" htmlFor="result-email">Email address</label>
@@ -38,5 +39,6 @@ export function EmailResultForm({ responseId }: { responseId: string }) {
       <button type="submit" disabled={status === "sending"} className="button-primary">{status === "sending" ? "Sending…" : "Email my result"}</button>
     </form>
     {message && <p role="status" className={`mt-4 text-sm ${status === "error" ? "text-clay" : "text-forest"}`}>{message}</p>}
+    <div className="mt-6 border-t border-ink/10 pt-6"><a href={`/api/formation-card/${primaryRoom}`} download={`parablepath-${primaryRoom}-card.png`} className="button-secondary">Download full-size card</a></div>
   </section>;
 }

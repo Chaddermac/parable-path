@@ -10,7 +10,7 @@ const expected = {
   stalled: "Mentor / Coach",
   boundary: "Bridger",
   settling: "Innovator / Imagineer",
-  delay: "WayMaker",
+  delay: "Waymaker",
   distraction: "Awakener"
 } as const;
 
