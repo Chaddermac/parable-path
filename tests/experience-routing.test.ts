@@ -7,9 +7,9 @@ test("normalizes forwarded hosts and ports", () => {
   assert.equal(normalizeHostname("parablepath.app, proxy.internal"), "parablepath.app");
 });
 
-test("routes .com hosts to popular", () => {
-  assert.equal(experienceForHostname("parablepath.com"), "popular");
-  assert.equal(experienceForHostname("www.parablepath.com"), "popular");
+test("routes .com hosts to formation", () => {
+  assert.equal(experienceForHostname("parablepath.com"), "formation");
+  assert.equal(experienceForHostname("www.parablepath.com"), "formation");
 });
 
 test("routes .app hosts to formation", () => {
@@ -26,6 +26,6 @@ test("preview and localhost default to formation but permit an explicit override
 });
 
 test("production query strings cannot override the hostname", () => {
-  assert.equal(requestedExperience("parablepath.com", "formation"), "popular");
+  assert.equal(requestedExperience("parablepath.com", "popular"), "formation");
   assert.equal(requestedExperience("parablepath.app", "popular"), "formation");
 });

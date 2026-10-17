@@ -35,7 +35,7 @@ export function PopularAssessment() {
         console.warn("ParablePath could not prepare local response storage.");
         primary = scorePopularAssessment(next).primary;
       }
-      router.push(`/results/${primary}`);
+      router.push(`/fun/results/${primary}`);
       void flushPendingResponses();
       return;
     }
@@ -50,7 +50,7 @@ export function PopularAssessment() {
       <p className="popular-accent-label mt-10 text-xs font-bold uppercase tracking-[.18em]">Go with your first instinct</p>
       <h1 className="popular-question mt-4 text-4xl leading-tight sm:text-6xl">{question.prompt}</h1>
       <div className="mt-10 grid gap-4">{options.map((option, index) => <button key={option.label} disabled={isCompleting} onClick={() => void choose(option)} className="popular-answer group min-h-24 p-6 text-left text-lg font-semibold leading-8 disabled:cursor-wait disabled:opacity-60 sm:text-xl"><span className="popular-answer-index mr-4 inline-flex h-8 w-8 items-center justify-center rounded-full text-sm">{String.fromCharCode(65 + index)}</span>{option.label}</button>)}</div>
-      <button disabled={isCompleting} className="popular-back mt-7 text-sm font-bold underline underline-offset-4 disabled:opacity-50" onClick={() => answers.length ? setAnswers(answers.slice(0, -1)) : router.push("/")}>← Back</button>
+      <button disabled={isCompleting} className="popular-back mt-7 text-sm font-bold underline underline-offset-4 disabled:opacity-50" onClick={() => answers.length ? setAnswers(answers.slice(0, -1)) : router.push("/fun")}>← Back</button>
     </section>
   </main>;
 }

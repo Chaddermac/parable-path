@@ -1,7 +1,6 @@
 export type AssessmentExperience = "popular" | "formation";
 
-const popularHosts = new Set(["parablepath.com", "www.parablepath.com"]);
-const formationHosts = new Set(["parablepath.app", "www.parablepath.app"]);
+const formationHosts = new Set(["parablepath.com", "www.parablepath.com", "parablepath.app", "www.parablepath.app"]);
 
 export function normalizeHostname(value: string | null | undefined) {
   const first = value?.split(",")[0]?.trim().toLowerCase() || "";
@@ -11,7 +10,6 @@ export function normalizeHostname(value: string | null | undefined) {
 
 export function experienceForHostname(hostname: string): AssessmentExperience | null {
   const normalized = normalizeHostname(hostname);
-  if (popularHosts.has(normalized)) return "popular";
   if (formationHosts.has(normalized)) return "formation";
   return null;
 }

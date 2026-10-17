@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Formation Reflection | ParablePath",
   description: "Return to the formation assessment to create a ParablePath reflection.",
-  alternates: { canonical: "https://parablepath.app/results" }
+  alternates: { canonical: "https://parablepath.com/results" }
 };
 
 export default function FormationResultsIndex() {

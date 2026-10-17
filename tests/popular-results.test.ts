@@ -42,7 +42,7 @@ test("icons and corner accents are unique and Control maps to Healer", () => {
 
 test("compact result constants preserve the intentional deeper-experience handoff", () => {
   assert.equal(popularStoryInvitation, "See the room • Trace the story • Open the parable.");
-  assert.equal(popularDeeperUrl, "https://parablepath.app/assessment");
+  assert.equal(popularDeeperUrl, "https://parablepath.com/start");
   assert.equal(isRoomId("not-a-room"), false);
 });
 
@@ -66,7 +66,7 @@ test("compact card includes its CTA, invalid-result path, and reduced-motion sup
   assert.match(card, /Want the deeper story\?/);
   assert.match(card, /popularDeeperUrl/);
   assert.match(route, /if \(!isRoomId\(storyId\)\)/);
-  assert.match(route, /href="\/assessment"/);
+  assert.match(route, /href="\/fun\/assessment"/);
   assert.match(styles, /prefers-reduced-motion: reduce[\s\S]*compact-result-card/);
   assert.match(download, /if \(!isRoomId\(storyId\)\)/);
   assert.match(download, /profile\.callingIcon/);

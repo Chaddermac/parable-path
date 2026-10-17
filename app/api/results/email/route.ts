@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     const reflection = normalizeAiResult(data.ai_result, data.primary_room, data.secondary_room, data.third_room);
     if (!reflection) return NextResponse.json({ error: "The saved reflection is not ready yet. Your result remains available online." }, { status: 409 });
 
-    const origin = process.env.RESULT_PUBLIC_ORIGIN || "https://www.parablepath.app";
+    const origin = process.env.RESULT_PUBLIC_ORIGIN || "https://www.parablepath.com";
     const html = renderFormationResultEmail({ responseId, primary: data.primary_room, secondary: data.secondary_room, third: data.third_room, reflection, origin });
     const profile = formationResultByRoom[data.primary_room];
     const tag = typeof testTag === "string" && /^[a-z0-9_-]{1,64}$/i.test(testTag) ? [{ name: "parablepath_test", value: testTag }] : undefined;

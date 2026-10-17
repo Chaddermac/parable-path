@@ -1,4 +1,7 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { alternates: { canonical: "https://parablepath.com" } };
 
 export default function Home() {
   return <main className="shell flex min-h-[calc(100vh-11rem)] items-center py-12 text-center">

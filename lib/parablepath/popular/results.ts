@@ -5,7 +5,7 @@ export type FormationTypologyProfile = { id: RoomId; storyName: string; callingN
 export type PopularTypologyProfile = { id: RoomId; callingName: string; callingIcon: ResultIconName; cornerAccent: string; iconBackground: string; headline: string; callingTagline: string; callingSummary: string; falseStory: string; shadowName: string; shadowSummary: string; parableReference: string };
 export const formationStoryInvitation = "See the room • Trace the story • Open the parable • Reorient the imagination • Yes to the next faithful step";
 export const popularStoryInvitation = "See the room • Trace the story • Open the parable.";
-export const popularDeeperUrl = "https://parablepath.app/assessment";
+export const popularDeeperUrl = "https://parablepath.com/start";
 export const popularDisclaimer = "You are not a type. This result names a story you may recognize and a redemptive calling you can practice.";
 
 export const formationResultByRoom: Record<RoomId, FormationTypologyProfile> = {

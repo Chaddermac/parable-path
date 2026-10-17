@@ -8,7 +8,7 @@ const paragraphs = (value: string) => escapeHtml(value).replaceAll("\n", "<br>")
 
 export function renderFormationResultEmail(input: { responseId: string; primary: RoomId; secondary: RoomId; third: RoomId; reflection: AiResult; origin?: string }) {
   const { responseId, primary, secondary, third, reflection } = input;
-  const origin = input.origin || "https://www.parablepath.app";
+  const origin = input.origin || "https://www.parablepath.com";
   const profile = formationResultByRoom[primary];
   const resultUrl = `${origin}/results/${responseId}`;
   const cardUrl = `${origin}/api/formation-card/${primary}`;

@@ -6,7 +6,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: "Formation Reflection | ParablePath",
     description: "Your deeper ParablePath narrative reflection.",
-    alternates: { canonical: `https://parablepath.app/results/${id}` }
+    alternates: { canonical: `https://parablepath.com/results/${id}` }
   };
 }
 

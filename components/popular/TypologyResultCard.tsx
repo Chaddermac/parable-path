@@ -35,7 +35,7 @@ export function TypologyResultCard({ profile }: { profile: PopularTypologyProfil
 
       <footer className="compact-result-cta">
         <h2>Want the deeper story?</h2>
-        <p>Go to ParablePath.app for your full profile, shadow patterns, and next steps.</p>
+        <p>Explore the deeper ParablePath reflection for your full profile, shadow patterns, and next steps.</p>
         <a href={popularDeeperUrl} aria-label="Go to the deeper ParablePath formation assessment">Go deeper <span aria-hidden="true">→</span></a>
       </footer>
     </article>

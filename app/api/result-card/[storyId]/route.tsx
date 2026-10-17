@@ -21,7 +21,7 @@ export async function GET(_: Request, { params }: { params: Promise<{ storyId: s
         <p style={{ margin: "22px 0 0", color: "#fff4cf", fontSize: 36, fontWeight: 700 }}>{profile.callingTagline}</p>
         <p style={{ margin: "16px 0 0", color: "#ddd6ff", fontSize: 25, lineHeight: 1.35 }}>{profile.callingSummary}</p>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", borderTop: "2px solid rgba(255,255,255,.55)", paddingTop: 20, fontSize: 18, letterSpacing: 1.5 }}><span>{profile.falseStory}</span><span>parablepath.com</span></div>
+      <div style={{ display: "flex", justifyContent: "space-between", borderTop: "2px solid rgba(255,255,255,.55)", paddingTop: 20, fontSize: 18, letterSpacing: 1.5 }}><span>{profile.falseStory}</span><span>parablepath.com/fun</span></div>
     </div>,
     { width: 1200, height: 630, headers: { "Content-Disposition": `attachment; filename="parablepath-${storyId}-result.png"`, "Cache-Control": "public, max-age=31536000, immutable" } }
   );

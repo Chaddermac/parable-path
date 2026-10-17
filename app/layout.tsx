@@ -8,7 +8,7 @@ import { PendingResponseSync } from "@/components/PendingResponseSync";
 const popularBody = DM_Sans({ subsets: ["latin"], variable: "--font-popular-body", display: "swap" });
 const popularDisplay = Space_Grotesk({ subsets: ["latin"], variable: "--font-popular-display", display: "swap" });
 
-export const metadata: Metadata = { title: "ParablePath — Find Your Room", description: "A guided spiritual reflection for the House of Stories." };
+export const metadata: Metadata = { title: "ParablePath — A Guided Spiritual Reflection", description: "A guided spiritual reflection for the House of Stories." };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const experience = (await headers()).get("x-parablepath-experience") === "popular" ? "popular" : "formation";
