@@ -41,6 +41,6 @@ export async function GET(request: Request, { params }: { params: Promise<{ stor
         <p style={{ fontSize:landscape?21:27,lineHeight:1.5,margin:"22px 0 0",maxWidth:800 }}>{single?.line||(leaders.length?"Several stories. Equal possibility. One new chapter.":"Family drama. Gift exchanges. Awkward parties.")}</p>
       </div>
     </div>
-    <div style={{ display:"flex",position:"relative",alignItems:"center",justifyContent:"space-between",borderTop:"1px solid #b9cfe6",paddingTop:24,fontSize:landscape?18:24 }}><span>Find your story → parablepath.com/holiday</span><svg width="32" height="32" viewBox="0 0 40 40"><path d="m20 1 5 14 14 5-14 5-5 14-5-14L1 20l14-5Z" fill="#c8a451"/></svg></div>
+    <div style={{ display:"flex",position:"relative",alignItems:"center",justifyContent:"space-between",borderTop:"1px solid #b9cfe6",paddingTop:24,fontSize:landscape?18:24 }}><span>Find your story → parablepath.com/holidayedition</span><svg width="32" height="32" viewBox="0 0 40 40"><path d="m20 1 5 14 14 5-14 5-5 14-5-14L1 20l14-5Z" fill="#c8a451"/></svg></div>
   </div>,{ width,height,headers:{"Cache-Control":"public, max-age=3600",...(query.has("download")?{"Content-Disposition":`attachment; filename="parablepath-holiday-${story}-${format}.png"`}:{})} });
 }

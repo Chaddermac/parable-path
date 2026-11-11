@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 const origin = process.argv[2] || "http://127.0.0.1:3000";
 const stories = ["lost", "scarcity", "control", "stalled", "boundary", "settling", "delay", "distraction"];
-const landing = await fetch(`${origin}/holiday`);
+const landing = await fetch(`${origin}/holidayedition`);
 assert.equal(landing.status,200);
 const landingHtml = await landing.text();
 assert.ok(landingHtml.includes("reference-globe.webp"));
@@ -11,7 +11,7 @@ assert.ok(landingHtml.includes("White Elephant"));
 assert.equal((landingHtml.match(/type="radio"/g)||[]).length,4,"Embedded approved first question has four native answers");
 assert.ok(landingHtml.indexOf("winter-title") < landingHtml.indexOf('id="quiz"'));
 for (const story of [...stories, "lost~control", stories.join("~")]) {
-  const response = await fetch(`${origin}/holiday/results/${story}`);
+  const response = await fetch(`${origin}/holidayedition/results/${story}`);
   assert.equal(response.status, 200, `Result ${story}`);
   const html = await response.text();
   if (story.includes("~")) assert.ok(html.includes("These stories tied for your highest score"));
@@ -42,5 +42,14 @@ for (const [data, headers, expected] of [
   const response = await fetch(`${origin}/api/holiday/events`, { method:"POST", headers:{ "Content-Type":"application/json", origin, ...headers }, body:JSON.stringify(data) });
   assert.equal(response.status, expected);
 }
-for (const story of ["unknown","lost~lost"]) assert.equal((await fetch(`${origin}/holiday/results/${story}`)).status, 404);
+for (const story of ["unknown","lost~lost"]) assert.equal((await fetch(`${origin}/holidayedition/results/${story}`)).status, 404);
 console.info("HTTP smoke passed: eight results, multiway ties, thirteen PNGs, three download formats, analytics validation, DNT, origin check, invalid results.");
+
+const oldLanding = await fetch(`${origin}/holiday?start=1`, { redirect: "manual" });
+assert.equal(oldLanding.status, 308);
+assert.equal(new URL(oldLanding.headers.get("location"), origin).pathname, "/holidayedition");
+assert.equal(new URL(oldLanding.headers.get("location"), origin).search, "?start=1");
+const oldResult = await fetch(`${origin}/holiday/results/control?also=lost`, { redirect: "manual" });
+assert.equal(oldResult.status, 308);
+assert.equal(new URL(oldResult.headers.get("location"), origin).pathname, "/holidayedition/results/control");
+assert.equal(new URL(oldResult.headers.get("location"), origin).search, "?also=lost");

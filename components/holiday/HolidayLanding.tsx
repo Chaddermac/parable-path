@@ -7,7 +7,7 @@ export function HolidayLanding({ onStart, children }: { onStart: () => void; chi
   const [status, setStatus] = useState("");
   const [manual, setManual] = useState("");
   async function invite() {
-    const url = new URL("/holiday", location.origin).href;
+    const url = new URL("/holidayedition", location.origin).href;
     try {
       if (navigator.share) { await navigator.share({ title: "What’s Your Holiday Story?", text: "A little laughter. A little recognition. Find your holiday story.", url }); trackHoliday("share"); }
       else { await navigator.clipboard.writeText(url); setStatus("Quiz link copied. Invite a little Christmas curiosity."); trackHoliday("copy_link"); }

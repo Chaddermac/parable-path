@@ -25,7 +25,7 @@ export function shuffleAnswers<T>(answers: readonly T[], random = Math.random): 
 }
 // All co-leaders are encoded together; ordering never selects a winner.
 export function resultPath(leaders: Pattern[], secondary: Pattern[] = []) {
-  const path = `/holiday/results/${leaders.join("~")}`;
+  const path = `/holidayedition/results/${leaders.join("~")}`;
   return secondary.length ? `${path}?also=${secondary.join(",")}` : path;
 }
 export function parseStories(value: string): Pattern[] | null {

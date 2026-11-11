@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const leaders = parseStories(story);
   if (!leaders) return { title: "Holiday story unavailable", robots: { index: false } };
   const title = leaders.map(p => holidayResults[p].name).join(" + ");
-  const url = `https://parablepath.com/holiday/results/${story}`;
+  const url = `https://parablepath.com/holidayedition/results/${story}`;
   return { title: `${title} | ParablePath Holiday Edition`, description: "A playful holiday reflection. Discover your own holiday story in 16 questions.", alternates: { canonical: url }, openGraph: { title, url, description: "What’s your holiday story? Take the ParablePath Holiday Edition.", images: [{ url: `https://parablepath.com/api/holiday/card/${story}`, width: 1200, height: 630 }] }, twitter: { card: "summary_large_image", title, images: [`https://parablepath.com/api/holiday/card/${story}`] } };
 }
 export default async function HolidayResultPage({ params, searchParams }: Props) {
@@ -32,11 +32,11 @@ export default async function HolidayResultPage({ params, searchParams }: Props)
       <h2>You’re {result.name.replace(/^The /, "the ")}!</h2><p className="holiday-calling">Your ParablePath Calling: {holidayArtwork[pattern].calling}</p>
       <p>{result.description}</p></div><aside className="holiday-challenge"><p className="holiday-eyebrow">A seasonal practice</p><h3>Your Holiday Challenge</h3><p>{result.challenge}</p></aside></div><div className="reference-result-depth"><section><h3>The story beneath the season</h3><p>{result.shadow}</p></section><section><h3>Your holiday invitation</h3><p>{result.invitation}</p></section></div>
       <p className="holiday-fine">{result.name} connects to the {result.calling} calling in ParablePath.</p>
-      <details className="winter-export-preview"><summary>Preview your share card</summary><img className="holiday-card-preview" src={`/api/holiday/card/${pattern}`} alt={`${result.name}. ${result.calling}. ${result.line} Take the quiz at parablepath.com/holiday.`} width="1200" height="630" loading="lazy"/></details>
+      <details className="winter-export-preview"><summary>Preview your share card</summary><img className="holiday-card-preview" src={`/api/holiday/card/${pattern}`} alt={`${result.name}. ${result.calling}. ${result.line} Take the quiz at parablepath.com/holidayedition.`} width="1200" height="630" loading="lazy"/></details>
       <HolidayActions names={names} path={resultPath(leaders, secondary)} story={pattern}/>
     </article>; })}</div>
     {secondary.length > 0 && <section className="holiday-secondary"><h2>Another thread worth exploring</h2><p>Within one point of your leading {leaders.length > 1 ? "stories" : "story"}. These may resonate, too.</p>{secondary.map(p => <Link key={p} href={resultPath([p])}>{holidayResults[p].name} · {holidayResults[p].calling} ↗</Link>)}</section>}
     <HolidayConversion/><p className="holiday-fine">A seasonal reflection, not a permanent identity or a validated psychological assessment. A shared result link contains story names only; no answers or scores.</p>
-    <Link className="holiday-back" href="/holiday">Take the holiday quiz →</Link>
+    <Link className="holiday-back" href="/holidayedition">Take the holiday quiz →</Link>
   </main>;
 }

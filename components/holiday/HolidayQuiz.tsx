@@ -50,7 +50,7 @@ export function HolidayQuiz() {
     const begin = () => start();
     window.addEventListener("holiday:start", begin);
     if (new URLSearchParams(window.location.search).get("start") === "1") {
-      window.history.replaceState(null, "", "/holiday#quiz"); begin();
+      window.history.replaceState(null, "", "/holidayedition#quiz"); begin();
     }
     return () => window.removeEventListener("holiday:start", begin);
   }, []);
