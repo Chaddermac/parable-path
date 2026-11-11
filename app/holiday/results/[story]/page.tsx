@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { TypologyGlobe } from "@/components/holiday/WinterArtwork";
+import { HolidayTypes } from "@/components/holiday/HolidayTypes";
+import { TypologyGlobe, WinterStar } from "@/components/holiday/WinterArtwork";
 import { holidayArtwork } from "@/lib/holiday/artwork";
 import { HolidayActions, HolidayConversion, HolidayResultView } from "@/components/holiday/HolidayActions";
 import { holidayResults } from "@/lib/holiday/results";
@@ -23,14 +24,13 @@ export default async function HolidayResultPage({ params, searchParams }: Props)
   const secondary = [...new Set(typeof also === "string" ? also.split(",").filter(isPattern).filter(p => !leaders.includes(p)) : [])];
   const names = leaders.map(p => holidayResults[p].name).join(" + ");
   return <main className="holiday holiday-results"><HolidayResultView leaders={leaders}/>
-    <p className="holiday-eyebrow">ParablePath · Holiday Edition</p>
-    <h1>{leaders.length > 1 ? "Your story has a few chapters." : "Your holiday story, unwrapped."}</h1>
+    <section className="reference-result-hero"><div><p className="holiday-eyebrow">ParablePath · Holiday Edition</p><h1>{leaders.length > 1 ? "The season holds more than one story." : "A more meaningful holiday season."}</h1><p className="holiday-subtitle">Discover your holiday story and find a little more clarity, connection, and purpose this Christmas.</p><a className="button-primary" href="#holiday-result">Unwrap Your Holiday Story →</a></div>{leaders.length === 1 ? <TypologyGlobe pattern={leaders[0]} large/> : <WinterStar className="reference-tie-star"/>}</section>
     {leaders.length > 1 && <p className="holiday-subtitle">These stories tied for your highest score. Each is equally worth exploring.</p>}
-    <div className="holiday-result-grid">{leaders.map(pattern => { const result = holidayResults[pattern]; return <article key={pattern} className="holiday-result">
-      <TypologyGlobe pattern={pattern} large/><p className="holiday-eyebrow">{leaders.length > 1 ? "Equally plausible story" : "Your Holiday Story"}</p>
+    <HolidayTypes/>
+    <div id="holiday-result" className="holiday-result-grid">{leaders.map(pattern => { const result = holidayResults[pattern]; return <article key={pattern} className="holiday-result">
+      <div className="reference-result-intro"><TypologyGlobe pattern={pattern} large/><div><p className="holiday-eyebrow">{leaders.length > 1 ? "Equally plausible story" : "Your Holiday Story"}</p>
       <h2>You’re {result.name.replace(/^The /, "the ")}!</h2><p className="holiday-calling">Your ParablePath Calling: {holidayArtwork[pattern].calling}</p>
-      <p>{result.description}</p><h3>The story beneath the season</h3><p>{result.shadow}</p><h3>Your holiday invitation</h3><p>{result.invitation}</p>
-      <aside className="holiday-challenge"><h3>Your Holiday Challenge</h3><p>{result.challenge}</p></aside>
+      <p>{result.description}</p></div><aside className="holiday-challenge"><p className="holiday-eyebrow">A seasonal practice</p><h3>Your Holiday Challenge</h3><p>{result.challenge}</p></aside></div><div className="reference-result-depth"><section><h3>The story beneath the season</h3><p>{result.shadow}</p></section><section><h3>Your holiday invitation</h3><p>{result.invitation}</p></section></div>
       <p className="holiday-fine">{result.name} connects to the {result.calling} calling in ParablePath.</p>
       <details className="winter-export-preview"><summary>Preview your share card</summary><img className="holiday-card-preview" src={`/api/holiday/card/${pattern}`} alt={`${result.name}. ${result.calling}. ${result.line} Take the quiz at parablepath.com/holiday.`} width="1200" height="630" loading="lazy"/></details>
       <HolidayActions names={names} path={resultPath(leaders, secondary)} story={pattern}/>

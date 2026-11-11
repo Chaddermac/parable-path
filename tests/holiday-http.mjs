@@ -2,6 +2,14 @@
 import assert from "node:assert/strict";
 const origin = process.argv[2] || "http://127.0.0.1:3000";
 const stories = ["lost", "scarcity", "control", "stalled", "boundary", "settling", "delay", "distraction"];
+const landing = await fetch(`${origin}/holiday`);
+assert.equal(landing.status,200);
+const landingHtml = await landing.text();
+assert.ok(landingHtml.includes("reference-globe.webp"));
+assert.ok(landingHtml.includes("winter-title"));
+assert.ok(landingHtml.includes("White Elephant"));
+assert.equal((landingHtml.match(/type="radio"/g)||[]).length,4,"Embedded approved first question has four native answers");
+assert.ok(landingHtml.indexOf("winter-title") < landingHtml.indexOf('id="quiz"'));
 for (const story of [...stories, "lost~control", stories.join("~")]) {
   const response = await fetch(`${origin}/holiday/results/${story}`);
   assert.equal(response.status, 200, `Result ${story}`);

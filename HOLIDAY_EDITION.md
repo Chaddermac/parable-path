@@ -8,7 +8,7 @@ Install using the repository's locked dependencies, then use `pnpm dev` and open
 
 ## Behavior
 
-- Four radio answers per question, independently shuffled on each start using Fisher–Yates. The order stays stable when navigating backward.
+- Four radio answers per question, independently shuffled once per page session using Fisher–Yates. The order stays stable when navigating backward.
 - Next stays disabled until an answer is selected. All previous selections remain in memory through backward navigation and edits. Refresh starts over; no answers are saved remotely or in local storage.
 - Each selected answer adds one point to its separate pattern ID. All eight categories have eight opportunities and a maximum score of eight.
 - Every highest-scoring category is a co-leader, with equal presentation and no tie-break. Every category one point below the highest is offered as an additional story.
@@ -43,8 +43,10 @@ The eight source-preserving circular SVG viewports from `official-typology-asset
 
 Layout breakpoints cover desktop, tablet, and narrow mobile screens with a two-column type grid on mobile. The hero illustration has explicit dimensions; its text and CTA precede it on mobile. The theme explicitly uses `color-scheme: light`, and reduced-motion CSS disables all seasonal animation. Important muted text was checked against the darkest intended blue surface; navy on gold has a contrast ratio of approximately 8.98:1. Device-level dark preference and screen-reader audits remain manual checks.
 
-The mockup image files named in the design brief were not attached or found in this workspace. Design follows the brief's described Reference A / B composition and the supplied official artwork. Exact image-to-implementation comparison is not claimed.
+The current revision uses the two subsequently attached November 11 mockups directly as visual references. See `REFERENCE_REDESIGN.md` for the implemented composition and asset prompts. Earlier iterations were based on the written brief.
 
 Generated hero asset: `public/holiday/winter-village.webp` (optimized with alpha, approximately 204 KB). Built-in ImageGen was used, then the resulting isolated illustration was converted to WebP. No full-page mockup was generated for production use.
 
 Hero prompt: “Standalone transparent illustration for ParablePath Holiday Edition website hero, not a website mockup. One premium luminous snow globe, fully visible with generous transparent margin. Glass sphere contains a tiny snow-covered winter village of three warmly lit houses, elegant snow-laden pines, gently suspended snow crystals, one luminous warm golden Christmas star. Frosted pale icy-blue glass with fine rim highlights, soft lavender shadows, snow-white landscape, muted evergreen trees. A substantial icy-blue pedestal with a blank oval medallion for the existing brand emblem to be overlaid in HTML. Refined dimensional digital storybook illustration, polished tactile shapes, delicate atmospheric light, sophisticated adult holiday aesthetic. Soft contact shadow; otherwise transparent. No text, letters, logos, UI, buttons, labels, screenshot, or surrounding scenery.”
+
+The current questionnaire is embedded below the hero and highlights, matching reference one. The first approved question is visible immediately. Quiz start is recorded only when a CTA or actual answer is used; start links scroll to the current question and preserve active answers. The original shuffle/mapping/scoring logic is unchanged. Results use the eight-globe row and horizontal frosted cards inspired by reference two.

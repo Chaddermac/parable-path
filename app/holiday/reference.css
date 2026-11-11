@@ -1,0 +1,148 @@
+/* Composition matched to the user's two November 11 image references. */
+.holiday-shell { --winter-navy:#142858; color:#142858; background:radial-gradient(ellipse at 73% 12%,#d6dfffad,transparent 40%),linear-gradient(180deg,#eef0ff 0,#dce9fc 32%,#f4f7ff 66%,#d9e8fa 100%); }
+.winter-header { min-height:78px; padding-top:10px; padding-bottom:10px; gap:25px; background:linear-gradient(90deg,#ffffff96,#ffffff46); }
+.winter-brand { gap:20px; }
+.winter-brand>img { width:205px; height:52px; }
+.winter-edition { background:linear-gradient(#ebe4ff,#d6cbff); border:0; padding:7px 15px; font-size:13px; color:#193064; }
+.winter-header nav { font-size:14px; font-weight:700; gap:32px; }
+.winter-nav-cta { background:linear-gradient(#243c78,#182c60); color:#ffe09b; border:1px solid #5870a6; box-shadow:0 4px 10px #253c6b21,inset 0 1px #ffffff2e; font-size:14px; padding:12px 20px; }
+.holiday-landing { padding-top:0; }
+.winter-hero { min-height:438px; grid-template-columns:1fr 1.04fr; gap:15px; padding:12px 0 16px; }
+.winter-hero-copy { padding:0; }
+.reference-hero-label { display:flex; align-items:center; gap:13px; margin-bottom:19px; }
+.reference-hero-label>svg { width:34px; height:34px; color:#6e9bc9; flex-shrink:0; }
+.reference-hero-label .holiday-eyebrow { padding:5px 13px; border:1px solid #a6a6e6; border-radius:30px; background:#ffffff6b; margin:0; font-size:11px; letter-spacing:.15em; color:#183060; }
+.holiday h1 { color:#102454; font-size:clamp(47px,5.5vw,78px); letter-spacing:-.055em; line-height:1.01; }
+.holiday h1 em { color:inherit; }
+.holiday-subtitle { font-size:19px; line-height:1.36; max-width:510px; color:#46517b; margin:19px 0; }
+.holiday-start { font-size:19px!important; min-height:54px!important; padding:12px 28px!important; gap:22px; margin-bottom:10px; }
+.holiday-support { font-size:13px; color:#485b91; }
+.winter-no-account { font-size:10px; margin-top:6px; color:#4a6183; }
+.winter-hero-art { aspect-ratio:4/3; width:100%; margin:0; }
+.winter-village { position:relative; width:118%; height:118%; max-width:none; left:-9%; top:-9%; object-fit:contain; filter:drop-shadow(0 8px 14px #6b7eb520); }
+.winter-base-emblem { width:8%; height:10.7%; left:45.5%; top:78.4%; opacity:1; }
+.winter-orbit { inset:16% -5% 16%; border:2px solid #ffffffdb; transform:rotate(-18deg); }
+.winter-float { width:82px; height:82px; border:2px solid #fff; box-shadow:inset 0 2px 5px #ffffff9c,inset 0 -7px 16px #32467833,0 4px 13px #50618d24; }
+.winter-float svg { width:43px; height:48px; }
+.winter-float-tree { top:0; right:auto; left:12%; background:linear-gradient(140deg,#8db89e,#416f58); }
+.winter-float-tree svg path { fill:#fff; }
+.winter-float-gift { top:39%; left:0; background:linear-gradient(140deg,#dacefa,#8e78c4); }
+.winter-float-gift svg rect { fill:none; stroke:#fff; stroke-width:3; }
+.winter-float-gift svg path { fill:none; stroke:#fff; stroke-width:3; }
+.winter-float-star { width:82px; height:82px; bottom:auto; top:29%; left:auto; right:-1%; color:#fff1c4; background:linear-gradient(140deg,#93b6e0,#36569c); }
+.winter-small-star { color:#fff; right:7%; top:2%; width:34px; height:34px; }
+.reference-hero-flake { position:absolute; color:#fff; pointer-events:none; }
+.reference-hero-flake-one { width:49px; height:49px; right:0; top:5%; }
+.reference-hero-flake-two { width:28px; height:28px; left:-5%; bottom:21%; }
+.winter-highlights { gap:23px; border:0; padding:22px 0 20px; margin:0 0 26px; }
+.winter-highlights article { padding-left:64px; }
+.winter-highlights article:not(:last-child)::after { content:""; position:absolute; right:-12px; top:10px; height:48px; width:1px; background:#bccbef; }
+.winter-highlight-icon { width:51px; height:51px; border-radius:50%; background:#e0eaff; color:#5377b6; }
+.winter-highlight-icon-1 { background:#deede5; }
+.winter-highlight-icon-2 { background:#fff0cd; color:#cc933b; }
+.winter-highlight-icon-3 { background:#e4dcff; color:#7263b5; }
+.winter-highlights h2 { font-size:15px; margin:3px 0 4px; }
+.winter-highlights p { font-size:12px; line-height:1.4; color:#445581; }
+.winter-snowfall { opacity:.8; background-image:radial-gradient(circle,#fff 1px,transparent 1.5px),radial-gradient(circle,#ffffffdd 1.2px,transparent 1.8px),radial-gradient(circle,#fff9 .7px,transparent 1.3px); background-size:23px 37px,59px 71px,41px 29px; background-position:0 0,11px 13px,24px 8px; }
+.winter-snowbank { top:414px; height:255px; background:linear-gradient(#f7faff,#f2f6ff99 55%,#ffffff00); transform:rotate(3deg); }
+.winter-snowbank-back { top:392px; background:linear-gradient(#eef5ffdd,#f9fbff88,transparent); transform:rotate(-6deg); }
+.reference-lower-snowbank { position:absolute; top:1060px; left:-10%; width:130%; height:300px; border-radius:50% 40% 0 0; background:linear-gradient(#ffffffb5,transparent); transform:rotate(-7deg); }
+.reference-distant-pines { position:absolute; left:0; right:0; top:215px; height:250px; }
+.reference-pine { position:absolute; height:160px; width:100px; bottom:0; opacity:.56; }
+.reference-pine-0 { left:-28px; height:120px; }
+.reference-pine-1 { left:10px; height:190px; }
+.reference-pine-2 { left:7%; height:115px; opacity:.28; }
+.reference-pine-3 { right:3%; height:200px; }
+.reference-pine-4 { right:-30px; height:135px; }
+.reference-pine-5 { right:10%; height:105px; opacity:.24; }
+.reference-pine-6 { top:650px; left:0; height:170px; opacity:.45; }
+.reference-pine-7 { top:610px; right:0; height:145px; opacity:.42; }
+.reference-snowflake { position:absolute; width:43px; height:43px; color:#fff; }
+.reference-snowflake-one { top:310px; left:48%; }
+.reference-snowflake-two { top:790px; right:12%; color:#9ab8e4; width:38px; }
+.reference-atmos-star { position:absolute; color:#f3ce7c; top:760px; right:7%; width:48px; height:48px; }
+.holiday-quiz { max-width:870px; padding:0 0 28px; margin:15px auto 20px; position:relative; scroll-margin-top:20px; }
+.reference-quiz-decoration { position:absolute; left:-263px; top:85px; width:275px; height:auto; pointer-events:none; z-index:0; }
+.reference-quiz-star { position:absolute; left:-92px; top:53px; width:44px; height:44px; color:#f1c763; }
+.winter-question-card { position:relative; z-index:1; padding:25px 60px 23px; border-radius:30px; border:1px solid #fff; background:linear-gradient(135deg,#fffffff5,#f8faffed); box-shadow:0 20px 45px #526ba12b,inset 0 1px #fff; }
+.holiday-progress-label { align-items:center; font-size:13px; color:#142858; }
+.holiday-progress-label>span:first-child { background:#e4dcff; padding:5px 12px; border-radius:25px; font-size:10px; text-transform:uppercase; letter-spacing:.14em; }
+.holiday progress { height:8px; margin:13px 0 21px; }
+.holiday progress::-webkit-progress-bar { background:linear-gradient(90deg,#efedf7,#d8dcf3); }
+.holiday progress::-webkit-progress-value { background:linear-gradient(90deg,#ffd88c,#efba60); }
+.winter-question-card>.holiday-eyebrow { font-size:9px; margin-bottom:12px; }
+.holiday :is(h1,h2).holiday-question { font-size:clamp(26px,2.75vw,36px); font-weight:700; line-height:1.12; letter-spacing:-.035em; margin:0 0 22px; color:#142858; }
+.holiday-options { gap:10px; }
+.holiday-option { min-height:47px; padding:10px 18px; border-color:#d4daf4; border-radius:28px; background:linear-gradient(#fff,#f5f7ff); box-shadow:0 2px 3px #657fad14; gap:16px; font-size:16px; line-height:1.4; }
+.holiday-option:has(input:checked) { padding:9px 17px; border-color:#536ba9; background:#eaf0ff; }
+.holiday-letter { width:30px; height:30px; border-radius:50%; font-size:13px; background:linear-gradient(#e5f0ff,#cde4ff); }
+.holiday-navigation { margin-top:17px; }
+.holiday-navigation .button-primary { min-height:44px; font-size:12px; padding:12px 19px; }
+.holiday-quiz>.holiday-fine { margin:16px auto 0; font-size:10px; }
+.winter-types { padding:30px 0 25px; }
+.reference-section-heading { display:flex; align-items:center; justify-content:center; gap:18px; }
+.reference-section-heading>span { width:80px; height:1px; background:#acbed6; }
+.reference-section-heading>svg { width:23px; height:23px; color:#d0a650; flex-shrink:0; }
+.reference-section-heading h2 { font-size:29px; font-weight:700; letter-spacing:-.035em; line-height:1.2; }
+.winter-section-intro { margin:10px 0 16px; font-size:15px; color:#425b7f; }
+.winter-types-grid { grid-template-columns:repeat(8,minmax(0,1fr)); gap:12px; margin:13px 0 20px; }
+.winter-type { background:none; border:0; padding:8px 0; box-shadow:none; border-radius:20px; }
+.winter-type:hover { background:#ffffff50; box-shadow:none; }
+.winter-type h3 { margin:8px 0 4px; min-height:0; font-size:15px; line-height:1.2; }
+.winter-type summary>p { font-size:11px; line-height:1.4; min-height:30px; }
+.winter-type-more { margin-top:8px; font-size:9px; }
+.winter-type-globe { width:124px; padding-bottom:13px; }
+.winter-glass { border:2px solid #fff; background:radial-gradient(circle at 28% 18%,#fff8,#c8d9f733 45%,#b2c9e96e); box-shadow:inset -5px -6px 14px #6489b640,inset 4px 5px 12px #fff,0 5px 14px #5b80ab1c; }
+.winter-glass>img { width:86%; height:86%; left:7%; top:5%; }
+.winter-glass-shine { left:9%; top:8%; width:20%; height:37%; border-left-width:4px; }
+.winter-globe-snow { height:17%; bottom:-3%; background:linear-gradient(#fff,#e6f0ff); border-radius:50% 60% 0 0; }
+.winter-globe-base { left:-4%; width:108%; bottom:4px; height:17px; border:0; border-radius:45% 50%; background:radial-gradient(ellipse at top,#fff,#e0edff); box-shadow:0 6px 10px #748cb91c; }
+.winter-globe-base>svg { display:none; }
+.reference-globe-pine { position:absolute; z-index:2; width:22%; height:37%; bottom:9%; pointer-events:none; }
+.reference-globe-pine-left { left:1%; }
+.reference-globe-pine-right { right:0; height:29%; }
+.reference-globe-pine path { fill:#fff; }
+.winter-type-globe-large { width:250px; padding-bottom:25px; }
+.winter-type-globe-large .winter-globe-base { height:27px; }
+.winter-type-globe-large .winter-glass>img { width:83%; height:83%; left:8.5%; }
+.reference-result-hero { display:grid; grid-template-columns:1.4fr .8fr; align-items:center; gap:40px; min-height:375px; padding:35px 25px 18px; }
+.reference-result-hero h1 { font-size:clamp(40px,4.5vw,61px); line-height:1.04; letter-spacing:-.045em; }
+.reference-result-hero .holiday-subtitle { font-size:18px; line-height:1.5; }
+.reference-result-hero .winter-type-globe-large { width:300px; }
+.reference-result-hero .holiday-eyebrow { display:inline-flex; background:#ffffff84; border:1px solid #fff; border-radius:25px; padding:8px 16px; margin-bottom:16px; }
+.reference-tie-star { width:170px; height:170px; color:#e4c070; margin:auto; }
+.holiday-results { max-width:1240px; padding-top:0; }
+.holiday-results>.holiday-subtitle { max-width:780px; text-align:center; margin:25px auto; }
+.holiday-result-grid { grid-template-columns:1fr; margin-top:10px; scroll-margin-top:20px; }
+.holiday-result { padding:30px 34px; border-radius:34px; background:linear-gradient(135deg,#ffffffe8,#f4f7ffd9); }
+.reference-result-intro { display:grid; grid-template-columns:190px 1.3fr .9fr; align-items:center; gap:27px; }
+.reference-result-intro>.winter-type-globe { width:190px; }
+.reference-result-intro .holiday-eyebrow { font-size:9px; color:#9d3745; letter-spacing:.14em; justify-content:flex-start; margin:0; }
+.reference-result-intro h2 { text-align:left; font-size:36px; line-height:1.1; margin:12px 0 9px; }
+.reference-result-intro .holiday-calling { text-align:left; margin:0; padding:0; border:0; color:#326f75; font-size:16px; }
+.reference-result-intro p { font-size:14px; line-height:1.6; }
+.reference-result-intro .holiday-challenge { border:0; border-left:1px solid #c0d1e8; border-radius:0; background:none; margin:0; padding:12px 0 12px 25px; }
+.reference-result-intro .holiday-challenge h3 { margin-top:10px; font-size:19px; }
+.reference-result-depth { display:grid; grid-template-columns:1fr 1fr; gap:35px; border-top:1px solid #d2dff0; margin-top:23px; padding-top:6px; }
+.reference-result-depth h3 { font-size:17px; margin-top:18px; }
+.reference-result-depth p { font-size:14px; line-height:1.7; }
+.holiday-results .button-primary { background:linear-gradient(#cc4355,#c23d4d); border-color:#b83d4c; color:#fff; }
+.holiday-results .button-primary:hover { background:#b93144; }
+.holiday-results .winter-export-preview { margin:16px 0; }
+.holiday-results .holiday-share { gap:12px 18px; }
+.holiday-results .winter-downloads { width:auto; flex:1; border:0; padding-top:0; min-width:280px; }
+.holiday-conversion { background:#ffffffa6; border:1px solid #fff; margin:28px 0; }
+.winter-invite { margin-top:20px; background:#ffffff9c; }
+@media(max-width:1100px) { .winter-header { gap:18px; } .winter-brand { gap:13px; } .winter-brand>img { width:175px; } .winter-edition { font-size:11px; padding:6px 10px; } .winter-header nav { font-size:12px; gap:20px; } .winter-nav-cta { font-size:12px; padding:12px 16px; } .winter-hero { min-height:415px; } .holiday h1 { font-size:64px; } .holiday-subtitle { font-size:17px; } .winter-float { width:65px; height:65px; } .winter-float svg { width:34px; height:39px; } .winter-types-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } .winter-type-globe { width:135px; } .winter-highlights h2 { font-size:13px; } .winter-highlights p { font-size:11px; } .winter-highlights article { padding-left:48px; } .winter-highlight-icon { width:38px; height:38px; } .reference-quiz-decoration { width:200px; left:-170px; opacity:.65; } .reference-result-intro { grid-template-columns:150px 1fr; } .reference-result-intro>.winter-type-globe { width:150px; } .reference-result-intro .holiday-challenge { grid-column:2; } .reference-result-hero .winter-type-globe-large { width:240px; } }
+@media(max-width:900px) { .winter-header nav { display:none; } .holiday h1 { font-size:55px; } .winter-hero { min-height:390px; } .holiday-subtitle { font-size:16px; } .holiday-start { font-size:16px!important; padding:13px 20px!important; } .reference-hero-label .holiday-eyebrow { font-size:9px; padding:5px 9px; } .reference-hero-label>svg { width:24px; height:24px; } .winter-highlights { grid-template-columns:repeat(2,1fr); gap:22px; } .winter-highlights article { padding-left:57px; } .winter-highlight-icon { width:43px; height:43px; } .winter-highlights article:nth-child(2)::after { display:none; } .winter-question-card { padding:25px 32px; } .reference-result-hero { gap:20px; padding:30px 0 15px; } .reference-result-hero h1 { font-size:44px; } .reference-result-hero .winter-type-globe-large { width:210px; } .reference-quiz-decoration { left:-95px; opacity:.4; } .reference-section-heading h2 { font-size:26px; } }
+@media(max-width:640px) { .winter-header { flex-wrap:nowrap; min-height:65px; padding:12px 18px; gap:12px; } .winter-brand>img { width:157px; height:39px; } .winter-edition { display:none; } .winter-nav-cta { font-size:10px; min-height:42px; padding:10px 13px; } .winter-nav-cta span { margin-left:5px; } .holiday-landing { padding-top:0; } .winter-hero { grid-template-columns:1fr; gap:0; min-height:0; padding:19px 0 0; } .reference-hero-label { justify-content:center; gap:9px; margin-bottom:18px; } .reference-hero-label .holiday-eyebrow { margin:0; font-size:8px; padding:5px 10px; } .holiday h1 { font-size:clamp(44px,11.8vw,64px); } .holiday-subtitle { max-width:380px; font-size:16px; line-height:1.45; margin:18px auto; } .holiday-start { font-size:16px!important; padding:13px 25px!important; min-height:51px!important; } .holiday-support { font-size:11px; } .winter-no-account { font-size:9px; } .winter-hero-art { width:min(100%,390px); margin:8px auto 6px; aspect-ratio:4/3; } .winter-float { width:50px; height:50px; } .winter-float svg { width:27px; height:31px; } .reference-hero-flake-one { width:30px; height:30px; } .reference-hero-flake-two { width:22px; height:22px; left:0; } .winter-highlights { margin:12px 0 17px; padding:14px 0; gap:20px 14px; } .winter-highlights article { padding-left:42px; } .winter-highlight-icon { width:34px; height:34px; } .winter-highlight-icon svg { width:21px; height:24px; } .winter-highlights h2 { font-size:12px; margin-top:1px; } .winter-highlights p { font-size:10px; line-height:1.5; } .winter-highlights article::after { display:none; } .holiday-quiz { padding:0 0 20px; margin:8px auto; scroll-margin-top:12px; } .winter-question-card { padding:21px 18px; border-radius:25px; } .holiday-progress-label { font-size:10px; gap:9px; } .holiday-progress-label>span:first-child { font-size:8px; padding:5px 10px; } .holiday progress { margin:12px 0 20px; height:7px; } .holiday :is(h1,h2).holiday-question { font-size:27px; line-height:1.16; margin-bottom:20px; } .holiday-option { font-size:14px; padding:12px 13px; gap:10px; border-radius:24px; line-height:1.5; } .holiday-option:has(input:checked) { padding:11px 12px; } .holiday-letter { width:27px; height:27px; font-size:11px; } .holiday-navigation .button-primary { padding:12px 15px; min-height:44px; font-size:11px; } .reference-quiz-decoration { width:130px; left:-65px; top:auto; bottom:0; opacity:.35; } .reference-quiz-star { left:auto; right:-10px; top:-20px; width:30px; height:30px; } .winter-types { padding:25px 0 15px; } .reference-section-heading { gap:8px; } .reference-section-heading>span { display:none; } .reference-section-heading>svg { width:16px; height:16px; } .reference-section-heading h2 { font-size:25px; } .winter-section-intro { font-size:13px; margin:12px 0; } .winter-types-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 12px; } .winter-type { padding:10px 3px; border-radius:20px; } .winter-type h3 { font-size:15px; min-height:0; margin-top:6px; } .winter-type summary>p { font-size:11px; } .winter-type-globe { width:128px; } .winter-type-globe-large { width:210px; } .winter-snowbank { top:650px; } .winter-snowbank-back { top:625px; } .reference-distant-pines { top:440px; } .reference-pine { opacity:.25; width:70px; } .reference-lower-snowbank { top:1350px; } .reference-snowflake-two { top:1070px; right:3%; } .reference-result-hero { grid-template-columns:1fr; text-align:center; gap:15px; padding-top:25px; } .reference-result-hero h1 { font-size:42px; } .reference-result-hero .holiday-subtitle { font-size:16px; margin:17px auto; } .reference-result-hero .winter-type-globe-large { width:210px; } .reference-result-hero .holiday-eyebrow { font-size:8px; } .reference-tie-star { width:100px; height:100px; } .holiday-result { padding:25px 21px; border-radius:26px; } .reference-result-intro { grid-template-columns:1fr; text-align:center; gap:20px; } .reference-result-intro>.winter-type-globe { width:205px; } .reference-result-intro .holiday-eyebrow { justify-content:center; } .reference-result-intro h2 { text-align:center; font-size:31px; } .reference-result-intro .holiday-calling { text-align:center; font-size:14px; } .reference-result-intro p { font-size:14px; } .reference-result-intro .holiday-challenge { grid-column:auto; border-left:0; border-top:1px solid #c0d1e8; padding:20px 0 0; } .reference-result-depth { grid-template-columns:1fr; gap:6px; margin-top:20px; } .holiday-results .winter-downloads { min-width:0; flex-basis:100%; border-top:1px solid #d4e1f0; padding-top:15px; } }
+@media(max-width:360px) { .winter-brand>img { width:125px; } .winter-nav-cta { font-size:9px; padding:10px 11px; } .holiday-start { gap:20px; padding:13px 20px!important; font-size:15px!important; } .holiday :is(h1,h2).holiday-question { font-size:25px; } .holiday-navigation .button-primary { font-size:10px; padding:12px 11px; } .winter-type-globe { width:116px; } }
+@media(prefers-reduced-motion:reduce) { .holiday-shell * { animation:none!important; transition:none!important; } }
+/* Remove illustration intrinsic sizing from the grid's height calculation. */
+.winter-village { position:absolute; }
+.winter-globe-base::before { content:""; position:absolute; left:12%; top:-7px; width:41%; height:15px; border-radius:50%; background:linear-gradient(#fff,#e7f1ff); }
+.winter-globe-base::after { content:""; position:absolute; right:8%; top:-4px; width:34%; height:12px; border-radius:50%; background:#f5faff; }
+.reference-result-hero .winter-type-globe-large { padding-bottom:38px; }
+.reference-result-hero .winter-globe-base { width:77%; left:11.5%; height:43px; bottom:7px; border:1px solid #d3b779; border-radius:5px 5px 17px 17px; background:linear-gradient(110deg,#c6a365,#f6e2b8 48%,#c1a16b); box-shadow:0 10px 15px #9c8d7a25; }
+.reference-result-hero .winter-globe-base::before,.reference-result-hero .winter-globe-base::after { display:none; }
+.reference-result-hero .winter-globe-base>svg { display:block; color:#fff5dc; opacity:1; width:19px; height:19px; }

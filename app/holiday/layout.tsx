@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./holiday.css";
+import "./reference.css";
 import { HolidayHeader } from "@/components/holiday/HolidayHeader";
 import { WinterAtmosphere } from "@/components/holiday/WinterArtwork";
 export const metadata: Metadata = {
