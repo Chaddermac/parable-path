@@ -16,6 +16,15 @@ for (const story of [...stories, "quiz", stories.join("~")]) {
   assert.equal(new DataView(bytes.buffer).getUint32(16), 1200);
   assert.equal(new DataView(bytes.buffer).getUint32(20), 630);
 }
+for (const [format,width,height] of [["square",1080,1080],["portrait",1080,1350],["story",1080,1920]]) {
+  const response = await fetch(`${origin}/api/holiday/card/control?format=${format}&download=1`);
+  assert.equal(response.status,200);
+  assert.ok(response.headers.get("content-disposition").includes(`${format}.png`));
+  const bytes = new Uint8Array(await response.arrayBuffer());
+  assert.equal(new DataView(bytes.buffer).getUint32(16),width);
+  assert.equal(new DataView(bytes.buffer).getUint32(20),height);
+}
+for (const format of ["unknown","__proto__"]) assert.equal((await fetch(`${origin}/api/holiday/card/control?format=${format}`)).status,400);
 for (const [data, headers, expected] of [
   [{ event:"quiz_complete", leaders:["lost","control"], secondary:["delay"], tied:true, seconds:180, rawAnswers:["must be discarded"] }, {}, 204],
   [{ event:"unknown" }, {}, 400],
@@ -26,4 +35,4 @@ for (const [data, headers, expected] of [
   assert.equal(response.status, expected);
 }
 for (const story of ["unknown","lost~lost"]) assert.equal((await fetch(`${origin}/holiday/results/${story}`)).status, 404);
-console.info("HTTP smoke passed: eight results, multiway ties, ten PNGs, analytics validation, DNT, origin check, invalid results.");
+console.info("HTTP smoke passed: eight results, multiway ties, thirteen PNGs, three download formats, analytics validation, DNT, origin check, invalid results.");
