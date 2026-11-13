@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HolidayTypes } from "@/components/holiday/HolidayTypes";
 import { TypologyGlobe, WinterStar } from "@/components/holiday/WinterArtwork";
-import { holidayArtwork } from "@/lib/holiday/artwork";
 import { HolidayActions, HolidayConversion, HolidayResultView } from "@/components/holiday/HolidayActions";
 import { holidayResults } from "@/lib/holiday/results";
 import { isPattern, parseStories, resultPath } from "@/lib/holiday/scoring";
@@ -29,8 +28,8 @@ export default async function HolidayResultPage({ params, searchParams }: Props)
     <HolidayTypes/>
     <div id="holiday-result" className="holiday-result-grid">{leaders.map(pattern => { const result = holidayResults[pattern]; return <article key={pattern} className="holiday-result">
       <div className="reference-result-intro"><TypologyGlobe pattern={pattern} large/><div><p className="holiday-eyebrow">{leaders.length > 1 ? "Equally plausible story" : "Your Holiday Story"}</p>
-      <h2>You’re {result.name.replace(/^The /, "the ")}!</h2><p className="holiday-calling">Your ParablePath Calling: {holidayArtwork[pattern].calling}</p>
-      <p>{result.description}</p></div><aside className="holiday-challenge"><p className="holiday-eyebrow">A seasonal practice</p><h3>Your Holiday Challenge</h3><p>{result.challenge}</p></aside></div><div className="reference-result-depth"><section><h3>The story beneath the season</h3><p>{result.shadow}</p></section><section><h3>Your holiday invitation</h3><p>{result.invitation}</p></section></div>
+      <h2>You’re {result.name.replace(/^The /, "the ")}!</h2><p className="holiday-calling">Your ParablePath Calling: {result.calling}</p>
+      <p>{result.description}</p></div><aside className="holiday-challenge"><p className="holiday-eyebrow">A seasonal practice</p><h3>Your Holiday Challenge</h3><p>{result.challenge}</p></aside></div><div className="reference-result-depth"><section><h3>The Story Beneath the Season</h3><p className="holiday-section-note">Patterns you may recognize.</p><ul>{result.shadowPatterns.map(text => <li key={text}>{text}</li>)}</ul></section><section><h3>The Gift You Bring</h3><p className="holiday-section-note">Ways this calling could take shape.</p><ul>{result.gifts.map(text => <li key={text}>{text}</li>)}</ul></section></div>
       <p className="holiday-fine">{result.name} connects to the {result.calling} calling in ParablePath.</p>
       <details className="winter-export-preview"><summary>Preview your share card</summary><img className="holiday-card-preview" src={`/api/holiday/card/${pattern}`} alt={`${result.name}. ${result.calling}. ${result.line} Take the quiz at parablepath.com/holidayedition.`} width="1200" height="630" loading="lazy"/></details>
       <HolidayActions names={names} path={resultPath(leaders, secondary)} story={pattern}/>

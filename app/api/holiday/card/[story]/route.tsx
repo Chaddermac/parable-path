@@ -19,7 +19,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ stor
   const art = leaders.length === 1 ? holidayArtwork[leaders[0]] : null;
   const image = art ? artwork[art.id as keyof typeof artwork] : null;
   const title = leaders.length ? leaders.map(p => holidayResults[p].name).join(" + ") : "What’s Your Holiday Story?";
-  const calling = leaders.length ? leaders.map(p => holidayArtwork[p].calling).join(" · ") : "16 fun questions. Eight holiday personalities.";
+  const calling = leaders.length ? leaders.map(p => holidayResults[p].calling).join(" · ") : "16 fun questions. Eight holiday personalities.";
   const globeSize = landscape ? 275 : format === "story" ? 580 : 395;
   return new ImageResponse(<div style={{ display:"flex",flexDirection:"column",justifyContent:"space-between",width:"100%",height:"100%",background:"linear-gradient(145deg,#f4faff,#dceafa 70%,#e7e2ff)",color:"#19345f",padding:landscape?"40px 60px":"65px 65px",position:"relative",overflow:"hidden",fontFamily:"sans-serif" }}>
     <div style={{ position:"absolute",bottom:-140,left:-100,width:width+200,height:300,borderRadius:"50%",background:"#ffffffa6",display:"flex" }}/>

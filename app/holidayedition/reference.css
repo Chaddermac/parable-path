@@ -146,3 +146,34 @@
 .reference-result-hero .winter-globe-base { width:77%; left:11.5%; height:43px; bottom:7px; border:1px solid #d3b779; border-radius:5px 5px 17px 17px; background:linear-gradient(110deg,#c6a365,#f6e2b8 48%,#c1a16b); box-shadow:0 10px 15px #9c8d7a25; }
 .reference-result-hero .winter-globe-base::before,.reference-result-hero .winter-globe-base::after { display:none; }
 .reference-result-hero .winter-globe-base>svg { display:block; color:#fff5dc; opacity:1; width:19px; height:19px; }
+
+/* Version 2: roomier result copy without constraining card height. */
+.reference-result-intro h2 { font-size:39.6px; line-height:1.15; }
+.reference-result-intro .holiday-calling { font-size:17.6px; line-height:1.5; }
+.reference-result-intro p { font-size:15.4px; line-height:1.6; }
+.reference-result-intro .holiday-eyebrow { font-size:9.9px; }
+.reference-result-intro .holiday-challenge h3 { font-size:20.9px; line-height:1.35; }
+.reference-result-depth { align-items:start; gap:40px; padding-top:14px; }
+.reference-result-depth h3 { font-size:18.7px; line-height:1.4; }
+.reference-result-depth .holiday-section-note { font-size:13.2px; line-height:1.6; color:#506782; margin:10px 0 14px; }
+.reference-result-depth ul { list-style:disc; padding-left:1.2em; margin:0; }
+.reference-result-depth li { font-size:15.4px; line-height:1.6; padding-left:5px; margin:0 0 18px; }
+.reference-result-depth li::marker { color:#527c83; }
+.holiday-result .holiday-fine { font-size:12.1px; line-height:1.6; }
+.holiday-result .winter-export-preview summary { font-size:13.2px; line-height:1.6; }
+.holiday-result .holiday-share .button-primary,
+.holiday-result .holiday-share .button-secondary { font-size:13.2px; line-height:1.5; }
+.holiday-result .holiday-share p { font-size:13.2px; line-height:1.6; }
+.holiday-result .winter-downloads label { font-size:11px; line-height:1.6; }
+.holiday-result .winter-downloads select { font-size:13.2px; max-width:100%; }
+.holiday-result .winter-downloads .holiday-back { font-size:13.2px; }
+@media(max-width:640px) {
+  .reference-result-intro h2 { font-size:34.1px; }
+  .reference-result-intro .holiday-calling { font-size:15.4px; }
+  .reference-result-intro .holiday-eyebrow { font-size:9.9px; }
+  .reference-result-depth { gap:24px; padding-top:16px; }
+  .reference-result-depth li { margin-bottom:20px; }
+  .holiday-result .holiday-share .button-primary,
+  .holiday-result .holiday-share .button-secondary { font-size:12.1px; }
+  .holiday-result .winter-downloads { flex-wrap:wrap; }
+}

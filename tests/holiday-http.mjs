@@ -14,6 +14,10 @@ for (const story of [...stories, "lost~control", stories.join("~")]) {
   const response = await fetch(`${origin}/holidayedition/results/${story}`);
   assert.equal(response.status, 200, `Result ${story}`);
   const html = await response.text();
+  const resultCount = story.split("~").length;
+  assert.equal((html.match(/<li>/g)||[]).length, resultCount*6, "Three patterns and three gifts per result");
+  assert.ok(html.includes("The Gift You Bring"));
+  assert.ok(!html.includes("Your holiday invitation"));
   if (story.includes("~")) assert.ok(html.includes("These stories tied for your highest score"));
 }
 for (const story of [...stories, "quiz", stories.join("~")]) {
