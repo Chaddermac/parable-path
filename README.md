@@ -22,7 +22,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Data and scoring
 
-All assessment responses, result records, chosen next steps, and feedback are saved to `localStorage`; nothing is transmitted. Each room has three questions scored from 1–5, producing a range of 3–15. Rooms are ranked by total score. The false-story forced choice breaks an exact score tie but never adds points. No AI API or database is connected in this version.
+The formation assessment contains 40 statements across eight rooms and five dimensions. Browser storage retains drafts, results, and pending response saves. With consent, server routes save anonymous responses to Supabase and generate an OpenAI-assisted reflection that is reused in the result and optional email. Configuration remains server-side. The separate `/fun` experience has 16 prompts and its own deterministic scoring; see the scoring tests and route documentation below.
 
 
 ## Public web routes (October 2026)

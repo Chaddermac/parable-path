@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { storyFromSlug, storyLinks } from "@/lib/website";
 import { formationResultByRoom } from "@/lib/parablepath/popular/results";
 import { StoryProfileCard } from "@/components/website/StoryProfileCard";
+export const dynamicParams = false;
 export function generateStaticParams() { return storyLinks.map(({slug}) => ({slug})); }
 export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata> { const {slug}=await params; const story=storyFromSlug(slug); return {title: story ? formationResultByRoom[story.room].callingName : "Story not found", alternates:{canonical:`/story-types/${slug}`}}; }
 export default async function StoryDetail({params}:{params:Promise<{slug:string}>}) {
