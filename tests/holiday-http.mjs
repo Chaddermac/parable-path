@@ -28,7 +28,7 @@ for (const story of [...stories, "quiz", stories.join("~")]) {
   assert.equal(new DataView(bytes.buffer).getUint32(16), 1200);
   assert.equal(new DataView(bytes.buffer).getUint32(20), 630);
 }
-for (const [format,width,height] of [["square",1080,1080],["portrait",1080,1350],["story",1080,1920]]) {
+for (const [format,width,height] of [["square",1080,1080],["portrait",1080,1350],["story",1080,1920],["wallpaper",1440,3120]]) {
   const response = await fetch(`${origin}/api/holiday/card/control?format=${format}&download=1`);
   assert.equal(response.status,200);
   assert.ok(response.headers.get("content-disposition").includes(`${format}.png`));
@@ -47,7 +47,7 @@ for (const [data, headers, expected] of [
   assert.equal(response.status, expected);
 }
 for (const story of ["unknown","lost~lost"]) assert.equal((await fetch(`${origin}/holidayedition/results/${story}`)).status, 404);
-console.info("HTTP smoke passed: eight results, multiway ties, thirteen PNGs, three download formats, analytics validation, DNT, origin check, invalid results.");
+console.info("HTTP smoke passed: eight results, multiway ties, fourteen base PNGs, four download formats, analytics validation, DNT, origin check, invalid results.");
 
 const oldLanding = await fetch(`${origin}/holiday?start=1`, { redirect: "manual" });
 assert.equal(oldLanding.status, 308);

@@ -1,3 +1,7 @@
+import { holidayCardPath } from "@/lib/holiday/card-formats";
+import type { CSSProperties } from "react";
+import { holidayArtwork } from "@/lib/holiday/artwork";
+import { ResultCardScene } from "@/components/holiday/ResultCardScene";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -12,11 +16,11 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const leaders = parseStories(story);
   const { responses } = await searchParams;
   const count = parseResponseCount(responses);
-  if (story === "no-match" || (count !== null && count < 8)) return { title:"A story still unfolding | ParablePath Holiday Edition", description:"The quiz didn’t find a clear holiday match. Explore your deeper story.", robots:{index:false}, openGraph:{title:"A story still unfolding", images:[{url:"https://parablepath.com/api/holiday/card/quiz",width:1200,height:630}]} };
+  if (story === "no-match" || (count !== null && count < 8)) return { title:"A story still unfolding | ParablePath Holiday Edition", description:"The quiz didn’t find a clear holiday match. Explore your deeper story.", robots:{index:false}, openGraph:{title:"A story still unfolding", images:[{url:`https://parablepath.com${holidayCardPath("quiz")}`,width:1200,height:630}]} };
   if (!leaders) return { title: "Holiday story unavailable", robots: { index: false } };
   const title = `${count !== null && count < 12 ? "A story to explore: " : ""}${leaders.map(p => holidayResults[p].name).join(" + ")}`;
   const url = `https://parablepath.com/holidayedition/results/${story}${count !== null && count < 12 ? `?responses=${count}` : ""}`;
-  return { title: `${title} | ParablePath Holiday Edition`, description: "A playful holiday reflection. Discover your own holiday story in 16 questions.", alternates: { canonical: url }, openGraph: { title, url, description: "What’s your holiday story? Take the ParablePath Holiday Edition.", images: [{ url: `https://parablepath.com/api/holiday/card/${story}${count !== null && count < 12 ? "?tentative=1" : ""}`, width: 1200, height: 630 }] }, twitter: { card: "summary_large_image", title, images: [`https://parablepath.com/api/holiday/card/${story}${count !== null && count < 12 ? "?tentative=1" : ""}`] } };
+  return { title: `${title} | ParablePath Holiday Edition`, description: "A playful holiday reflection. Discover your own holiday story in 16 questions.", alternates: { canonical: url }, openGraph: { title, url, description: "What’s your holiday story? Take the ParablePath Holiday Edition.", images: [{ url: `https://parablepath.com${holidayCardPath(story,{tentative:count !== null && count < 12})}`, width: 1200, height: 630 }] }, twitter: { card: "summary_large_image", title, images: [`https://parablepath.com${holidayCardPath(story,{tentative:count !== null && count < 12})}`] } };
 }
 export default async function HolidayResultPage({ params, searchParams }: Props) {
   const { story } = await params;
@@ -42,12 +46,11 @@ export default async function HolidayResultPage({ params, searchParams }: Props)
     {tentative && <section className="holiday-tentative" role="note"><h2>A tentative story to explore</h2><p>You chose {scoredCount} story-based responses and {16-scoredCount} no-match responses. Treat {leaders.length > 1 ? "these stories" : "this story"} as a suggestion, and keep what resonates.</p><p className="holiday-fine">These are provisional pilot rules, not validated statistical confidence levels.</p></section>}
     {leaders.length > 1 && <p className="holiday-subtitle">These stories tied for your highest score. Each is equally worth exploring.</p>}
     <HolidayTypes/>
-    <div id="holiday-result" className="holiday-result-grid">{leaders.map(pattern => { const result = holidayResults[pattern]; return <article key={pattern} className="holiday-result">
+    <div id="holiday-result" className="holiday-result-grid">{leaders.map(pattern => { const result = holidayResults[pattern]; return <article key={pattern} className="holiday-result" style={{ "--story-color":holidayArtwork[pattern].color } as CSSProperties}><ResultCardScene/>
       <div className="reference-result-intro"><TypologyGlobe pattern={pattern} large/><div><p className="holiday-eyebrow">{tentative ? "A tentative holiday story" : leaders.length > 1 ? "Equally plausible story" : "Your Holiday Story"}</p>
       <h2>{tentative ? `You might recognize ${result.name.replace(/^The /, "the ")}.` : `You’re ${result.name.replace(/^The /, "the ")}!`}</h2><p className="holiday-calling">Your ParablePath Calling: {result.calling}</p>
       <p>{result.description}</p></div><aside className="holiday-challenge"><p className="holiday-eyebrow">A seasonal practice</p><h3>Your Holiday Challenge</h3><p>{result.challenge}</p></aside></div><div className="reference-result-depth"><section><h3>The Story Beneath the Season</h3><p className="holiday-section-note">Patterns you may recognize.</p><ul>{result.shadowPatterns.map(text => <li key={text}>{text}</li>)}</ul></section><section><h3>The Gift You Bring</h3><p className="holiday-section-note">Ways this calling could take shape.</p><ul>{result.gifts.map(text => <li key={text}>{text}</li>)}</ul></section></div>
       <p className="holiday-fine">{result.name} connects to the {result.calling} calling in ParablePath.</p>
-      <details className="winter-export-preview"><summary>Preview your share card</summary><img className="holiday-card-preview" src={`/api/holiday/card/${pattern}${tentative ? "?tentative=1" : ""}`} alt={`${result.name}. ${result.calling}. ${result.line} Take the quiz at parablepath.com/holidayedition.`} width="1200" height="630" loading="lazy"/></details>
       <HolidayActions names={names} path={resultPath(leaders, secondary, scoredCount)} story={pattern} tentative={tentative}/>
     </article>; })}</div>
     {secondary.length > 0 && <section className="holiday-secondary"><h2>Another thread worth exploring</h2><p>Within one point of your leading {leaders.length > 1 ? "stories" : "story"}. These may resonate, too.</p>{secondary.map(p => <Link key={p} href={resultPath([p], [], scoredCount)}>{holidayResults[p].name} · {holidayResults[p].calling} ↗</Link>)}</section>}
