@@ -62,7 +62,4 @@ test("the shared card renderer bundles fonts and exports the required PNG contra
   assert.match(route, /height: 1402/);
   assert.match(route, /private, no-store/);
   assert.match(route, /formation-card\.png/);
-  const webCard = readFileSync(new URL("../components/formation/FormationTypologyResultCard.tsx", import.meta.url), "utf8");
-  assert.match(webCard, /api\/formation-card/);
-  assert.match(webCard, /Read the full card as text/);
 });

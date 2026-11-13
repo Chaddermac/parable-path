@@ -9,7 +9,8 @@ export default function StartPage() {
   return <main className="shell py-10 sm:py-16">
     <div className="mx-auto max-w-3xl">
       <p className="eyebrow">Before you begin</p>
-      <h1 className="mt-4 font-serif text-5xl tracking-tight sm:text-6xl">What story might you be inhabiting?</h1>
+      <h1 className="mt-4 font-serif text-4xl tracking-tight sm:text-6xl">Begin with what feels true today.</h1>
+      <p className="mt-5 max-w-2xl leading-7 text-ink/65">A little space to recognize your story, open a parable, and consider one next faithful step. No account is required.</p>
       <div className="panel mt-10 p-6 sm:p-9">
         <h2 className="font-serif text-2xl">How this reflection works</h2>
         <ol className="mt-5 space-y-4 text-sm leading-7 text-ink/70">

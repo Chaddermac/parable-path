@@ -5,7 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/admin", "/api/admin"]
-    }
+      disallow: ["/admin", "/api/", "/results/", "/feedback/", "/reflect", "/assessment", "/experiences/formation/results/"]
+    },
+    sitemap: "https://www.parablepath.com/sitemap.xml"
   };
 }
