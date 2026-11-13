@@ -24,7 +24,7 @@ body.experience-formation { --font-sans:var(--font-website),Arial,sans-serif; --
 .website-kicker { font-size:10px; line-height:1.7; text-transform:uppercase; letter-spacing:.18em; font-weight:700; color:#69562f; }
 .website-hero { display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:48px; padding-top:72px; padding-bottom:80px; }
 .website-hero h1 { margin:22px 0; font-size:clamp(40px,4.7vw,62px); line-height:1.12; letter-spacing:-.055em; font-weight:700; }
-.website-hero h1 span { color:#60704c; }
+.website-hero h1 span { display:block; color:#816521; }
 .website-lead { font-size:18px; line-height:1.85; color:var(--website-muted); }
 .website-actions { display:flex; gap:24px; align-items:center; flex-wrap:wrap; margin-top:28px; }
 .website-actions .button-primary { gap:28px; }
@@ -41,7 +41,7 @@ body.experience-formation { --font-sans:var(--font-website),Arial,sans-serif; --
 .website-wheel-segments a:focus-visible path { stroke:var(--website-navy); stroke-width:5px; }
 .website-wheel-center { position:absolute; inset:34.5%; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 .website-wheel-center img { width:96%; height:96%; object-fit:contain; }
-.website-wheel-unit { position:absolute; transform:translate(-50%,-50%); width:24%; display:flex; flex-direction:column; align-items:center; gap:3px; text-align:center; pointer-events:none; font-size:3cqw; line-height:1.15; font-weight:700; }
+.website-wheel-unit { position:absolute; transform:translate(-50%,-50%); width:24%; display:flex; flex-direction:column; align-items:center; gap:3px; text-align:center; pointer-events:none; font-size:clamp(9px,3cqw,14px); line-height:1.15; font-weight:700; }
 .website-story-symbol { display:inline-block; flex-shrink:0; width:64px; height:64px; border-radius:50%; background-image:url('/brand/story-symbols.png'); background-repeat:no-repeat; }
 .website-wheel-unit .website-story-symbol { width:11.25cqw; height:11.25cqw; }
 .website-belief-band { border-top:1px solid var(--website-line); border-bottom:1px solid var(--website-line); background:#f0e6d3; }
