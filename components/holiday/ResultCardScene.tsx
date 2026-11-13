@@ -1,0 +1,3 @@
+export function ResultCardScene() {
+  return <svg className="holiday-card-scene" viewBox="0 0 1000 900" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><g fill="currentColor" opacity=".18"><path d="M20 900V610l-55 100h30l-55 100h40l-55 90ZM940 900V590l-55 110h30l-60 110h42l-58 90ZM1000 900V700l-45 80h25l-50 90h35l-20 30Z"/></g><g fill="#d5ac53" opacity=".55"><path d="m910 30 4 14 14 4-14 4-4 14-4-14-14-4 14-4ZM60 560l3 10 10 3-10 3-3 10-3-10-10-3 10-3ZM955 530l3 10 10 3-10 3-3 10-3-10-10-3 10-3Z"/></g><path d="M0 875Q160 825 320 875T650 870T1000 855V900H0Z" fill="#ffffff" opacity=".42"/></svg>;
+}
