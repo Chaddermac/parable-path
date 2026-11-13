@@ -28,42 +28,41 @@ export function HolidayShareCard({ leaders, format, tentative }: { leaders:Patte
   const [width,height]=holidayCardFormats[format];
   const landscape=format==='landscape', wallpaper=format==='wallpaper', square=format==='square';
   const single=leaders.length===1?holidayResults[leaders[0]]:null;
-  const accent=single?holidayArtwork[leaders[0]].color:'#32628b';
   const title=single?single.name:leaders.length?'More than one holiday story.':'What’s Your Holiday Story?';
   const globeSize=landscape?248:wallpaper?510:square?200:format==='portrait'?270:385;
   const titleSize=landscape?48:wallpaper?102:square?59:format==='portrait'?65:86;
   const bodySize=landscape?21:wallpaper?42:square?32:format==='portrait'?30:36;
   const gap=landscape?10:wallpaper?24:square?10:18;
   const compactTies=leaders.length>4&&!wallpaper;
-  return <div style={{display:"flex",position:"relative",width:"100%",height:"100%",overflow:"hidden",fontFamily:"HolidaySans",color:"#f4f7ff",background:`linear-gradient(145deg,#101f3e,#193960 65%,${accent})`,padding:wallpaper?'520px 100px 200px':landscape?'30px 46px':square?'30px 46px':'52px 60px',flexDirection:"column"}}>
-    {Array.from({length:48},(_,i)=><div key={i} style={{display:"flex",position:"absolute",left:(i*137+27)%width,top:(i*211+53)%height,width:i%5===0?5:3,height:i%5===0?5:3,borderRadius:"50%",background:i%4===0?'#f1d599':'#ffffff',opacity:i%3===0?.55:.2}}/>)}
+  return <div style={{display:"flex",position:"relative",width:"100%",height:"100%",overflow:"hidden",fontFamily:"HolidaySans",color:"#132659",background:"linear-gradient(145deg,#edf5ff,#e3e7fb 65%,#dcecf7)",padding:wallpaper?'520px 100px 200px':landscape?'30px 46px':square?'30px 46px':'52px 60px',flexDirection:"column"}}>
+    {Array.from({length:48},(_,i)=><div key={i} style={{display:"flex",position:"absolute",left:(i*137+27)%width,top:(i*211+53)%height,width:i%5===0?5:3,height:i%5===0?5:3,borderRadius:"50%",background:i%4===0?'#f1d599':'#ffffff',opacity:i%3===0?.9:.5}}/>)}
     <div style={{display:"flex",position:"absolute",right:width*.055,top:wallpaper?180:100,opacity:.9}}><Star size={wallpaper?92:55}/></div>
     <div style={{display:"flex",position:"absolute",left:-30,bottom:-35,opacity:.55}}><Pine size={landscape?160:wallpaper?430:square?160:format==='portrait'?190:290}/></div>
     <div style={{display:"flex",position:"absolute",right:-35,bottom:-45,opacity:.7}}><Pine size={landscape?210:wallpaper?470:square?190:format==='portrait'?220:340} tint="#315f72"/></div>
-    <div style={{display:"flex",position:"absolute",bottom:-height*.03,left:-width*.08,width:width*1.2,height:height*.05,borderRadius:"50%",background:"#dbe9f7"}}/>
+    <div style={{display:"flex",position:"absolute",bottom:-height*.03,left:-width*.08,width:width*1.2,height:height*.05,borderRadius:"50%",background:"#f9fbff"}}/>
     <div style={{display:"flex",position:"relative",justifyContent:"space-between",alignItems:"center",flexShrink:0}}>
-      <div style={{display:"flex",background:"#f2f6ff",padding:landscape?'8px 14px':'10px 18px',borderRadius:50}}><img src={artwork._brandLogo} width={landscape?182:wallpaper?320:250} height={landscape?49:wallpaper?85:67} alt="ParablePath"/></div>
-      <div style={{display:"flex",alignItems:"center",gap:10,fontSize:wallpaper?26:landscape?13:19,letterSpacing:3,color:"#f2cf83",border:"1px solid #dfc08380",padding:'10px 16px',borderRadius:30}}>HOLIDAY EDITION</div>
+      <div style={{display:"flex",background:"#ffffffb3",padding:landscape?'8px 14px':'10px 18px',borderRadius:50}}><img src={artwork._brandLogo} width={landscape?182:wallpaper?320:250} height={landscape?49:wallpaper?85:67} alt="ParablePath"/></div>
+      <div style={{display:"flex",alignItems:"center",gap:10,fontSize:wallpaper?26:landscape?13:19,letterSpacing:3,color:"#19345f",background:"#e6dfff",border:"1px solid #bcb6de",padding:'10px 16px',borderRadius:30}}>HOLIDAY EDITION</div>
     </div>
     <div style={{display:"flex",position:"relative",flex:1,flexDirection:landscape?'row-reverse':'column',alignItems:"center",justifyContent:"center",gap:landscape?30:gap,padding:landscape||square?'10px 0':'18px 0'}}>
       {leaders.length<=1?<Globe pattern={leaders[0]} size={globeSize}/>:null}
       <div style={{display:"flex",flexDirection:"column",alignItems:landscape?'flex-start':'center',textAlign:landscape?'left':'center',...(landscape?{flex:1}:{width:'100%'}),gap}}>
-        <div style={{display:"flex",fontSize:landscape?12:wallpaper?25:17,letterSpacing:3,color:"#f2cf83"}}>{tentative?'A HOLIDAY STORY TO EXPLORE':leaders.length>1?'EQUALLY PLAUSIBLE STORIES':single?'MY HOLIDAY STORY':'A LITTLE CHRISTMAS CURIOSITY'}</div>
+        <div style={{display:"flex",fontSize:landscape?12:wallpaper?25:17,letterSpacing:3,color:"#326f75"}}>{tentative?'A HOLIDAY STORY TO EXPLORE':leaders.length>1?'EQUALLY PLAUSIBLE STORIES':single?'MY HOLIDAY STORY':'A LITTLE CHRISTMAS CURIOSITY'}</div>
         <div style={{display:"flex",fontSize:leaders.length>1?titleSize*.8:titleSize,fontWeight:700,lineHeight:1.05,letterSpacing:-1.7}}>{title}</div>
-        {single?<div style={{display:"flex",fontSize:bodySize*.82,color:"#f2cf83"}}>The {single.calling} calling</div>:null}
+        {single?<div style={{display:"flex",fontSize:bodySize*.82,color:"#326f75"}}>The {single.calling} calling</div>:null}
         {leaders.length>1?<div style={{display:"flex",flexWrap:'wrap',justifyContent:'center',width:'100%',gap:landscape?10:18}}>{leaders.map(p=><div key={p} style={{display:'flex',flexDirection:'column',alignItems:'center',width:landscape||compactTies?'22%':'44%',gap:6}}><img src={artwork[holidayArtwork[p].id as keyof typeof artwork]} width={landscape?48:wallpaper?110:compactTies?66:78} height={landscape?48:wallpaper?110:compactTies?66:78} style={{borderRadius:'50%',border:'2px solid #ffffff99'}}/><div style={{display:'flex',fontSize:landscape?13:wallpaper?29:compactTies?16:20,lineHeight:1.15}}>{holidayResults[p].name}</div></div>)}</div>:null}
-        <div style={{display:"flex",fontSize:bodySize,lineHeight:1.28,color:"#e6effa",maxWidth:wallpaper?1120:930}}>{single?holidayShareHooks[leaders[0]]:leaders.length?'Several stories. Equal possibility. Explore the threads that feel like you.':'Family gatherings. Gift exchanges. Awkward conversations. Which holiday story sounds like you?'}</div>
-        {single?<div style={{display:"flex",flexDirection:'column',width:'100%',border:'1px solid #abc6dd66',borderRadius:20,padding:landscape?'11px 15px':wallpaper?'25px 30px':'16px 22px',background:'#e4f1ff14',gap:landscape?6:10}}>
-          <div style={{display:'flex',fontSize:bodySize*.56,letterSpacing:2,color:'#f2cf83'}}>THE GIFT YOU BRING</div>
-          <div style={{display:'flex',fontSize:bodySize*.94,lineHeight:1.25,color:'#fff'}}>{single.line}</div>
-          {!landscape?<div style={{display:'flex',fontSize:bodySize*.56,letterSpacing:2,color:'#f2cf83',marginTop:6}}>YOUR HOLIDAY CHALLENGE</div>:null}
-          <div style={{display:'flex',fontSize:square?bodySize:bodySize*.88,lineHeight:1.28,color:'#e2edfa'}}>{single.challenge}</div>
+        <div style={{display:"flex",fontSize:bodySize,lineHeight:1.28,color:"#334d73",maxWidth:wallpaper?1120:930}}>{single?holidayShareHooks[leaders[0]]:leaders.length?'Several stories. Equal possibility. Explore the threads that feel like you.':'Family gatherings. Gift exchanges. Awkward conversations. Which holiday story sounds like you?'}</div>
+        {single?<div style={{display:"flex",flexDirection:'column',width:'100%',border:'1px solid #b8cce3',borderRadius:20,padding:landscape?'11px 15px':wallpaper?'25px 30px':'16px 22px',background:'#ffffff85',gap:landscape?6:10}}>
+          <div style={{display:'flex',fontSize:bodySize*.56,letterSpacing:2,color:'#326f75'}}>THE GIFT YOU BRING</div>
+          <div style={{display:'flex',fontSize:bodySize*.94,lineHeight:1.25,color:'#19345f'}}>{single.line}</div>
+          {!landscape?<div style={{display:'flex',fontSize:bodySize*.56,letterSpacing:2,color:'#326f75',marginTop:6}}>YOUR HOLIDAY CHALLENGE</div>:null}
+          <div style={{display:'flex',fontSize:square?bodySize:bodySize*.88,lineHeight:1.28,color:'#334d73'}}>{single.challenge}</div>
         </div>:null}
       </div>
     </div>
     <div style={{display:'flex',position:'relative',flexShrink:0,flexDirection:landscape?'row':'column',alignItems:'center',justifyContent:'space-between',gap:landscape?20:12,padding:landscape?'10px 0':'14px 0 0'}}>
-      <div style={{display:'flex',color:'#172b4e',background:'linear-gradient(120deg,#f9e0a2,#dfb454)',borderRadius:40,padding:landscape?'12px 22px':'15px 28px',fontWeight:700,fontSize:landscape?20:wallpaper?35:28}}>What’s your holiday story? →</div>
-      <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:4}}><div style={{display:'flex',fontSize:landscape?18:wallpaper?32:square?28:24,color:'#f8edcf'}}>parablepath.com/holidayedition</div><div style={{display:'flex',fontSize:landscape?12:wallpaper?22:16,color:'#cfdef0'}}>16 questions · 3–4 minutes · Share a little Christmas curiosity</div></div>
+      <div style={{display:'flex',color:'#172b4e',background:'linear-gradient(120deg,#ffe6a4,#f3c768)',borderRadius:40,padding:landscape?'12px 22px':'15px 28px',fontWeight:700,fontSize:landscape?20:wallpaper?35:28}}>What’s your holiday story? →</div>
+      <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:4}}><div style={{display:'flex',fontSize:landscape?18:wallpaper?32:square?28:24,color:'#19345f'}}>parablepath.com/holidayedition</div><div style={{display:'flex',fontSize:landscape?12:wallpaper?22:16,color:'#506782'}}>16 questions · 3–4 minutes · Share a little Christmas curiosity</div></div>
     </div>
   </div>;
 }
