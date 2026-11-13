@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { holidayQuestions } from "@/lib/holiday/questions";
-import { resultPath, scoreHoliday, shuffleAnswers, type HolidayAnswer, type Pattern } from "@/lib/holiday/scoring";
+import { resultPath, scoreHoliday, shuffleAnswers, type HolidayAnswer, type AnswerPattern } from "@/lib/holiday/scoring";
 import { trackHoliday } from "@/lib/holiday/analytics";
 import { HolidayLanding } from "./HolidayLanding";
 import { WinterStar } from "./WinterArtwork";
@@ -10,7 +10,7 @@ import { WinterStar } from "./WinterArtwork";
 export function HolidayQuiz() {
   const router = useRouter();
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<(Pattern | undefined)[]>([]);
+  const [answers, setAnswers] = useState<(AnswerPattern | undefined)[]>([]);
   const [options, setOptions] = useState<HolidayAnswer[][]>(() => holidayQuestions.map(q => q.answers));
   const [active, setActive] = useState(false);
   const [finishing, setFinishing] = useState(false);
@@ -56,15 +56,16 @@ export function HolidayQuiz() {
   }, []);
   function next() {
     if (!answers[step] || finishing) return;
-    trackHoliday("question_answered", { question: step + 1 });
     if (step < 15) { setStep(step + 1); return; }
-    const result = scoreHoliday(holidayQuestions, answers as Pattern[]);
+    const result = scoreHoliday(holidayQuestions, answers as AnswerPattern[]);
     setFinishing(true); completed.current = true;
-    trackHoliday("quiz_complete", { leaders: result.leaders, secondary: result.secondary, tied: result.leaders.length > 1, seconds: Math.round((Date.now() - started.current) / 1000) });
-    router.push(resultPath(result.leaders, result.secondary));
+    // Emit final per-question no-match indicators once; edits do not inflate pilot rates.
+    answers.forEach((answer, i) => trackHoliday("question_answered", { question:i+1, no_match:answer === "no_match" }));
+    trackHoliday("quiz_complete", { scores:result.scores, seconds:Math.round((Date.now()-started.current)/1000) });
+    router.push(resultPath(result.leaders, result.secondary, result.scoredCount));
   }
   const question = holidayQuestions[step];
-  return <HolidayLanding onStart={start}><section id="quiz" className="holiday-quiz"><img className="reference-quiz-decoration" src="/holiday/reference-trees.webp" width="450" height="550" alt="" loading="lazy"/><WinterStar className="reference-quiz-star"/><div className="winter-question-card">
+  return <HolidayLanding onStart={start}><section id="quiz" className="holiday-quiz"><img className="reference-quiz-decoration" src="/holiday/reference-trees.webp" width="450" height="550" alt="" loading="lazy"/><WinterStar className="reference-quiz-star"/><div className="holiday-discovery-instructions"><h2>The holidays bring out everyone's story. What's yours?</h2><p>Family gatherings. Gift exchanges. Awkward conversations. Pick the response that sounds most like you—not what sounds most impressive.</p><p>If none fits, that's an answer too.</p><p><strong>16 questions · Approximately 3–4 minutes</strong></p></div><div className="winter-question-card">
     <div className="holiday-progress-label"><span>A Quick Holiday Quiz</span><span>Question {step + 1} of 16</span></div>
     <progress aria-label="Assessment progress" value={step + 1} max={16}/>
     <p className="holiday-eyebrow">{question.title}</p>

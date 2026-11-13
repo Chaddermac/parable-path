@@ -27,6 +27,6 @@ export function HolidayLanding({ onStart, children }: { onStart: () => void; chi
     {children}
     <HolidayTypes/>
     <section id="share-invite" className="winter-invite"><WinterGift/><div><p className="holiday-eyebrow">Good stories are better together</p><h2>A little Christmas curiosity.<br/>Pass it around.</h2><p>Invite your group chat, your family, or the friend who takes White Elephant very seriously.</p></div><div><button className="button-secondary" onClick={() => void invite()}>Share &amp; invite →</button><p role="status">{status}</p>{manual && <input value={manual} readOnly aria-label="Quiz invitation link" onFocus={e => e.target.select()}/>}</div></section>
-    <p className="holiday-fine winter-privacy">A playful seasonal reflection, not a validated psychological assessment. Anonymous usage events help improve the experience. Individual answers stay in this page; Do Not Track is honored.</p>
+    <p className="holiday-fine winter-privacy">A playful seasonal reflection, not a validated psychological assessment. Anonymous score totals, question-level no-match counts, and optional feedback help improve the experience. We don’t store your answer history. Do Not Track is honored.</p>
   </main>;
 }

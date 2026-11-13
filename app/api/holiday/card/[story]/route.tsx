@@ -15,6 +15,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ stor
   const format = requestedFormat as keyof typeof formats;
   const [width,height] = formats[format];
   const landscape = format === "landscape";
+  const tentative = query.get("tentative") === "1";
   const single = leaders.length === 1 ? holidayResults[leaders[0]] : null;
   const art = leaders.length === 1 ? holidayArtwork[leaders[0]] : null;
   const image = art ? artwork[art.id as keyof typeof artwork] : null;
@@ -35,7 +36,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ stor
         <div style={{ display:"flex",position:"absolute",bottom:5,left:globeSize*.12,width:globeSize*.76,height:globeSize*.16,borderRadius:"12px 12px 23px 23px",border:"2px solid #aac3df",background:"linear-gradient(#f6fbff,#b5cce8)",justifyContent:"center",alignItems:"center" }}><svg width="25" height="25" viewBox="0 0 40 40"><path d="m20 1 5 14 14 5-14 5-5 14-5-14L1 20l14-5Z" fill={art?.color||"#b8944a"}/></svg></div>
       </div>
       <div style={{ display:"flex",flexDirection:"column",...(landscape?{flex:1}:{}),alignItems:landscape?"flex-start":"center",textAlign:landscape?"left":"center",maxWidth:950 }}>
-        <p style={{ margin:"0 0 16px",fontSize:landscape?13:17,fontWeight:700,letterSpacing:4,color:"#526987" }}>{leaders.length>1?"EQUALLY PLAUSIBLE HOLIDAY STORIES":leaders.length?"YOUR HOLIDAY STORY":"A LITTLE CHRISTMAS CURIOSITY"}</p>
+        <p style={{ margin:"0 0 16px",fontSize:landscape?13:17,fontWeight:700,letterSpacing:4,color:"#526987" }}>{tentative ? "A HOLIDAY STORY TO EXPLORE" : leaders.length>1?"EQUALLY PLAUSIBLE HOLIDAY STORIES":leaders.length?"YOUR HOLIDAY STORY":"A LITTLE CHRISTMAS CURIOSITY"}</p>
         <h1 style={{ fontSize:leaders.length>2?(landscape?31:42):landscape?57:format==="story"?83:68,lineHeight:1.08,letterSpacing:-2,fontWeight:700,margin:0 }}>{title}</h1>
         <p style={{ fontSize:leaders.length>4?18:landscape?23:29,color:"#456687",margin:"22px 0 0",lineHeight:1.4 }}>{calling}</p>
         <p style={{ fontSize:landscape?21:27,lineHeight:1.5,margin:"22px 0 0",maxWidth:800 }}>{single?.line||(leaders.length?"Several stories. Equal possibility. One new chapter.":"Family drama. Gift exchanges. Awkward parties.")}</p>

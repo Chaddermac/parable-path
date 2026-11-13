@@ -1,14 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { holidayDestination } from "@/lib/holiday/results";
-import { trackHoliday } from "@/lib/holiday/analytics";
-import type { Pattern } from "@/lib/holiday/scoring";
-export function HolidayResultView({ leaders }: { leaders: Pattern[] }) {
+import { trackHoliday, resultFitOptions } from "@/lib/holiday/analytics";
+import type { Pattern, Interpretation } from "@/lib/holiday/scoring";
+export function HolidayResultView({ leaders, interpretation = "standard" }: { leaders: Pattern[]; interpretation?: Interpretation }) {
   const tracked = useRef(false);
-  useEffect(() => { if (!tracked.current) { trackHoliday("result_view", { leaders }); tracked.current = true; } }, [leaders]);
+  useEffect(() => { if (!tracked.current) { trackHoliday("result_view", { leaders, interpretation }); tracked.current = true; } }, [leaders, interpretation]);
   return null;
 }
-export function HolidayActions({ names, path, story }: { names: string; path: string; story: Pattern }) {
+export function HolidayActions({ names, path, story, tentative = false }: { names: string; path: string; story: Pattern; tentative?: boolean }) {
   const [status, setStatus] = useState("");
   const [manual, setManual] = useState("");
   const [format, setFormat] = useState("square");
@@ -29,8 +29,18 @@ export function HolidayActions({ names, path, story }: { names: string; path: st
     } catch (error) { if (!(error instanceof Error && error.name === "AbortError")) await copy(); }
     finally { sharing.current = false; }
   }
-  return <div className="holiday-share"><button className="button-primary" onClick={() => void share()}>{names.includes(" + ") ? "Share These Holiday Stories" : "Share My Holiday Story"} ↗</button><button className="button-secondary" onClick={() => void copy()}>Copy link</button><div className="winter-downloads"><label>Save your result card<select value={format} onChange={e => setFormat(e.target.value)}><option value="square">Square · 1080 × 1080</option><option value="portrait">Portrait · 1080 × 1350</option><option value="story">Story · 1080 × 1920</option></select></label><a className="holiday-back" href={`/api/holiday/card/${story}?download=1&format=${format}`} download onClick={() => trackHoliday("download_card")}>Download card ↓</a></div><p role="status">{status}</p>{manual && <input aria-label="Result link to copy" value={manual} readOnly onFocus={e => e.target.select()}/>}</div>;
+  return <div className="holiday-share"><button className="button-primary" onClick={() => void share()}>{names.includes(" + ") ? "Share These Holiday Stories" : "Share My Holiday Story"} ↗</button><button className="button-secondary" onClick={() => void copy()}>Copy link</button><div className="winter-downloads"><label>Save your result card<select value={format} onChange={e => setFormat(e.target.value)}><option value="square">Square · 1080 × 1080</option><option value="portrait">Portrait · 1080 × 1350</option><option value="story">Story · 1080 × 1920</option></select></label><a className="holiday-back" href={`/api/holiday/card/${story}?download=1&format=${format}${tentative ? "&tentative=1" : ""}`} download onClick={() => trackHoliday("download_card")}>Download card ↓</a></div><p role="status">{status}</p>{manual && <input aria-label="Result link to copy" value={manual} readOnly onFocus={e => e.target.select()}/>}</div>;
 }
 export function HolidayConversion() {
   return <section className="holiday-conversion"><p className="holiday-eyebrow">There’s more to your story</p><h2>Your Holiday Story Is Just One Chapter.<br/>Discover Your Deeper Story.</h2><a className="button-primary" href={holidayDestination} onClick={() => trackHoliday("app_click")}>Explore Your Deeper Story ↗</a></section>;
+}
+
+export function HolidayFeedback({ leaders, interpretation }: { leaders: Pattern[]; interpretation: Interpretation }) {
+  const [selected,setSelected] = useState("");
+  function respond(fit:string) {
+    if (selected) return;
+    setSelected(fit);
+    trackHoliday("result_feedback",{ leaders, interpretation, fit });
+  }
+  return <section className="holiday-feedback" aria-labelledby="holiday-fit-heading"><h2 id="holiday-fit-heading">Did your Holiday Story feel like you?</h2><p>Optional feedback. Your answer won’t change your score.</p><fieldset disabled={Boolean(selected)}><legend className="sr-only">How well did your result fit?</legend><div>{resultFitOptions.map(option => <label key={option.value}><input type="radio" name="holiday-result-fit" value={option.value} checked={selected === option.value} onChange={() => respond(option.value)}/><span>{option.label}</span></label>)}</div></fieldset><p role="status">{selected ? "Thank you for helping us improve the Holiday Edition." : ""}</p></section>;
 }
