@@ -1,16 +1,24 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { StoryWheel } from "@/components/website/StoryWheel";
+import { StorySymbol } from "@/components/website/StorySymbol";
+import { movements, appUrl } from "@/lib/website";
+import { formationResultByRoom } from "@/lib/parablepath/popular/results";
+import { roomById } from "@/lib/content";
 
 export const metadata: Metadata = { alternates: { canonical: "https://parablepath.com" } };
 
 export default function Home() {
-  return <main className="shell flex min-h-[calc(100vh-11rem)] items-center py-12 text-center">
-    <div className="mx-auto max-w-4xl">
-      <p className="eyebrow">A guided spiritual reflection</p>
-      <h1 className="display mt-6">What if the story you’re living<br /><em className="font-normal text-forest">isn’t the whole story?</em></h1>
-      <p className="mx-auto mt-7 max-w-2xl font-serif text-lg leading-8 text-ink/65 sm:text-xl">Walk slowly through a few honest questions. A parable may open a door toward the truer story Jesus reveals—and one faithful step.</p>
-      <Link href="/start" className="button-primary mt-9">Enter the path <span className="ml-8">→</span></Link>
-      <div className="mx-auto mt-14 max-w-xl border-t border-ink/10 pt-6 text-xs leading-6 text-ink/55">Not a test. Not a diagnosis. Not a fixed label.<br />A place to notice, receive, and respond.</div>
-    </div>
+  return <main className="website-home">
+    <section className="shell website-hero">
+      <div><p className="website-kicker">Your life is not random. You’re living a story.</p><h1>What if the story you’re living <span>isn’t the whole story?</span></h1><p className="website-lead">Explore the parables of Jesus. Notice the story shaping your life. Discover the story you are invited to become.</p><div className="website-actions"><Link href="/start" className="button-primary">Discover your story <span aria-hidden="true">→</span></Link><Link href="/how-it-works" className="website-text-link">How it works ↗</Link></div><p className="website-small-note">A guided reflection. No account required. Your result is an invitation, not a label.</p></div>
+      <div className="website-hero-wheel"><p className="website-kicker">Eight stories. Many ways to begin.</p><StoryWheel /><Link href="/story-types" className="website-text-link">Explore the Story Wheel <span aria-hidden="true">→</span></Link></div>
+    </section>
+    <div className="website-belief-band"><div className="shell"><span>People belong.</span><span>Stories change.</span><span>God redeems.</span></div></div>
+    <section className="shell website-section"><div className="website-section-heading"><div><p className="website-kicker">How the journey unfolds</p><h2>Four movements.<br />One unfolding story.</h2></div><p>Start with curiosity. A story can help you see what an explanation alone might miss.</p></div><div className="website-movement-grid">{movements.map((movement, index) => <article className="website-movement" key={movement.title}><span className="website-number">0{index + 1}</span><h3>{movement.title}</h3><p>{movement.description}</p></article>)}</div><Link href="/how-it-works" className="website-text-link">Discover the STORY Path →</Link></section>
+    <section className="website-preview-section"><div className="shell website-two-column"><div><p className="website-kicker">A glimpse of your reflection</p><h2>A story to recognize.<br />A calling to practice.</h2><p className="website-lead">Your result connects a possible story pattern with a parable, a redemptive calling, and one concrete next step.</p><p>Several stories may be present in different relationships and seasons. Hold your result lightly, and keep listening.</p><Link href="/start" className="button-primary">Begin your reflection →</Link></div><article className="website-example-card"><p className="website-kicker">Example reflection · Table-Maker</p><StorySymbol room="lost" /><h3>You may be living in the Lost Story.</h3><p className="website-example-calling">You are invited to become a Table-Maker.</p><blockquote>“{formationResultByRoom.lost.falseStory}”</blockquote><p>{roomById.lost.trueStory}</p><div><span className="website-kicker">Parable doorway</span><p>{formationResultByRoom.lost.parableReferences}</p></div><div><span className="website-kicker">One faithful step</span><p>{formationResultByRoom.lost.practices[0]}</p></div><Link href="/story-types/table-maker" className="website-text-link">Explore this story →</Link></article></div></section>
+    <section className="shell website-section website-two-column"><div className="website-parable-art" aria-hidden="true"><span>Open a parable.</span><span>Make room for<br />a new way of seeing.</span><span>Luke 15 · Luke 10 · Matthew 13</span></div><div><p className="website-kicker">The stories Jesus told</p><h2>More than a familiar ending.</h2><p className="website-lead">Read slowly enough to notice the characters, tensions, assumptions, and questions inside a parable.</p><p>The stories of Jesus invite us to see our neighbors, our possibilities, and ourselves differently.</p><Link href="/parables" className="button-secondary">Explore the parables →</Link></div></section>
+    <section className="shell website-section"><div className="website-app-invitation"><div><p className="website-kicker">Keep living the story</p><h2>Your next step can become a practice.</h2><p>Continue in ParablePath.app for StoryLab, saved reflections, and small practices that bring your story into everyday life.</p></div><a className="button-primary" href={appUrl}>Continue in ParablePath.app ↗</a></div></section>
+    <section className="shell website-care-note"><p className="website-kicker">A little room for grace</p><p>ParablePath is a spiritual reflection aid, not a personality test, diagnosis, prophecy, counseling, or crisis care. It offers possibilities to explore, not a fixed definition of who you are.</p><Link href="/about" className="website-text-link">About ParablePath and House of Stories →</Link></section>
   </main>;
 }
