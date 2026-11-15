@@ -3,14 +3,14 @@ import { formationResultByRoom } from "./parablepath/popular/results.ts";
 import type { RoomId } from "./types";
 export { appUrl } from "./site-links.ts";
 export const storyLinks = [
-  { room: "lost", slug: "table-maker", label: "Table-Maker", field: "#b4bda5", crop: [483, 160, 92] },
-  { room: "boundary", slug: "bridger", label: "Bridger", field: "#acc0c1", crop: [1010, 230, 104] },
-  { room: "control", slug: "healer", label: "Healer", field: "#a5b3d0", crop: [1082, 512, 103] },
-  { room: "stalled", slug: "mentor", label: "Mentor", field: "#a4a5b9", crop: [1034, 800, 103] },
-  { room: "settling", slug: "innovator", label: "Innovator", field: "#afa5bb", crop: [432, 987, 77] },
-  { room: "scarcity", slug: "multiplier", label: "Multiplier", field: "#cfa4a4", crop: [113, 800, 104] },
-  { room: "delay", slug: "waymaker", label: "Waymaker", field: "#e4b59f", crop: [68, 512, 104] },
-  { room: "distraction", slug: "awakener", label: "Awakener", field: "#ecd0a3", crop: [138, 232, 100] },
+  { room: "lost", slug: "table-maker", label: "Table-Maker", field: "#a8df78", crop: [483, 160, 92] },
+  { room: "boundary", slug: "bridger", label: "Bridger", field: "#82d9dc", crop: [1010, 230, 104] },
+  { room: "control", slug: "healer", label: "Healer", field: "#83bfff", crop: [1082, 512, 103] },
+  { room: "stalled", slug: "mentor", label: "Mentor", field: "#a2adef", crop: [1034, 800, 103] },
+  { room: "settling", slug: "innovator", label: "Innovator", field: "#c8a1ed", crop: [432, 987, 77] },
+  { room: "scarcity", slug: "multiplier", label: "Multiplier", field: "#ee99ad", crop: [113, 800, 104] },
+  { room: "delay", slug: "waymaker", label: "Waymaker", field: "#ffa487", crop: [68, 512, 104] },
+  { room: "distraction", slug: "awakener", label: "Awakener", field: "#ffda70", crop: [138, 232, 100] },
 ] as const;
 export function websiteStory(room: RoomId) { return storyLinks.find((story) => story.room === room)!; }
 export function storyFromSlug(slug: string) { return storyLinks.find((story) => story.slug === slug); }
