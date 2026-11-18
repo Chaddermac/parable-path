@@ -2,6 +2,13 @@
 import assert from "node:assert/strict";
 const origin = process.argv[2] || "http://127.0.0.1:3000";
 const stories = ["lost", "scarcity", "control", "stalled", "boundary", "settling", "delay", "distraction"];
+for (const path of ["/HolidayEdition?start=1", "/HolidayEdition/results/control?also=lost"]) {
+  const response = await fetch(`${origin}${path}`, { redirect: "manual" });
+  assert.equal(response.status, 308, path);
+  const target = new URL(response.headers.get("location"), origin);
+  assert.equal(target.pathname, new URL(path, origin).pathname.toLowerCase());
+  assert.equal(target.search, new URL(path, origin).search);
+}
 const landing = await fetch(`${origin}/holidayedition`);
 assert.equal(landing.status,200);
 const landingHtml = await landing.text();
