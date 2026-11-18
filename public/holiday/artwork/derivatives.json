@@ -1,0 +1,58 @@
+[
+  {
+    "id": "table-maker",
+    "file": "table-maker.webp",
+    "sha256": "11ea1161b68f49a0dbc6084302a57cb3637a73c6934d116598f53cc8a8f2e123",
+    "sourceCardSha256": "a9f7ec6b607dcfc26accb2bcbf72d2b0cbba7b89efdf3ff97914f4abec607110",
+    "method": "Existing official circular SVG viewport rendered at 400 x 400, then lossless WebP; symbol and source color retained. Original source-card hash is distinct from derivative hash."
+  },
+  {
+    "id": "bridger",
+    "file": "bridger.webp",
+    "sha256": "6804027ec080c599ded897f28185e9241458d5a759a1417ee8a40139d9dc6cf9",
+    "sourceCardSha256": "0062f89c64d4be43f39fab71d31dc1737de875d39ee9b2341890ab1f8086fa2d",
+    "method": "Existing official circular SVG viewport rendered at 400 x 400, then lossless WebP; symbol and source color retained. Original source-card hash is distinct from derivative hash."
+  },
+  {
+    "id": "healer",
+    "file": "healer.webp",
+    "sha256": "ccb1b1d9f1d8d2d5ee161e8894f3a8868bc43849f30874a861d5d5f5fa60b7f2",
+    "sourceCardSha256": "14cfb7e5e879b6bc48a3a373eceac02fa0670ade162737732fc0c9bc61c2722f",
+    "method": "Existing official circular SVG viewport rendered at 400 x 400, then lossless WebP; symbol and source color retained. Original source-card hash is distinct from derivative hash."
+  },
+  {
+    "id": "mentor",
+    "file": "mentor.webp",
+    "sha256": "cc62d14c822de1e9154e21b1c240d6cb02247b3d5150f0d31f862c1bddad6b70",
+    "sourceCardSha256": "7d17eb7d478ee98a55abbfd80fc3e0d08a0e48f387d3c93707d00245c92634fd",
+    "method": "Existing official circular SVG viewport rendered at 400 x 400, then lossless WebP; symbol and source color retained. Original source-card hash is distinct from derivative hash."
+  },
+  {
+    "id": "innovator",
+    "file": "innovator.webp",
+    "sha256": "d072e365a50650510860184871cdd65c55c997ce1589ab2d1f4f8328a3f3dfff",
+    "sourceCardSha256": "69d547f16fa86678659267cd98e29725c7c212c14c41fc34a087dac4ee3a9f5d",
+    "method": "Existing official circular SVG viewport rendered at 400 x 400, then lossless WebP; symbol and source color retained. Original source-card hash is distinct from derivative hash."
+  },
+  {
+    "id": "multiplier",
+    "file": "multiplier.webp",
+    "sha256": "e34814b6e43dca0c990a26a11a5819cb088c9b49ab47b209288d3a13a2b938e8",
+    "sourceCardSha256": "e25aeb8d2bcecc5128ac066225daef14810d0b7efa04448c062af26d453cd380",
+    "method": "Existing official circular SVG viewport rendered at 400 x 400, then lossless WebP; symbol and source color retained. Original source-card hash is distinct from derivative hash."
+  },
+  {
+    "id": "waymaker",
+    "file": "waymaker.webp",
+    "sha256": "5718ab5e833ea0b2063a22aee56300a63613a01e129385af8abbd4faff5b5aa2",
+    "sourceCardSha256": "4a11c71e44cc8d1ed3a660086d053f2d57702778c4a45ba41295f67977bcdbb7",
+    "method": "Existing official circular SVG viewport rendered at 400 x 400, then lossless WebP; symbol and source color retained. Original source-card hash is distinct from derivative hash."
+  },
+  {
+    "id": "awakener",
+    "file": "awakener.webp",
+    "sha256": "a2d0e7486a4426492bd41bafc2adc8093d713d5354b5dc81b448cc00132f3b6d",
+    "sourceCardSha256": "18e0363b2a685a2e1cf62c64db2efa555376b6aab14e5a4faf8a881b1c837388",
+    "method": "Existing official circular SVG viewport rendered at 400 x 400, then lossless WebP; symbol and source color retained. Original source-card hash is distinct from derivative hash."
+  }
+]

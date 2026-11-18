@@ -4,6 +4,12 @@ import { NextResponse, type NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
+  const holidayPath = pathname.toLowerCase();
+  if ((holidayPath === "/holidayedition" || holidayPath.startsWith("/holidayedition/")) && pathname !== holidayPath) {
+    const canonical = request.nextUrl.clone();
+    canonical.pathname = holidayPath;
+    return NextResponse.redirect(canonical, 308);
+  }
   const hostname = normalizeHostname(request.headers.get("x-forwarded-host") || request.headers.get("host"));
   const route = publicRoute(pathname, searchParams.get("room"), requestedExperience(hostname, searchParams.get("experience")));
   const destination = request.nextUrl.clone();
@@ -19,5 +25,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/assessment", "/results/:path*", "/fun/:path*", "/experiences/popular/:path*", "/experiences/formation/:path*"]
+  matcher: ["/", "/assessment", "/results/:path*", "/fun/:path*", "/experiences/popular/:path*", "/experiences/formation/:path*", "/HolidayEdition/:path*", "/holidayedition/:path*"]
 };

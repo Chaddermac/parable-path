@@ -1,0 +1,138 @@
+[
+  {
+    "id": "table-maker",
+    "originalFilename": "Table Maker.png",
+    "sha256": "a9f7ec6b607dcfc26accb2bcbf72d2b0cbba7b89efdf3ff97914f4abec607110",
+    "colorSample": "#2F7C1D",
+    "method": "Median saturated interior pixels; card gradient retained in visible color icon.",
+    "crop": {
+      "x": 287,
+      "y": 468,
+      "diameter": 400,
+      "cx": 487,
+      "cy": 668,
+      "radius": 200,
+      "sourceWidth": 977,
+      "sourceHeight": 1610
+    }
+  },
+  {
+    "id": "bridger",
+    "originalFilename": "BridgerPM-7.png",
+    "sha256": "0062f89c64d4be43f39fab71d31dc1737de875d39ee9b2341890ab1f8086fa2d",
+    "colorSample": "#047178",
+    "method": "Median saturated interior pixels; card gradient retained in visible color icon.",
+    "crop": {
+      "x": 250,
+      "y": 189,
+      "diameter": 474,
+      "cx": 487,
+      "cy": 426,
+      "radius": 237,
+      "sourceWidth": 977,
+      "sourceHeight": 1610
+    }
+  },
+  {
+    "id": "healer",
+    "originalFilename": "Healer.png",
+    "sha256": "14cfb7e5e879b6bc48a3a373eceac02fa0670ade162737732fc0c9bc61c2722f",
+    "colorSample": "#015CC8",
+    "method": "Median saturated interior pixels; card gradient retained in visible color icon.",
+    "crop": {
+      "x": 230,
+      "y": 327,
+      "diameter": 514,
+      "cx": 487,
+      "cy": 584,
+      "radius": 257,
+      "sourceWidth": 977,
+      "sourceHeight": 1610
+    }
+  },
+  {
+    "id": "mentor",
+    "originalFilename": "Mentor.png",
+    "sha256": "7d17eb7d478ee98a55abbfd80fc3e0d08a0e48f387d3c93707d00245c92634fd",
+    "colorSample": "#013885",
+    "method": "Median saturated interior pixels; card gradient retained in visible color icon.",
+    "crop": {
+      "x": 273,
+      "y": 146,
+      "diameter": 428,
+      "cx": 487,
+      "cy": 360,
+      "radius": 214,
+      "sourceWidth": 977,
+      "sourceHeight": 1610
+    }
+  },
+  {
+    "id": "innovator",
+    "originalFilename": "Innovator.png",
+    "sha256": "69d547f16fa86678659267cd98e29725c7c212c14c41fc34a087dac4ee3a9f5d",
+    "colorSample": "#49227E",
+    "method": "Median saturated interior pixels; card gradient retained in visible color icon.",
+    "crop": {
+      "x": 271,
+      "y": 393,
+      "diameter": 434,
+      "cx": 488,
+      "cy": 610,
+      "radius": 217,
+      "sourceWidth": 977,
+      "sourceHeight": 1610
+    }
+  },
+  {
+    "id": "multiplier",
+    "originalFilename": "Multiplier.png",
+    "sha256": "e25aeb8d2bcecc5128ac066225daef14810d0b7efa04448c062af26d453cd380",
+    "colorSample": "#9D0524",
+    "method": "Median saturated interior pixels; card gradient retained in visible color icon.",
+    "crop": {
+      "x": 169,
+      "y": 138,
+      "diameter": 636,
+      "cx": 487,
+      "cy": 456,
+      "radius": 318,
+      "sourceWidth": 977,
+      "sourceHeight": 1610
+    }
+  },
+  {
+    "id": "waymaker",
+    "originalFilename": "WayMaker.png",
+    "sha256": "4a11c71e44cc8d1ed3a660086d053f2d57702778c4a45ba41295f67977bcdbb7",
+    "colorSample": "#E94902",
+    "method": "Median saturated interior pixels; card gradient retained in visible color icon.",
+    "crop": {
+      "x": 230,
+      "y": 327,
+      "diameter": 514,
+      "cx": 487,
+      "cy": 584,
+      "radius": 257,
+      "sourceWidth": 977,
+      "sourceHeight": 1610
+    }
+  },
+  {
+    "id": "awakener",
+    "originalFilename": "Awakener.png",
+    "sha256": "18e0363b2a685a2e1cf62c64db2efa555376b6aab14e5a4faf8a881b1c837388",
+    "colorSample": "#E89101",
+    "method": "Median saturated interior pixels; card gradient retained in visible color icon.",
+    "crop": {
+      "x": 196,
+      "y": 125,
+      "diameter": 580,
+      "cx": 486,
+      "cy": 415,
+      "radius": 290,
+      "sourceWidth": 977,
+      "sourceHeight": 1610
+    }
+  }
+]
