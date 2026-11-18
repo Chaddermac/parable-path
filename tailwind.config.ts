@@ -5,13 +5,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "#26352d",
-        forest: "#1f4b3a",
-        moss: "#71836a",
-        cream: "#f3eee2",
-        paper: "#fbf8f0",
-        clay: "#a85740",
-        gold: "#c8924b"
+        ink: "#062c66",
+        forest: "#062c66",
+        moss: "#536d77",
+        cream: "#f7f1e7",
+        paper: "#fffaf2",
+        clay: "#74613d",
+        gold: "#c99a2d"
       },
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
