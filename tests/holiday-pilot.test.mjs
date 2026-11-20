@@ -18,3 +18,24 @@ test('pilot counts tied leaders equally and feedback never alters result totals'
   assert.equal(after.feedback.lost.mostly,1);assert.equal(after.feedback.control.mostly,1);
   assert.equal(after.noMatchCountDistribution['5'],1);assert.equal(after.tentative,1);
 });
+test('expanded funnel reports anonymous event ratios and allowlisted app placements without user attribution',()=>{
+  const common={source:'holiday',questionVersion:'4.1'};
+  const events=['page_view','quiz_start','quiz_complete','result_view','share','download_card','crew_invite','parable_click','holiday_challenge_view'].map(event=>({...common,event}));
+  events.push({...common,event:'app_click',story:'distraction',placement:'challenge'});
+  events.push({...common,event:'holiday_challenge_app_click',story:'distraction',placement:'challenge'});
+  const report=pilotReport(events);
+  assert.equal(report.appClicks,1,'dedicated challenge event must not double-count app clicks');
+  assert.equal(report.appClicksByStory.distraction,1);
+  assert.equal(report.appClicksByPlacement.challenge,1);
+  assert.equal(report.eventRatios.completionToAppClick,1);
+  assert.equal(report.crewInvites,1);assert.equal(report.challengeViews,1);
+  assert.match(report.note,/not unique people/);
+  assert.equal(pilotReport([]).eventRatios.completionToAppClick,null);
+});
+test('download summaries count only allowlisted format and card mode',()=>{
+  const event={source:'holiday',questionVersion:'4.1',event:'download_card'};
+  const report=pilotReport([{...event,format:'square',card_mode:'share'},{...event,format:'wallpaper',card_mode:'keep'},{...event,format:'unknown',card_mode:'unknown'}]);
+  assert.deepEqual(report.downloadsByMode,{share:1,keep:1});
+  assert.deepEqual(report.downloadsByFormat,{square:1,wallpaper:1});
+  assert.equal(report.downloads,3);
+});

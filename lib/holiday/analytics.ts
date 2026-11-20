@@ -1,4 +1,4 @@
-export const holidayEvents = ["page_view", "quiz_start", "question_view", "question_answered", "quiz_complete", "result_view", "result_feedback", "share", "copy_link", "download_card", "app_click", "quiz_exit"] as const;
+export const holidayEvents = ["page_view", "quiz_start", "question_view", "question_answered", "quiz_complete", "result_view", "result_feedback", "share", "copy_link", "download_card", "app_click", "quiz_exit", "movie_match_view", "survival_guide_view", "holiday_challenge_view", "holiday_challenge_app_click", "parable_click", "crew_invite"] as const;
 export type HolidayEvent = typeof holidayEvents[number];
 export const resultFitOptions = [
   { value:"yes", label:"Yes, that's definitely me." },

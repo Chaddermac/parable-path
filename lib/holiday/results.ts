@@ -150,4 +150,3 @@ export const holidayResults: Record<Pattern, HolidayResult> = {
     ]
   }
 };
-export const holidayDestination = "https://parablepath.app/?utm_source=parablepath.com&utm_medium=holiday_quiz&utm_campaign=holiday_edition";

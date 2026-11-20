@@ -1,0 +1,65 @@
+/* Progressive engagement, scoped to the existing Winter Wonderland shell. */
+.holiday-primary-reveal { display:grid; grid-template-columns:minmax(0,1fr) 190px; gap:24px; align-items:center; padding:20px 0 30px; }
+.holiday-primary-reveal h1 { font-size:clamp(32px,5vw,60px); line-height:1.08; margin:0 0 16px; }
+.holiday-primary-reveal .winter-type-globe-large { width:180px; }
+.holiday-recognition { font-size:clamp(18px,2vw,24px); font-weight:700; line-height:1.5; max-width:38em; }
+.holiday-primary-reveal .holiday-calling { margin:16px 0 0; }
+.holiday-result .reference-result-intro { grid-template-columns:120px minmax(0,1fr); gap:24px; }
+.holiday-result .reference-result-intro>.winter-type-globe-large { width:115px; }
+.holiday-result .reference-result-intro h2 { font-size:clamp(24px,3vw,36px); }
+.holiday-survival,.holiday-movie,.holiday-story-bridge { margin:28px 0; padding:24px; border:1px solid #bdcee2; border-radius:22px; background:#ffffffa6; }
+.holiday-survival { background:#fff7df; border-color:#e4c98a; }
+.holiday-result :is(.holiday-survival,.holiday-movie,.holiday-story-bridge) h3 { margin:0 0 16px; font-size:25px; }
+.holiday-survival dl { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; margin:0; }
+.holiday-story-bridge dl { display:grid; gap:18px; }
+.holiday-result dt { color:#31587b; text-transform:uppercase; letter-spacing:.09em; font-size:12px; font-weight:800; margin-bottom:8px; }
+.holiday-result dd { margin:0; font-size:16px; line-height:1.65; }
+.holiday-movie { background:#e9e8fa; border-color:#c5c3e0; }
+.holiday-movie .holiday-eyebrow { margin-bottom:12px; }
+.holiday-result :is(.holiday-deeper,.holiday-five-day,.holiday-pattern-details) { margin:18px 0; padding:20px; border:1px solid #bdcee2; border-radius:18px; background:#ffffff95; }
+.holiday-result summary { cursor:pointer; font-weight:700; font-size:18px; min-height:28px; line-height:1.5; }
+.holiday-five-day ol { list-style:none; padding:0; display:grid; gap:12px; }
+.holiday-five-day li { display:flex; gap:14px; align-items:baseline; padding:14px; border-radius:12px; background:#eef4fb; }
+.holiday-five-day li strong { flex-shrink:0; color:#31587b; }
+.holiday-result .holiday-conversion { margin:30px 0 0; padding:28px; }
+.holiday-result .holiday-conversion h2 { font-size:clamp(25px,3vw,36px); }
+.holiday-shell .holiday-conversion .button-primary { white-space:normal; text-align:center; line-height:1.5; }
+.holiday-crew { margin:42px 0; padding:28px; border:1px solid #bdcee2; border-radius:24px; background:#ffffffa6; text-align:center; }
+.holiday-crew h2 { font-size:clamp(26px,3vw,38px); line-height:1.2; }
+.holiday-crew-grid { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:14px; margin:25px 0; }
+.holiday-crew-grid>div { display:flex; flex-direction:column; align-items:center; gap:8px; font-size:12px; font-weight:700; }
+.holiday-crew-grid .winter-type-globe { width:100%; max-width:95px; }
+.holiday-crew-prompts { font-size:14px; line-height:1.7; color:#526987; max-width:700px; margin:20px auto; }
+.holiday-crew input { max-width:100%; width:100%; padding:12px; border:1px solid #9eb7d1; border-radius:8px; }
+.holiday-export-choices { margin-top:28px; padding:20px; border:1px solid #bdcee2; border-radius:18px; background:#ffffffa6; }
+.holiday-export-choices .winter-downloads { display:flex; gap:16px; flex-wrap:wrap; }
+.holiday-export-choices label { display:flex; flex-direction:column; gap:8px; flex:1; min-width:0; font-size:14px; font-weight:700; }
+.holiday-export-choices select { width:100%; max-width:100%; min-height:48px; padding:10px; border:1px solid #9eb7d1; border-radius:10px; background:#fff; color:#19345f; font-size:14px; }
+.winter-type-globe:has(>.premium-typology-globe) { padding-bottom:0; aspect-ratio:1; }
+.premium-typology-globe { display:block; width:100%; height:auto; object-fit:contain; }
+@media(max-width:700px) { .holiday-export-choices .winter-downloads { flex-direction:column; } }
+.holiday-unwrapping { position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px; padding:24px; text-align:center; background:radial-gradient(circle,#fffaf0,#e6edff 70%); }
+.holiday-unwrapping>svg { width:90px; height:90px; animation:holiday-unwrap 1.45s ease-in-out both; }
+.holiday-unwrapping h2 { font-size:clamp(25px,4vw,40px); outline:none; }
+.holiday-unwrapping a { min-height:44px; padding:12px; text-decoration:underline; }
+@keyframes holiday-unwrap { from { opacity:.35; transform:scale(.8) rotate(-15deg); } to { opacity:1; transform:scale(1.1) rotate(15deg); } }
+@media(max-width:700px) {
+  .holiday-primary-reveal { grid-template-columns:minmax(0,1fr) 90px; gap:12px; padding-top:10px; }
+  .holiday-primary-reveal .winter-type-globe-large { width:90px; }
+  .holiday-primary-reveal .holiday-eyebrow { font-size:9px; margin-bottom:10px; }
+  .holiday-primary-reveal h1 { font-size:34px; overflow-wrap:break-word; }
+  .holiday-primary-reveal .holiday-recognition { font-size:17px; }
+  .holiday-result .reference-result-intro { grid-template-columns:1fr; gap:16px; }
+  .holiday-result .reference-result-intro>.winter-type-globe-large { display:none; }
+  .holiday-survival,.holiday-movie,.holiday-story-bridge { padding:18px; margin:20px 0; }
+  .holiday-survival dl { grid-template-columns:1fr; gap:18px; }
+  .holiday-result :is(.holiday-deeper,.holiday-five-day,.holiday-pattern-details) { padding:16px; }
+  .holiday-result dd { font-size:15px; }
+  .holiday-result .holiday-conversion { padding:22px 16px; }
+  .holiday-crew { padding:22px 16px; }
+  .holiday-crew-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px 10px; }
+  .holiday-crew-grid>div { font-size:11px; }
+  .holiday-five-day li { display:block; }
+  .holiday-five-day li strong { display:block; margin-bottom:6px; }
+}
+@media(prefers-reduced-motion:reduce) { .holiday-unwrapping>svg { animation:none; } }

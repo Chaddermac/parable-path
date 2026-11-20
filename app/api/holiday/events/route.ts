@@ -16,6 +16,10 @@ export async function POST(request: Request) {
     const input = JSON.parse(raw);
     if (!holidayEvents.includes(input.event)) return new Response(null, { status: 400 });
     const event: Record<string, unknown> = { event:input.event, ...(input.questionVersion === "4.1" ? { questionVersion:"4.1" } : {}) };
+    if (isPattern(input.story)) event.story = input.story;
+    if (["square","portrait","story","wallpaper","landscape"].includes(input.format)) event.format = input.format;
+    if (["share","keep"].includes(input.card_mode)) event.card_mode = input.card_mode;
+    if (["result", "challenge", "parable", "crew"].includes(input.placement)) event.placement = input.placement;
     if (input.event === "question_answered") {
       if (!Number.isInteger(input.question) || input.question < 1 || input.question > 16 || typeof input.no_match !== "boolean") return new Response(null,{status:400});
       event.no_match = input.no_match;

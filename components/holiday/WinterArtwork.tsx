@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { holidayArtwork } from "@/lib/holiday/artwork";
 import type { Pattern } from "@/lib/holiday/scoring";
+import { premiumGlobePath } from "@/lib/holiday/globes";
 export function WinterStar({ className = "" }: { className?: string }) {
   return <svg className={className} viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="m20 1 5 14 14 5-14 5-5 14-5-14L1 20l14-5Z" fill="currentColor"/><path d="M20 8v24M8 20h24" stroke="white" strokeOpacity=".5"/></svg>;
 }
@@ -19,8 +20,7 @@ export function WinterGift({ className = "" }: { className?: string }) {
 export function TypologyGlobe({ pattern, large = false }: { pattern: Pattern; large?: boolean }) {
   const art = holidayArtwork[pattern];
   return <div className={`winter-type-globe ${large ? "winter-type-globe-large" : ""}`} style={{ "--type-accent": art.color } as CSSProperties} aria-hidden="true">
-    <div className="winter-glass"><span className="winter-glass-shine"/><img src={`/holiday/artwork/${art.id}.webp`} alt="" width="400" height="400" loading={large ? "eager" : "lazy"}/><WinterTree className="reference-globe-pine reference-globe-pine-left"/><WinterTree className="reference-globe-pine reference-globe-pine-right"/><span className="winter-globe-snow"/><span className="winter-globe-dots"/></div>
-    <div className="winter-globe-base"><WinterStar/></div>
+    <img className="premium-typology-globe" src={premiumGlobePath(pattern)} alt="" width="512" height="512" loading={large ? "eager" : "lazy"} decoding="async"/>
   </div>;
 }
 export function WinterAtmosphere() {

@@ -22,7 +22,10 @@ for (const story of [...stories, "lost~control", stories.join("~")]) {
   assert.equal(response.status, 200, `Result ${story}`);
   const html = await response.text();
   const resultCount = story.split("~").length;
-  assert.equal((html.match(/<li>/g)||[]).length, resultCount*6, "Three patterns and three gifts per result");
+  assert.equal((html.match(/<li>/g)||[]).length, resultCount*11, "Three patterns, three gifts and five optional practices per result");
+  for (const heading of ["Your Holiday Survival Guide", "Your Christmas Movie Energy", "The Story Beneath the Season", "5-Day Holiday Story Challenge", "Every holiday gathering has a cast."]) assert.ok(html.includes(heading), heading);
+  assert.ok(html.includes("holiday_result="));
+  assert.ok(html.includes("utm_content="));
   assert.ok(html.includes("The Gift You Bring"));
   assert.ok(!html.includes("Your holiday invitation"));
   if (story.includes("~")) assert.ok(html.includes("These stories tied for your highest score"));
@@ -89,6 +92,11 @@ for(const data of [{event:"result_feedback",leaders:["lost"],fit:"bad"},{event:"
   assert.equal((await fetch(`${origin}/api/holiday/events`,{method:"POST",headers:{"Content-Type":"application/json",origin},body:JSON.stringify(data)})).status,400);
 }
 console.info("Version 4.1 smoke passed: five choices; standard, tentative and no-clear-match results; feedback validation; impossible score rejection.");
+for (const event of ["movie_match_view", "survival_guide_view", "holiday_challenge_view", "holiday_challenge_app_click", "parable_click", "crew_invite"]) {
+  const response = await fetch(`${origin}/api/holiday/events`, { method:"POST", headers:{"Content-Type":"application/json",origin}, body:JSON.stringify({event,questionVersion:"4.1",story:"distraction",placement:"challenge",email:"discard@example.com",rawAnswers:["discard"]}) });
+  assert.equal(response.status,204,event);
+}
+console.info("Engagement smoke passed: eight content layers, deep-link context, preserved states, and expanded anonymous event allowlist.");
 
 const tentativeCard=await fetch(`${origin}/api/holiday/card/lost?tentative=1`);
 assert.equal(tentativeCard.status,200);
