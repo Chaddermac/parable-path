@@ -14,12 +14,12 @@ export function HolidaySocialCard({pattern,format,tentative,globe}:{pattern:Patt
   const wide=format==='landscape', tall=format==='story', portrait=format==='portrait';
   const accent=holidayArtwork[pattern].color;
   const titleSize=wide?46:tall?91:portrait?73:66;
-  return <div style={{display:'flex',position:'relative',width,height,overflow:'hidden',fontFamily:'HolidaySans',color:'#132659',background:'linear-gradient(145deg,#eff8ff,#dde7f8 55%,#e8e2f7)',padding:wide?'28px 38px':tall?'48px 52px':'38px 42px',flexDirection:'column',justifyContent:'space-between',gap:wide?14:tall?28:22}}>
+  return <div style={{display:'flex',position:'relative',width,height,overflow:'hidden',fontFamily:'HolidaySans',color:'#132659',background:'linear-gradient(145deg,#eff8ff,#dde7f8 55%,#e8e2f7)',padding:wide?'20px 38px':tall?'48px 52px':'38px 42px',flexDirection:'column',justifyContent:'space-between',gap:wide?10:tall?28:22}}>
     <div style={{display:'flex',position:'absolute',left:-100,top:tall?180:110,width:tall?1000:680,height:tall?1000:680,borderRadius:'50%',background:`radial-gradient(circle,${accent}40,#ffffff00 68%)`}}/>
     <div style={{display:'flex',position:'absolute',right:-300,top:-250,width:900,height:900,border:'2px solid #ffffff90',borderRadius:'50%'}}/>
     {Array.from({length:34},(_,i)=><div key={i} style={{display:'flex',position:'absolute',left:(i*137+27)%width,top:(i*211+53)%height,width:i%5===0?6:3,height:i%5===0?6:3,borderRadius:'50%',background:i%4===0?'#d8b263':'#fff',opacity:.7}}/>)}
     <div style={{display:'flex',position:'relative',justifyContent:'space-between',alignItems:'center',flexShrink:0}}>
-      <img src={artwork._brandLogo} width={wide?230:260} height={wide?62:70} alt="ParablePath"/>
+      <img src={artwork._brandLogo} width={wide?200:260} height={wide?54:70} alt="ParablePath"/>
       <div style={{display:'flex',fontSize:wide?13:17,letterSpacing:2,fontWeight:700,padding:'12px 18px',border:'1px solid #bbb9d6',borderRadius:40,background:'#ffffff90'}}>HOLIDAY EDITION</div>
     </div>
     <div style={{display:'flex',position:'relative',flexDirection:tall?'column':'row',alignItems:'center',gap:wide?24:tall?25:22,flexShrink:0}}>
@@ -35,9 +35,11 @@ export function HolidaySocialCard({pattern,format,tentative,globe}:{pattern:Patt
         <div style={{display:'flex',alignItems:'center',gap:12,fontSize:wide?21:tall?34:26,fontWeight:700}}><div style={{display:'flex',width:7,height:28,borderRadius:4,background:accent}}/>ParablePath Calling: {result.calling}</div>
       </div>
     </div>
-    <div style={{display:'flex',position:'relative',flexDirection:'column',gap:portrait?15:8,padding:wide?'14px 20px':tall?'26px 30px':'20px 24px',background:'#ffffff90',border:'1px solid #ffffff',borderLeft:`6px solid ${accent}`,borderRadius:22,flexShrink:0}}>
-      <div style={{display:'flex',fontSize:wide?12:tall?19:15,letterSpacing:2,fontWeight:700,color:'#31587b'}}>YOUR HOLIDAY SUPERPOWER</div>
-      <div style={{display:'flex',fontSize:wide?23:tall?38:29,lineHeight:1.25,fontWeight:700}}>{social.gift}</div>
+    <div style={{display:'flex',position:'relative',flexDirection:'column',gap:portrait?15:12,padding:wide?'12px 18px':tall?'24px 28px':'18px 22px',background:'#ffffff90',border:'1px solid #ffffff',borderLeft:`6px solid ${accent}`,borderRadius:22,flexShrink:0}}>
+      <div style={{display:'flex',flexDirection:wide?'row':'column',gap:wide?24:14}}>
+        <div style={{display:'flex',flexDirection:'column',...(wide?{flex:1}:{}),gap:7}}><div style={{display:'flex',fontSize:wide?12:tall?19:15,letterSpacing:2,fontWeight:700,color:'#31587b'}}>YOUR HOLIDAY TELL</div><div style={{display:'flex',fontSize:wide?20:tall?31:25,lineHeight:1.25,color:'#19345f'}}>{social.tell}</div></div>
+        <div style={{display:'flex',flexDirection:'column',...(wide?{flex:1}:{}),gap:7}}><div style={{display:'flex',fontSize:wide?12:tall?19:15,letterSpacing:2,fontWeight:700,color:'#31587b'}}>YOUR HOLIDAY SUPERPOWER</div><div style={{display:'flex',fontSize:wide?22:tall?35:28,lineHeight:1.25,fontWeight:700}}>{social.gift}</div></div>
+      </div>
       {portrait?<div style={{display:'flex',flexDirection:'column',gap:12,borderTop:'1px solid #bdcee2',paddingTop:14,fontSize:23,lineHeight:1.3}}><div style={{display:'flex'}}>{`Watch out: ${content.watch}`}</div><div style={{display:'flex'}}>{`Try this: ${content.tryThis}`}</div></div>:null}
     </div>
     <div style={{display:'flex',position:'relative',flexDirection:'column',gap:wide?7:12,padding:wide?'18px 24px':tall?'30px':'24px',borderRadius:24,color:'#fff',background:'linear-gradient(120deg,#102e62,#1c3f73)',boxShadow:'0 12px 25px #19345f25',flexShrink:0}}>
