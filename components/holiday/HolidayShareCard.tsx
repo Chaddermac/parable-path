@@ -66,10 +66,10 @@ export function HolidayShareCard({ leaders, format, tentative, mode = "share" }:
         </div>:null}
       </div>
     </div>
-    <div style={{display:'flex',position:'relative',flexShrink:0,flexDirection:landscape?'row':'column',alignItems:'center',justifyContent:'space-between',gap:landscape?20:12,padding:landscape?'10px 0':'14px 0 0'}}>
+    {!wallpaper?<div style={{display:'flex',position:'relative',flexShrink:0,flexDirection:landscape?'row':'column',alignItems:'center',justifyContent:'space-between',gap:landscape?20:12,padding:landscape?'10px 0':'14px 0 0'}}>
       <div style={{display:'flex',color:'#172b4e',background:'linear-gradient(120deg,#ffe6a4,#f3c768)',borderRadius:40,padding:landscape?'12px 22px':'15px 28px',fontWeight:700,fontSize:landscape?20:wallpaper?35:28}}>What’s your holiday story? →</div>
       <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:4}}><div style={{display:'flex',fontSize:landscape?18:wallpaper?32:square?28:24,color:'#19345f'}}>parablepath.com/holidayedition</div><div style={{display:'flex',fontSize:landscape?12:wallpaper?22:16,color:'#506782'}}>16 questions · 3–4 minutes · Share a little Christmas curiosity</div></div>
-    </div>
+    </div>:null}
   </div>;
 }
 
