@@ -32,3 +32,10 @@ test('expanded funnel reports anonymous event ratios and allowlisted app placeme
   assert.match(report.note,/not unique people/);
   assert.equal(pilotReport([]).eventRatios.completionToAppClick,null);
 });
+test('download summaries count only allowlisted format and card mode',()=>{
+  const event={source:'holiday',questionVersion:'4.1',event:'download_card'};
+  const report=pilotReport([{...event,format:'square',card_mode:'share'},{...event,format:'wallpaper',card_mode:'keep'},{...event,format:'unknown',card_mode:'unknown'}]);
+  assert.deepEqual(report.downloadsByMode,{share:1,keep:1});
+  assert.deepEqual(report.downloadsByFormat,{square:1,wallpaper:1});
+  assert.equal(report.downloads,3);
+});

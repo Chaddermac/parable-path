@@ -31,6 +31,11 @@
 .holiday-crew-grid .winter-type-globe { width:100%; max-width:95px; }
 .holiday-crew-prompts { font-size:14px; line-height:1.7; color:#526987; max-width:700px; margin:20px auto; }
 .holiday-crew input { max-width:100%; width:100%; padding:12px; border:1px solid #9eb7d1; border-radius:8px; }
+.holiday-export-choices { margin-top:28px; padding:20px; border:1px solid #bdcee2; border-radius:18px; background:#ffffffa6; }
+.holiday-export-choices .winter-downloads { display:flex; gap:16px; flex-wrap:wrap; }
+.holiday-export-choices label { display:flex; flex-direction:column; gap:8px; flex:1; min-width:0; font-size:14px; font-weight:700; }
+.holiday-export-choices select { width:100%; max-width:100%; min-height:48px; padding:10px; border:1px solid #9eb7d1; border-radius:10px; background:#fff; color:#19345f; font-size:14px; }
+@media(max-width:700px) { .holiday-export-choices .winter-downloads { flex-direction:column; } }
 .holiday-unwrapping { position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px; padding:24px; text-align:center; background:radial-gradient(circle,#fffaf0,#e6edff 70%); }
 .holiday-unwrapping>svg { width:90px; height:90px; animation:holiday-unwrap 1.45s ease-in-out both; }
 .holiday-unwrapping h2 { font-size:clamp(25px,4vw,40px); outline:none; }

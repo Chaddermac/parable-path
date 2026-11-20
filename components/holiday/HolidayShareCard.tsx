@@ -4,8 +4,9 @@ import { holidayShareHooks } from "@/lib/holiday/share-copy";
 import { holidayEngagement } from "@/lib/holiday/engagement";
 import artwork from "@/lib/holiday/card-artwork.json";
 import type { Pattern } from "@/lib/holiday/scoring";
+import { HolidaySocialCard, HolidayWallpaper } from "./HolidaySocialCard";
 
-import { holidayCardFormats, type HolidayCardFormat } from "@/lib/holiday/card-formats";
+import { holidayCardFormats, type HolidayCardFormat, type HolidayCardMode } from "@/lib/holiday/card-formats";
 function Star({ size=40 }: { size?:number }) {
   return <svg width={size} height={size} viewBox="0 0 100 100"><path d="M50 0 59 39 100 50 59 61 50 100 41 61 0 50 41 39Z" fill="#f2cf83"/></svg>;
 }
@@ -25,8 +26,13 @@ function Globe({ pattern,size }: { pattern?:Pattern; size:number }) {
     <div style={{display:"flex",position:"absolute",bottom:size*.015,left:size*.13,width:size*.74,height:size*.19,borderRadius:"6px 6px 22px 22px",border:"2px solid #f3d597",background:"linear-gradient(110deg,#b58a44,#f4d69c 48%,#bb914f)",alignItems:"center",justifyContent:"center"}}><Star size={size*.08}/></div>
   </div>;
 }
-export function HolidayShareCard({ leaders, format, tentative }: { leaders:Pattern[]; format:HolidayCardFormat; tentative:boolean }) {
-  if (leaders.length === 1) return <HolidaySurvivalCard pattern={leaders[0]} format={format} tentative={tentative}/>;
+export function HolidayShareCard({ leaders, format, tentative, mode = "share" }: { leaders:Pattern[]; format:HolidayCardFormat; tentative:boolean; mode?:HolidayCardMode }) {
+  if (leaders.length === 1) {
+    const pattern = leaders[0];
+    if (format === "wallpaper") return <HolidayWallpaper pattern={pattern} tentative={tentative} globe={<Globe pattern={pattern} size={490}/>}/>;
+    if (mode === "keep") return <HolidaySurvivalCard pattern={pattern} format={format} tentative={tentative}/>;
+    return <HolidaySocialCard pattern={pattern} format={format} tentative={tentative} globe={<Globe pattern={pattern} size={format === "landscape" ? 250 : format === "story" ? 430 : 330}/>}/>;
+  }
   const [width,height]=holidayCardFormats[format];
   const landscape=format==='landscape', wallpaper=format==='wallpaper', square=format==='square';
   const single=leaders.length===1?holidayResults[leaders[0]]:null;

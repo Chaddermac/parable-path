@@ -4,13 +4,17 @@ const patterns=['lost','scarcity','control','stalled','boundary','settling','del
 const fits=['yes','mostly','a_little','not_really'];
 export function pilotReport(events) {
   const questions=Array.from({length:16},(_,i)=>({question:i+1,responses:0,noMatch:0}));
-  const report={version:'4.1',landingViews:0,starts:0,completions:0,resultViews:0,shares:0,downloads:0,crewInvites:0,parableClicks:0,challengeViews:0,noMatchResponses:0,noMatchCountDistribution:{},storyDistribution:{},ties:0,closeScores:0,tentative:0,insufficient:0,appClicks:0,appClicksByStory:{},appClicksByPlacement:{},feedback:{},questions};
+  const report={version:'4.1',landingViews:0,starts:0,completions:0,resultViews:0,shares:0,downloads:0,downloadsByMode:{},downloadsByFormat:{},crewInvites:0,parableClicks:0,challengeViews:0,noMatchResponses:0,noMatchCountDistribution:{},storyDistribution:{},ties:0,closeScores:0,tentative:0,insufficient:0,appClicks:0,appClicksByStory:{},appClicksByPlacement:{},feedback:{},questions};
   for (const e of events) {
     if (!e || typeof e!=='object') continue;
     const leaders=Array.isArray(e.leaders)?[...new Set(e.leaders.filter(p=>patterns.includes(p)))]:[];
     if (e.source!=='holiday' || e.questionVersion!=='4.1') continue;
     const counters={page_view:'landingViews',result_view:'resultViews',share:'shares',download_card:'downloads',crew_invite:'crewInvites',parable_click:'parableClicks',holiday_challenge_view:'challengeViews'};
     if(counters[e.event])report[counters[e.event]]++;
+    if(e.event==='download_card') {
+      if(['share','keep'].includes(e.card_mode))report.downloadsByMode[e.card_mode]=(report.downloadsByMode[e.card_mode]||0)+1;
+      if(['square','portrait','story','wallpaper','landscape'].includes(e.format))report.downloadsByFormat[e.format]=(report.downloadsByFormat[e.format]||0)+1;
+    }
     if (e.event==='quiz_start') report.starts++;
     if (e.event==='question_answered' && Number.isInteger(e.question) && e.question>=1 && e.question<=16 && typeof e.no_match==='boolean') {
       const q=questions[e.question-1];q.responses++;if(e.no_match)q.noMatch++;

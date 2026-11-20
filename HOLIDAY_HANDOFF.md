@@ -27,4 +27,10 @@ The desired *percentage of completed users* who continue to the app cannot be me
 
 ## Preserved behavior
 
+## Share and Keep exports
+
+Result controls now distinguish Share Cards (recognition, text-only movie energy, calling, superpower, CTA) from Keep Cards (the Survival Guide). `mode=share|keep` is validated by the existing image route. Default square/story/landscape cards are social; portrait Share Cards add just a Watch Out and Try This. All wallpaper requests resolve to a minimal Keep Card with one practice and no promotional CTA, with generous clock/control margins. Device-specific crops still need a lock-screen preview. Multiway-tie image URLs retain an equal-weight summary; result-page controls let each tied story be downloaded individually in either mode. No tied result is promoted to a sole winner.
+
+Image URLs are versioned `winter-8`; download names include mode and format. Anonymous share/copy/download events include allowlisted `format` and `card_mode`, and the report groups download counts by these values. No new identity tracking is introduced. The website Survival Guide remains available regardless of export choice.
+
 The 16 questions already include White Elephant, scented candles, family group texts, holiday photos, and December 23. Questions, answer mappings, shuffle behavior, scoring, all co-leaders, one-point secondary stories, no-match choices, and tentative/insufficient thresholds are untouched. Reduced-motion users skip the 1.45-second reveal. All five image sizes remain supported; versioned URLs invalidate old social graphics. Existing official artwork remains unchanged.
