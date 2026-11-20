@@ -35,6 +35,8 @@
 .holiday-export-choices .winter-downloads { display:flex; gap:16px; flex-wrap:wrap; }
 .holiday-export-choices label { display:flex; flex-direction:column; gap:8px; flex:1; min-width:0; font-size:14px; font-weight:700; }
 .holiday-export-choices select { width:100%; max-width:100%; min-height:48px; padding:10px; border:1px solid #9eb7d1; border-radius:10px; background:#fff; color:#19345f; font-size:14px; }
+.winter-type-globe:has(>.premium-typology-globe) { padding-bottom:0; aspect-ratio:1; }
+.premium-typology-globe { display:block; width:100%; height:auto; object-fit:contain; }
 @media(max-width:700px) { .holiday-export-choices .winter-downloads { flex-direction:column; } }
 .holiday-unwrapping { position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px; padding:24px; text-align:center; background:radial-gradient(circle,#fffaf0,#e6edff 70%); }
 .holiday-unwrapping>svg { width:90px; height:90px; animation:holiday-unwrap 1.45s ease-in-out both; }

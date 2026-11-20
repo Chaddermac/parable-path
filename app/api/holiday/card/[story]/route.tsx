@@ -5,6 +5,7 @@ import { holidayResults } from "@/lib/holiday/results";
 import { parseStories } from "@/lib/holiday/scoring";
 import { HolidayShareCard } from "@/components/holiday/HolidayShareCard";
 import { holidayCardFormats, effectiveCardMode, type HolidayCardFormat, type HolidayCardMode } from "@/lib/holiday/card-formats";
+import { premiumGlobeIds } from "@/lib/holiday/globes";
 export const runtime = "nodejs";
 export const maxDuration = 30;
 const fonts = Promise.all([
@@ -25,7 +26,8 @@ export async function GET(request:Request,{params}:{params:Promise<{story:string
   const [width,height]=holidayCardFormats[format];
   const slug=leaders.length===1?holidayResults[leaders[0]].name.toLowerCase().replace(/^the /,"").replace(/[^a-z0-9]+/g,"-"):story === "quiz"?"holiday-quiz":"holiday-stories";
   const [regular,bold]=await fonts;
-  return new ImageResponse(<HolidayShareCard leaders={leaders} format={format} mode={mode} tentative={query.get('tentative')==='1'}/>,{
+  const globes=Object.fromEntries(await Promise.all(leaders.map(async pattern=>[pattern,`data:image/png;base64,${(await readFile(join(process.cwd(),`public/holiday/globes/${premiumGlobeIds[pattern]}.png`))).toString('base64')}`])));
+  return new ImageResponse(<HolidayShareCard leaders={leaders} globes={globes} format={format} mode={mode} tentative={query.get('tentative')==='1'}/>,{
     width,height,fonts:[{name:"HolidaySans",data:new Uint8Array(regular).buffer,weight:400,style:"normal"},{name:"HolidaySans",data:new Uint8Array(bold).buffer,weight:700,style:"normal"}],headers:{'Cache-Control':'public, max-age=3600',...(query.has('download')?{'Content-Disposition':`attachment; filename="parablepath-${slug}-${mode}-${format}.png"`}:{})}
   });
 }

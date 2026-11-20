@@ -11,7 +11,7 @@ test("Share and Keep exports have separate versioned URLs; wallpaper is always r
   for (const mode of ["share","keep"] as const) {
     const url=new URL(holidayCardPath("boundary",{format:"square",mode}),"https://www.parablepath.com");
     assert.equal(url.searchParams.get("mode"),mode);
-    assert.equal(url.searchParams.get("v"),"winter-9");
+    assert.equal(url.searchParams.get("v"),"winter-10");
     assert.equal(effectiveCardMode("wallpaper",mode),"keep");
     assert.equal(new URL(holidayCardPath("boundary",{format:"wallpaper",mode}),url).searchParams.get("mode"),"keep");
   }

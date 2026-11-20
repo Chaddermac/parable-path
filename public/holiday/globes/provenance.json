@@ -1,0 +1,178 @@
+[
+  {
+    "id": "table-maker",
+    "shellSha256": "9b4222fd7a5e7110e3364ebd4cd3fd6fd99cb36e7e7a0baf20cab01f4e4b3b60",
+    "officialSourceSha256": "11ea1161b68f49a0dbc6084302a57cb3637a73c6934d116598f53cc8a8f2e123",
+    "pngSha256": "94f665c2706e3543c1df9070ba5bf83ea5eeb7c2b479f8dca891625f77fcf3d2",
+    "webpSha256": "93dfc74fd251a359d0b5c968193abc0fb7191b371ba80c226eb188b75d622789",
+    "exportSize": 768,
+    "webSize": 512,
+    "webBytes": 44110,
+    "exportBytes": 803030,
+    "method": "Generated decorative scene + mechanically isolated original white glyph + shared eight-point base seal. Original artwork unchanged.",
+    "glyph": {
+      "left": 272,
+      "top": 222,
+      "width": 480,
+      "height": 396
+    },
+    "seal": {
+      "cx": 512,
+      "cy": 850
+    }
+  },
+  {
+    "id": "bridger",
+    "shellSha256": "1a6d02c3646ee957cd278d367296c9d16788030c3c8902ffa51fd7f1b63c934f",
+    "officialSourceSha256": "6804027ec080c599ded897f28185e9241458d5a759a1417ee8a40139d9dc6cf9",
+    "pngSha256": "f07c54473498eadfe90eed36a32d4ecb725d83821b567292fbf27a67f2693824",
+    "webpSha256": "d6abbab191dc71e09ea47fffaa575582c67e65e99c4d418445723854a18adb17",
+    "exportSize": 768,
+    "webSize": 512,
+    "webBytes": 48588,
+    "exportBytes": 810580,
+    "method": "Generated decorative scene + mechanically isolated original white glyph + shared eight-point base seal. Original artwork unchanged.",
+    "glyph": {
+      "left": 272,
+      "top": 258,
+      "width": 480,
+      "height": 325
+    },
+    "seal": {
+      "cx": 512,
+      "cy": 850
+    }
+  },
+  {
+    "id": "healer",
+    "shellSha256": "b92f8e989f325093a3f2ea9d7b5a59b2ddf5d4ba460ea8ceb18a7a03413b7857",
+    "officialSourceSha256": "ccb1b1d9f1d8d2d5ee161e8894f3a8868bc43849f30874a861d5d5f5fa60b7f2",
+    "pngSha256": "1670a84627955f8ce8e66ec48562fadfc3f12d040ee9fb5d743271733c49a597",
+    "webpSha256": "fbbc056003c99ceabc655842fff6861ae9777cdbb5dce100b7f3269dd2dc7846",
+    "exportSize": 768,
+    "webSize": 512,
+    "webBytes": 44520,
+    "exportBytes": 744129,
+    "method": "Generated decorative scene + mechanically isolated original white glyph + shared eight-point base seal. Original artwork unchanged.",
+    "glyph": {
+      "left": 293,
+      "top": 215,
+      "width": 439,
+      "height": 410
+    },
+    "seal": {
+      "cx": 512,
+      "cy": 850
+    }
+  },
+  {
+    "id": "mentor",
+    "shellSha256": "27d759766f278fd0e17c4d8e680873e59453e9db0ccfe2cd788d9bab494181ab",
+    "officialSourceSha256": "cc62d14c822de1e9154e21b1c240d6cb02247b3d5150f0d31f862c1bddad6b70",
+    "pngSha256": "49549bc0e1dfc09959061a0991c3287b01f69e8fbbff378019c0215684de29a9",
+    "webpSha256": "10df06754edb7d9d6aba03ce5afb375aa95bda6004775fba37a1a31a2050a0d4",
+    "exportSize": 768,
+    "webSize": 512,
+    "webBytes": 47714,
+    "exportBytes": 804754,
+    "method": "Generated decorative scene + mechanically isolated original white glyph + shared eight-point base seal. Original artwork unchanged.",
+    "glyph": {
+      "left": 296,
+      "top": 215,
+      "width": 433,
+      "height": 410
+    },
+    "seal": {
+      "cx": 512,
+      "cy": 850
+    }
+  },
+  {
+    "id": "innovator",
+    "shellSha256": "1a6fc8e14f108c51c98b07806c466f62dc66473898089e0de164e18a3f798f45",
+    "officialSourceSha256": "d072e365a50650510860184871cdd65c55c997ce1589ab2d1f4f8328a3f3dfff",
+    "pngSha256": "2c4c3612c72df93d20bf94930a0777ace2af573f83d232219e5ce764302dc8d6",
+    "webpSha256": "9afcd48567a7762b7445dac941f9076550f6a2127643909d694a122f31a509d4",
+    "exportSize": 768,
+    "webSize": 512,
+    "webBytes": 47296,
+    "exportBytes": 810560,
+    "method": "Generated decorative scene + mechanically isolated original white glyph + shared eight-point base seal. Original artwork unchanged.",
+    "glyph": {
+      "left": 324,
+      "top": 215,
+      "width": 377,
+      "height": 410
+    },
+    "seal": {
+      "cx": 512,
+      "cy": 850
+    }
+  },
+  {
+    "id": "multiplier",
+    "shellSha256": "afbb75d9cc196a80f4ee99b4b13e23e51574b5ff7a80d873602606eaaec8fa41",
+    "officialSourceSha256": "e34814b6e43dca0c990a26a11a5819cb088c9b49ab47b209288d3a13a2b938e8",
+    "pngSha256": "4d4e7bb17ab31e0fb3e9f47f1ebd38acf34864820cc482c8fa690a2e8d48011b",
+    "webpSha256": "2d9b6221c5c80ec954a248b7c7fac278fb7cc9f692d60788ca3a11815787df16",
+    "exportSize": 768,
+    "webSize": 512,
+    "webBytes": 47578,
+    "exportBytes": 767607,
+    "method": "Generated decorative scene + mechanically isolated original white glyph + shared eight-point base seal. Original artwork unchanged.",
+    "glyph": {
+      "left": 323,
+      "top": 215,
+      "width": 379,
+      "height": 410
+    },
+    "seal": {
+      "cx": 512,
+      "cy": 850
+    }
+  },
+  {
+    "id": "waymaker",
+    "shellSha256": "058d80d4f82cbfeb78f16d058d1aeadb4b36f17d865fffe4c356964276e8dd52",
+    "officialSourceSha256": "5718ab5e833ea0b2063a22aee56300a63613a01e129385af8abbd4faff5b5aa2",
+    "pngSha256": "00a65f6d7c1a631b2a3767695a0e51d885f7b619cd71e6ba5ae9f79a4e9dd5ba",
+    "webpSha256": "5fe8aa168e12e1a970f1653227b19619bf4808b048d56e1609d1cc870058799c",
+    "exportSize": 768,
+    "webSize": 512,
+    "webBytes": 43762,
+    "exportBytes": 774818,
+    "method": "Generated decorative scene + mechanically isolated original white glyph + shared eight-point base seal. Original artwork unchanged.",
+    "glyph": {
+      "left": 337,
+      "top": 215,
+      "width": 351,
+      "height": 410
+    },
+    "seal": {
+      "cx": 512,
+      "cy": 850
+    }
+  },
+  {
+    "id": "awakener",
+    "shellSha256": "3a79d8eda7bf2be67e41cdad900c97e78a9615d83007716a762bcea7ebe52402",
+    "officialSourceSha256": "a2d0e7486a4426492bd41bafc2adc8093d713d5354b5dc81b448cc00132f3b6d",
+    "pngSha256": "8c0b7b6c0e73eb1393a05b731dac6405ed4dd9fb48ece4023dc811fdb3f9fddc",
+    "webpSha256": "056a93b9adb5e9e3b0769c2cc0d8e57c0dbb38ab58e0b4114e049d9b0e6bcc60",
+    "exportSize": 768,
+    "webSize": 512,
+    "webBytes": 46278,
+    "exportBytes": 804919,
+    "method": "Generated decorative scene + mechanically isolated original white glyph + shared eight-point base seal. Original artwork unchanged.",
+    "glyph": {
+      "left": 272,
+      "top": 217,
+      "width": 480,
+      "height": 407
+    },
+    "seal": {
+      "cx": 512,
+      "cy": 850
+    }
+  }
+]
