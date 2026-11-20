@@ -1,6 +1,7 @@
 import { holidayResults } from "@/lib/holiday/results";
 import { holidayArtwork } from "@/lib/holiday/artwork";
 import { holidayShareHooks } from "@/lib/holiday/share-copy";
+import { holidayEngagement } from "@/lib/holiday/engagement";
 import artwork from "@/lib/holiday/card-artwork.json";
 import type { Pattern } from "@/lib/holiday/scoring";
 
@@ -25,6 +26,7 @@ function Globe({ pattern,size }: { pattern?:Pattern; size:number }) {
   </div>;
 }
 export function HolidayShareCard({ leaders, format, tentative }: { leaders:Pattern[]; format:HolidayCardFormat; tentative:boolean }) {
+  if (leaders.length === 1) return <HolidaySurvivalCard pattern={leaders[0]} format={format} tentative={tentative}/>;
   const [width,height]=holidayCardFormats[format];
   const landscape=format==='landscape', wallpaper=format==='wallpaper', square=format==='square';
   const single=leaders.length===1?holidayResults[leaders[0]]:null;
@@ -61,6 +63,49 @@ export function HolidayShareCard({ leaders, format, tentative }: { leaders:Patte
     <div style={{display:'flex',position:'relative',flexShrink:0,flexDirection:landscape?'row':'column',alignItems:'center',justifyContent:'space-between',gap:landscape?20:12,padding:landscape?'10px 0':'14px 0 0'}}>
       <div style={{display:'flex',color:'#172b4e',background:'linear-gradient(120deg,#ffe6a4,#f3c768)',borderRadius:40,padding:landscape?'12px 22px':'15px 28px',fontWeight:700,fontSize:landscape?20:wallpaper?35:28}}>What’s your holiday story? →</div>
       <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:4}}><div style={{display:'flex',fontSize:landscape?18:wallpaper?32:square?28:24,color:'#19345f'}}>parablepath.com/holidayedition</div><div style={{display:'flex',fontSize:landscape?12:wallpaper?22:16,color:'#506782'}}>16 questions · 3–4 minutes · Share a little Christmas curiosity</div></div>
+    </div>
+  </div>;
+}
+
+// One content-driven renderer for all eight callings and all five export sizes.
+function HolidaySurvivalCard({ pattern, format, tentative }: { pattern: Pattern; format: HolidayCardFormat; tentative: boolean }) {
+  const result = holidayResults[pattern], guide = holidayEngagement[pattern];
+  const [width, height] = holidayCardFormats[format];
+  const wide = format === "landscape", tall = format === "story" || format === "wallpaper";
+  const scale = width / (wide ? 1200 : 1080);
+  const px = (value: number) => value * scale;
+  const accent = holidayArtwork[pattern].color;
+  const titleSize = wide ? 48 : tall ? 76 : 64;
+  const tipSize = wide ? 19 : tall ? 32 : 24;
+  const logoWidth = wide ? 310 : tall ? 420 : 370;
+  return <div style={{display:"flex",position:"relative",width,height,overflow:"hidden",fontFamily:"HolidaySans",color:"#132659",background:"linear-gradient(145deg,#eff8ff,#e4e8fb 65%,#f5f2e9)",padding:format === "wallpaper" ? `${px(260)}px ${px(48)}px ${px(130)}px` : `${px(wide?28:38)}px ${px(wide?40:42)}px`,flexDirection:"column",justifyContent:"space-between",gap:px(wide?12:20)}}>
+    <div style={{display:"flex",position:"absolute",inset:px(14),border:"2px solid #c5d8e8",borderRadius:px(30)}}/>
+    {Array.from({length:30},(_,i)=><div key={i} style={{display:"flex",position:"absolute",left:(i*137+27)%width,top:(i*211+53)%height,width:px(i%5===0?5:3),height:px(i%5===0?5:3),borderRadius:"50%",background:i%4===0?"#d8b263":"#ffffff",opacity:.65}}/>)}
+    <div style={{display:"flex",position:"absolute",left:-px(35),bottom:-px(40),opacity:.18}}><Pine size={px(wide?170:tall?350:200)}/></div>
+    <div style={{display:"flex",position:"absolute",right:-px(40),bottom:-px(55),opacity:.24}}><Pine size={px(wide?200:tall?390:240)}/></div>
+    <div style={{display:"flex",position:"relative",justifyContent:"space-between",alignItems:"center",flexShrink:0}}>
+      <img src={artwork._brandLogo} width={px(logoWidth)} height={px(logoWidth*67/250)} alt="ParablePath"/>
+      <div style={{display:"flex",alignItems:"center",gap:px(10),fontSize:px(wide?14:18),fontWeight:700,letterSpacing:2,padding:`${px(12)}px ${px(16)}px`,border:"1px solid #c1bddd",borderRadius:30,background:"#eee9ff"}}>HOLIDAY EDITION</div>
+    </div>
+    <div style={{display:"flex",position:"relative",flexDirection:tall?"column":"row",alignItems:"center",gap:px(wide?24:28),flexShrink:0}}>
+      <Globe pattern={pattern} size={px(wide?190:tall?290:245)}/>
+      <div style={{display:"flex",flexDirection:"column",...(tall?{width:"100%",flexShrink:0}:{flex:1}),gap:px(wide?9:13),alignItems:tall?"center":"flex-start",textAlign:tall?"center":"left"}}>
+        <div style={{display:"flex",fontSize:px(wide?12:16),letterSpacing:3,color:"#326f75",fontWeight:700}}>{tentative?"A HOLIDAY STORY TO EXPLORE":"YOUR HOLIDAY STORY"}</div>
+        <div style={{display:"flex",fontSize:px(titleSize),fontWeight:700,lineHeight:1.04,letterSpacing:-1.6}}>{result.name}</div>
+        <div style={{display:"flex",fontSize:px(wide?22:tall?32:27),lineHeight:1.28,color:"#334d73"}}>{holidayShareHooks[pattern]}</div>
+        <div style={{display:"flex",fontSize:px(wide?20:26),fontWeight:700,color:"#19345f"}}>ParablePath Calling: {result.calling}</div>
+      </div>
+    </div>
+    <div style={{display:"flex",position:"relative",flexDirection:"column",padding:px(wide?18:25),gap:px(wide?13:18),border:"1px solid #d5bc81",borderTop:`${px(5)}px solid ${accent}`,borderRadius:px(22),background:"#fffaf0",flexShrink:0}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}><div style={{display:"flex",fontSize:px(wide?22:tall?35:29),fontWeight:700}}>Your Holiday Survival Guide</div><Star size={px(wide?24:32)}/></div>
+      <div style={{display:"flex",flexDirection:wide?"row":"column",gap:px(wide?20:tall?25:16)}}>{[["WATCH OUT FOR",guide.watch],["LEAN INTO",guide.lean],["TRY THIS",guide.tryThis]].map(([label,copy],index)=><div key={label} style={{display:"flex",...(wide?{flex:1}:{}),flexDirection:wide?"column":"row",gap:px(wide?7:16),alignItems:"flex-start"}}>
+        <div style={{display:"flex",width:px(wide?26:tall?42:34),height:px(wide?26:tall?42:34),borderRadius:"50%",background:accent,color:pattern === "distraction" || pattern === "delay" ? "#132659" : "white",fontSize:px(wide?17:tall?26:22),fontWeight:700,alignItems:"center",justifyContent:"center",flexShrink:0}}>{index+1}</div>
+        <div style={{display:"flex",flexDirection:"column",gap:px(5)}}><div style={{display:"flex",fontSize:px(wide?12:tall?20:16),fontWeight:700,letterSpacing:1.5,color:"#31587b"}}>{label}</div><div style={{display:"flex",fontSize:px(tipSize),lineHeight:1.3,color:"#263e62"}}>{copy}</div></div>
+      </div>)}</div>
+    </div>
+    <div style={{display:"flex",position:"relative",flexDirection:wide?"row":"column",alignItems:"center",justifyContent:"space-between",gap:px(9),flexShrink:0,textAlign:"center"}}>
+      <div style={{display:"flex",fontWeight:700,fontSize:px(wide?24:tall?35:29),color:"#19345f"}}>What’s Your Holiday Story? →</div>
+      <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:px(5)}}><div style={{display:"flex",fontSize:px(wide?20:tall?28:25)}}>parablepath.com/holidayedition</div><div style={{display:"flex",fontSize:px(wide?12:tall?18:15),color:"#526987"}}>16 questions · A seasonal reflection, not a fixed label.</div></div>
     </div>
   </div>;
 }
