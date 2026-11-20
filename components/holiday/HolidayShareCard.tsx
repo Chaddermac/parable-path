@@ -49,14 +49,12 @@ export function HolidayShareCard({ leaders, format, tentative }: { leaders:Patte
       <div style={{display:"flex",flexDirection:"column",alignItems:'center',textAlign:'center',...(landscape?{flex:1}:{width:'100%'}),gap}}>
         <div style={{display:"flex",fontSize:landscape?12:wallpaper?25:17,letterSpacing:3,color:"#326f75"}}>{tentative?'A HOLIDAY STORY TO EXPLORE':leaders.length>1?'EQUALLY PLAUSIBLE STORIES':single?'MY HOLIDAY STORY':'A LITTLE CHRISTMAS CURIOSITY'}</div>
         <div style={{display:"flex",fontSize:leaders.length>1?titleSize*.8:titleSize,fontWeight:700,lineHeight:1.05,letterSpacing:-1.7}}>{title}</div>
-        {single?<div style={{display:"flex",fontSize:bodySize*.82,color:"#326f75"}}>The {single.calling} calling</div>:null}
         {leaders.length>1?<div style={{display:"flex",flexWrap:'wrap',justifyContent:'center',width:'100%',gap:landscape?10:18}}>{leaders.map(p=><div key={p} style={{display:'flex',flexDirection:'column',alignItems:'center',width:landscape||compactTies?'22%':'44%',gap:6}}><img src={artwork[holidayArtwork[p].id as keyof typeof artwork]} width={landscape?48:wallpaper?110:compactTies?66:78} height={landscape?48:wallpaper?110:compactTies?66:78} style={{borderRadius:'50%',border:'2px solid #ffffff99'}}/><div style={{display:'flex',fontSize:landscape?13:wallpaper?29:compactTies?16:20,lineHeight:1.15}}>{holidayResults[p].name}</div></div>)}</div>:null}
         <div style={{display:"flex",fontSize:bodySize,lineHeight:1.28,color:"#334d73",maxWidth:wallpaper?1120:930}}>{single?holidayShareHooks[leaders[0]]:leaders.length?'Several stories. Equal possibility. Explore the threads that feel like you.':'Family gatherings. Gift exchanges. Awkward conversations. Which holiday story sounds like you?'}</div>
+        {single?<div style={{display:"flex",fontSize:bodySize*.82,color:"#326f75"}}>ParablePath Calling: {single.calling}</div>:null}
         {single?<div style={{display:"flex",flexDirection:'column',alignItems:'center',textAlign:'center',width:'100%',border:'1px solid #b8cce3',borderRadius:20,padding:landscape?'11px 15px':wallpaper?'25px 30px':'16px 22px',background:'#ffffff85',gap:landscape?6:10}}>
           <div style={{display:'flex',fontSize:bodySize*.56,letterSpacing:2,color:'#326f75'}}>THE GIFT YOU BRING</div>
           <div style={{display:'flex',fontSize:bodySize*.94,lineHeight:1.25,color:'#19345f'}}>{single.line}</div>
-          {!landscape?<div style={{display:'flex',fontSize:bodySize*.56,letterSpacing:2,color:'#326f75',marginTop:6}}>YOUR HOLIDAY CHALLENGE</div>:null}
-          <div style={{display:'flex',fontSize:square?bodySize:bodySize*.88,lineHeight:1.28,color:'#334d73'}}>{single.challenge}</div>
         </div>:null}
       </div>
     </div>

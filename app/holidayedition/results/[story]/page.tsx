@@ -9,6 +9,9 @@ import { HolidayTypes } from "@/components/holiday/HolidayTypes";
 import { TypologyGlobe, WinterStar } from "@/components/holiday/WinterArtwork";
 import { HolidayActions, HolidayConversion, HolidayResultView, HolidayFeedback } from "@/components/holiday/HolidayActions";
 import { holidayResults } from "@/lib/holiday/results";
+import { holidayEngagement } from "@/lib/holiday/engagement";
+import { HolidayStoryDepth } from "@/components/holiday/HolidayStoryDepth";
+import { HolidayCrew, HolidayPersonalConversion } from "@/components/holiday/HolidayEngagement";
 import { isPattern, parseStories, resultPath, parseResponseCount, interpretResponses } from "@/lib/holiday/scoring";
 type Props = { params: Promise<{ story: string }>; searchParams: Promise<{ also?: string | string[]; responses?: string | string[] }> };
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
@@ -42,19 +45,21 @@ export default async function HolidayResultPage({ params, searchParams }: Props)
   const secondary = [...new Set(typeof also === "string" ? also.split(",").filter(isPattern).filter(p => !leaders.includes(p)) : [])];
   const names = leaders.map(p => holidayResults[p].name).join(" + ");
   return <main className="holiday holiday-results"><HolidayResultView leaders={leaders} interpretation={interpretation}/>
-    <section className="reference-result-hero"><div><p className="holiday-eyebrow">ParablePath · Holiday Edition</p><h1>{leaders.length > 1 ? "The season holds more than one story." : "A more meaningful holiday season."}</h1><p className="holiday-subtitle">Discover your holiday story and find a little more clarity, connection, and purpose this Christmas.</p><a className="button-primary" href="#holiday-result">Unwrap Your Holiday Story →</a></div>{leaders.length === 1 ? <TypologyGlobe pattern={leaders[0]} large/> : <WinterStar className="reference-tie-star"/>}</section>
+    <header className="holiday-primary-reveal"><div><p className="holiday-eyebrow">{tentative ? "A tentative holiday story to explore" : leaders.length > 1 ? "Your equally plausible Holiday Stories" : "Your Holiday Story"}</p><h1>{leaders.length === 1 ? holidayResults[leaders[0]].name : "The season holds more than one story."}</h1>{leaders.length === 1 ? <><p className="holiday-recognition">{holidayEngagement[leaders[0]].recognition}</p><p className="holiday-calling">Your deeper ParablePath calling: <strong>{holidayResults[leaders[0]].calling}</strong></p></> : <p>Keep the threads that resonate. No one story has to describe all of you.</p>}</div>{leaders.length === 1 ? <TypologyGlobe pattern={leaders[0]} large/> : <WinterStar className="reference-tie-star"/>}</header>
     {tentative && <section className="holiday-tentative" role="note"><h2>A tentative story to explore</h2><p>You chose {scoredCount} story-based responses and {16-scoredCount} no-match responses. Treat {leaders.length > 1 ? "these stories" : "this story"} as a suggestion, and keep what resonates.</p><p className="holiday-fine">These are provisional pilot rules, not validated statistical confidence levels.</p></section>}
     {leaders.length > 1 && <p className="holiday-subtitle">These stories tied for your highest score. Each is equally worth exploring.</p>}
-    <HolidayTypes/>
     <div id="holiday-result" className="holiday-result-grid">{leaders.map(pattern => { const result = holidayResults[pattern]; return <article key={pattern} className="holiday-result" style={{ "--story-color":holidayArtwork[pattern].color } as CSSProperties}><ResultCardScene/>
       <div className="reference-result-intro"><TypologyGlobe pattern={pattern} large/><div><p className="holiday-eyebrow">{tentative ? "A tentative holiday story" : leaders.length > 1 ? "Equally plausible story" : "Your Holiday Story"}</p>
-      <h2>{tentative ? `You might recognize ${result.name.replace(/^The /, "the ")}.` : `You’re ${result.name.replace(/^The /, "the ")}!`}</h2><p className="holiday-calling">Your ParablePath Calling: {result.calling}</p>
-      <p>{result.description}</p></div><aside className="holiday-challenge"><p className="holiday-eyebrow">A seasonal practice</p><h3>Your Holiday Challenge</h3><p>{result.challenge}</p></aside></div><div className="reference-result-depth"><section><h3>The Story Beneath the Season</h3><p className="holiday-section-note">Patterns you may recognize.</p><ul>{result.shadowPatterns.map(text => <li key={text}>{text}</li>)}</ul></section><section><h3>The Gift You Bring</h3><p className="holiday-section-note">Ways this calling could take shape.</p><ul>{result.gifts.map(text => <li key={text}>{text}</li>)}</ul></section></div>
+      <h2>{leaders.length === 1 ? "A story you may recognize" : result.name}</h2>{leaders.length > 1 && <><p className="holiday-recognition">{holidayEngagement[pattern].recognition}</p><p className="holiday-calling">Your deeper ParablePath calling: {result.calling}</p></>}
+      <p>{result.description}</p></div></div>
+      <HolidayStoryDepth story={pattern}/>
+      <details className="holiday-pattern-details"><summary>More patterns and gifts you may recognize</summary><div className="reference-result-depth"><section><h3>Patterns under holiday stress</h3><ul>{result.shadowPatterns.map(text => <li key={text}>{text}</li>)}</ul></section><section><h3>The Gift You Bring</h3><ul>{result.gifts.map(text => <li key={text}>{text}</li>)}</ul></section></div></details>
       <p className="holiday-fine">{result.name} connects to the {result.calling} calling in ParablePath.</p>
       <HolidayActions names={names} path={resultPath(leaders, secondary, scoredCount)} story={pattern} tentative={tentative}/>
+      <HolidayPersonalConversion story={pattern}/>
     </article>; })}</div>
     {secondary.length > 0 && <section className="holiday-secondary"><h2>Another thread worth exploring</h2><p>Within one point of your leading {leaders.length > 1 ? "stories" : "story"}. These may resonate, too.</p>{secondary.map(p => <Link key={p} href={resultPath([p], [], scoredCount)}>{holidayResults[p].name} · {holidayResults[p].calling} ↗</Link>)}</section>}
-    <HolidayFeedback leaders={leaders} interpretation={interpretation}/><HolidayConversion/><p className="holiday-fine">A seasonal reflection, not a permanent identity or a validated psychological assessment. A shared result link contains story names and, when needed, a response count; no answer history or category scores.</p>
+    <HolidayCrew/><HolidayFeedback leaders={leaders} interpretation={interpretation}/><p className="holiday-fine">A seasonal reflection, not a permanent identity or a validated psychological assessment. A shared result link contains story names and, when needed, a response count; no answer history or category scores.</p>
     <Link className="holiday-back" href="/holidayedition">Take the holiday quiz →</Link>
   </main>;
 }
